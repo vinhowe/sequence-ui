@@ -457,7 +457,7 @@
 										highlighted={activeTool === 'settings'}
 										onclick={() => activeTool = 'settings'}
 									/>
-									<span class="text-muted-foreground type-label">
+									<span class="ml-2 text-muted-foreground type-label">
 										{activeTool}
 									</span>
 								</div>
@@ -792,7 +792,7 @@
 											{open ? 'Open' : 'Actions'}
 										{/snippet}
 									</Menu>
-									<span class="text-muted-foreground type-label">{menuAction}</span>
+									<span class="ml-2 text-muted-foreground type-label">{menuAction}</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.menu}</code></pre>
 							</Panel>
