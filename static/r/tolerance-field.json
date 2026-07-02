@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "tolerance-field",
+	"type": "registry:ui",
+	"title": "Tolerance Field",
+	"description": "Tolerance Field component for Sequence UI.",
+	"dependencies": [],
+	"registryDependencies": [
+		"form-label"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/controls/ToleranceField.svelte",
+			"content": "<script lang=\"ts\">\n\timport FormLabel from './FormLabel.svelte';\n\n\ttype $$Props = {\n\t\tvalue: number;\n\t\ttolerance: number;\n\t\tunit?: string;\n\t\tid: string;\n\t\tlabel?: string;\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tvalue = $bindable(0),\n\t\ttolerance = $bindable(0),\n\t\tunit,\n\t\tid,\n\t\tlabel,\n\t\tclass: wrapperClass = ''\n\t}: $$Props = $props();\n\n\tlet focusedField = $state<'value' | 'tolerance' | null>(null);\n\tlet valueText = $state(String(value));\n\tlet toleranceText = $state(String(tolerance));\n\tlet toleranceInvalid = $state(false);\n\n\t$effect(() => {\n\t\tif (focusedField !== 'value') valueText = String(value);\n\t\tif (focusedField !== 'tolerance') {\n\t\t\ttoleranceText = String(tolerance);\n\t\t\ttoleranceInvalid = tolerance < 0;\n\t\t}\n\t});\n\n\tfunction updateValue(next: string) {\n\t\tvalueText = next;\n\t\tconst parsed = Number.parseFloat(next);\n\t\tif (!Number.isNaN(parsed)) value = parsed;\n\t}\n\n\tfunction updateTolerance(next: string) {\n\t\ttoleranceText = next;\n\t\tconst parsed = Number.parseFloat(next);\n\t\tif (Number.isNaN(parsed) || parsed < 0) {\n\t\t\ttoleranceInvalid = true;\n\t\t\treturn;\n\t\t}\n\n\t\ttoleranceInvalid = false;\n\t\ttolerance = parsed;\n\t}\n</script>\n\n<div class={`stack-tight ${wrapperClass}`.trim()}>\n\t{#if label}\n\t\t<FormLabel forInputId={`${id}-value`} value={label} />\n\t{/if}\n\t<div class=\"inline-flex items-stretch border border-border bg-card\">\n\t\t<input\n\t\t\tid={`${id}-value`}\n\t\t\ttype=\"text\"\n\t\t\tinputmode=\"decimal\"\n\t\t\tvalue={valueText}\n\t\t\taria-label=\"Nominal value\"\n\t\t\tclass=\"h-6 w-20 border-0 bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value\"\n\t\t\tonfocus={() => focusedField = 'value'}\n\t\t\tonblur={() => focusedField = null}\n\t\t\toninput={(event) => updateValue((event.currentTarget as HTMLInputElement).value)}\n\t\t/>\n\t\t<span class=\"flex h-6 items-center border-l border-border bg-muted px-2 text-muted-foreground type-label\">±</span>\n\t\t<input\n\t\t\tid={`${id}-tolerance`}\n\t\t\ttype=\"text\"\n\t\t\tinputmode=\"decimal\"\n\t\t\tvalue={toleranceText}\n\t\t\taria-label=\"Tolerance\"\n\t\t\tclass={`h-6 w-16 border-0 bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${\n\t\t\t\ttoleranceInvalid ? 'border border-destructive' : ''\n\t\t\t}`}\n\t\t\tonfocus={() => focusedField = 'tolerance'}\n\t\t\tonblur={() => focusedField = null}\n\t\t\toninput={(event) => updateTolerance((event.currentTarget as HTMLInputElement).value)}\n\t\t/>\n\t\t{#if unit}\n\t\t\t<span class=\"flex h-6 items-center border-l border-border bg-muted px-2 text-muted-foreground type-label\">{unit}</span>\n\t\t{/if}\n\t</div>\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/controls/ToleranceField.svelte"
+		}
+	]
+}

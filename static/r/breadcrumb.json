@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "breadcrumb",
+	"type": "registry:ui",
+	"title": "Breadcrumb",
+	"description": "Breadcrumb component for Sequence UI.",
+	"dependencies": [
+		"tailwind-merge"
+	],
+	"registryDependencies": [
+		"chevron-icon"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/navigation/Breadcrumb.svelte",
+			"content": "<script lang=\"ts\">\n\timport { twMerge } from 'tailwind-merge';\n\n\timport ChevronIcon from '../icons/ChevronIcon.svelte';\n\n\ttype BreadcrumbItem = { label: string; href?: string; onSelect?: () => void };\n\ttype VisibleItem = { kind: 'item'; item: BreadcrumbItem; originalIndex: number } | { kind: 'ellipsis' };\n\ttype $$Props = {\n\t\titems: BreadcrumbItem[];\n\t\tclass?: string;\n\t\tmaxItems?: number;\n\t};\n\n\tlet { items, class: wrapperClass = '', maxItems = undefined }: $$Props = $props();\n\n\tlet expanded = $state(false);\n\n\tfunction buildVisibleItems(): VisibleItem[] {\n\t\tif (!maxItems || expanded || items.length <= maxItems || maxItems < 3) {\n\t\t\treturn items.map((item, originalIndex) => ({ kind: 'item', item, originalIndex }));\n\t\t}\n\n\t\tconst middleSlots = maxItems - 2;\n\t\tconst frontCount = Math.max(1, Math.ceil(middleSlots / 2));\n\t\tconst backCount = Math.max(1, middleSlots - frontCount);\n\t\tconst front = items\n\t\t\t.slice(0, frontCount)\n\t\t\t.map((item, originalIndex) => ({ kind: 'item' as const, item, originalIndex }));\n\t\tconst backStart = items.length - backCount;\n\t\tconst back = items\n\t\t\t.slice(backStart)\n\t\t\t.map((item, index) => ({ kind: 'item' as const, item, originalIndex: backStart + index }));\n\t\treturn [...front, { kind: 'ellipsis' }, ...back];\n\t}\n\n\tconst visibleItems = $derived(buildVisibleItems());\n</script>\n\n<nav class={twMerge('flex flex-wrap items-center gap-1', wrapperClass)} aria-label=\"Breadcrumb\">\n\t{#each visibleItems as visible, i}\n\t\t{#if i > 0}\n\t\t\t<ChevronIcon direction=\"right\" class=\"h-3 w-3 text-subtle-foreground\" strokeWidth={2.5} />\n\t\t{/if}\n\n\t\t{#if visible.kind === 'ellipsis'}\n\t\t\t<button\n\t\t\t\ttype=\"button\"\n\t\t\t\taria-label=\"Show full path\"\n\t\t\t\tclass=\"px-0.5 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body\"\n\t\t\t\tonclick={() => (expanded = true)}\n\t\t\t>\n\t\t\t\t…\n\t\t\t</button>\n\t\t{:else if visible.originalIndex === items.length - 1}\n\t\t\t<span aria-current=\"page\" class=\"text-foreground type-body\">{visible.item.label}</span>\n\t\t{:else if visible.item.href}\n\t\t\t<a\n\t\t\t\thref={visible.item.href}\n\t\t\t\tclass=\"text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body\"\n\t\t\t\tonclick={() => visible.item.onSelect?.()}\n\t\t\t>\n\t\t\t\t{visible.item.label}\n\t\t\t</a>\n\t\t{:else if visible.item.onSelect}\n\t\t\t<button\n\t\t\t\ttype=\"button\"\n\t\t\t\tclass=\"text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body\"\n\t\t\t\tonclick={visible.item.onSelect}\n\t\t\t>\n\t\t\t\t{visible.item.label}\n\t\t\t</button>\n\t\t{:else}\n\t\t\t<span class=\"text-muted-foreground type-body\">{visible.item.label}</span>\n\t\t{/if}\n\t{/each}\n</nav>\n",
+			"type": "registry:ui",
+			"target": "lib/components/navigation/Breadcrumb.svelte"
+		}
+	]
+}

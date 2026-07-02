@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "form-label",
+	"type": "registry:ui",
+	"title": "Form Label",
+	"description": "Form Label component for Sequence UI.",
+	"dependencies": [
+		"tailwind-merge"
+	],
+	"registryDependencies": [
+		"katex-block"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/controls/FormLabel.svelte",
+			"content": "<script lang=\"ts\">\n  import KatexBlock from \"../optional/KatexBlock.svelte\";\n  import { twMerge } from \"tailwind-merge\";\n\n  type $$Props = {\n    forInputId?: string;\n    class?: string;\n    value: string;\n  };\n  let { forInputId, class: additionalClasses = \"\", value }: $$Props = $props();\n</script>\n\n<label\n  for={forInputId}\n  class={twMerge(\"block text-muted-foreground type-label\", additionalClasses)}\n>\n  <KatexBlock text={value} />\n</label>\n",
+			"type": "registry:ui",
+			"target": "lib/components/controls/FormLabel.svelte"
+		}
+	]
+}

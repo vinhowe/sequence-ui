@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "portal",
+	"type": "registry:ui",
+	"title": "Portal",
+	"description": "Portal component for Sequence UI.",
+	"dependencies": [
+		"svelte"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/optional/Portal.svelte",
+			"content": "<script lang=\"ts\">\n\timport { tick } from 'svelte';\n\timport type { Snippet } from 'svelte';\n\n\t/**\n\t * Usage: <div use:portal={'css selector'}> or <div use:portal={document.body}>\n\t *\n\t * @param {HTMLElement} el\n\t * @param {HTMLElement|string} target DOM Element or CSS Selector\n\t */\n\texport function portal(el: HTMLElement, target: HTMLElement | string = 'body') {\n\t\tlet targetEl;\n\t\tasync function update(newTarget: HTMLElement | string) {\n\t\t\ttarget = newTarget;\n\t\t\tif (typeof target === 'string') {\n\t\t\t\ttargetEl = document.querySelector(target);\n\t\t\t\tif (targetEl === null) {\n\t\t\t\t\tawait tick();\n\t\t\t\t\ttargetEl = document.querySelector(target);\n\t\t\t\t}\n\t\t\t\tif (targetEl === null) {\n\t\t\t\t\tthrow new Error(`No element found matching css selector: \"${target}\"`);\n\t\t\t\t}\n\t\t\t} else if (target instanceof HTMLElement) {\n\t\t\t\ttargetEl = target;\n\t\t\t} else {\n\t\t\t\tthrow new TypeError(\n\t\t\t\t\t`Unknown portal target type: ${\n\t\t\t\t\t\ttarget === null ? 'null' : typeof target\n\t\t\t\t\t}. Allowed types: string (CSS selector) or HTMLElement.`\n\t\t\t\t);\n\t\t\t}\n\t\t\ttargetEl.appendChild(el);\n\t\t\tel.hidden = false;\n\t\t}\n\n\t\tfunction destroy() {\n\t\t\tif (el.parentNode) {\n\t\t\t\tel.parentNode.removeChild(el);\n\t\t\t}\n\t\t}\n\n\t\tupdate(target);\n\t\treturn {\n\t\t\tupdate,\n\t\t\tdestroy\n\t\t};\n\t}\n\n\ttype $$Props = {\n\t\ttarget: HTMLElement | string;\n\t\tchildren: Snippet;\n\t};\n\n\tlet { target = 'body', children }: $$Props = $props();\n</script>\n\n<div use:portal={target} hidden>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/optional/Portal.svelte"
+		}
+	]
+}

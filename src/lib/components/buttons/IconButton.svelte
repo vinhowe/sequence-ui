@@ -1,0 +1,59 @@
+<script lang="ts">
+	import { twMerge } from 'tailwind-merge';
+	import type { Component, Snippet } from 'svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLButtonAttributes {
+		icon?: Component;
+		label?: string;
+		children?: Snippet;
+		size?: 'sm' | 'md';
+		strokeWidth?: number;
+		active?: boolean;
+		highlighted?: boolean;
+	}
+
+	let {
+		icon: Icon,
+		label,
+		children,
+		size = 'md',
+		strokeWidth = 2.5,
+		active = false,
+		highlighted = false,
+		class: additionalClasses,
+		disabled,
+		...restProps
+	}: Props = $props();
+
+	const baseClasses =
+		'inline-flex shrink-0 cursor-pointer items-center justify-center border border-border bg-panel text-foreground transition-[background-color,color,opacity] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 type-button';
+
+	const sizeClasses = $derived(size === 'sm' ? 'h-5 w-5' : 'h-7.5 w-7.5');
+	const stateClasses = $derived(
+		highlighted
+			? 'border-primary bg-primary text-primary-foreground animate-pulse'
+			: active
+				? 'bg-card text-foreground'
+				: 'hover:bg-muted'
+	);
+	const iconClasses = $derived(size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4');
+	const normalizedAdditionalClasses = $derived(
+		typeof additionalClasses === 'string' ? additionalClasses : ''
+	);
+</script>
+
+<button
+	type="button"
+	aria-label={label}
+	title={label}
+	class={twMerge(baseClasses, sizeClasses, stateClasses, normalizedAdditionalClasses)}
+	{disabled}
+	{...restProps}
+>
+	{#if children}
+		{@render children()}
+	{:else if Icon}
+		<Icon class={iconClasses} {strokeWidth} aria-hidden="true" />
+	{/if}
+</button>

@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "toggle-group",
+	"type": "registry:ui",
+	"title": "Toggle Group",
+	"description": "Toggle Group component for Sequence UI.",
+	"dependencies": [
+		"svelte"
+	],
+	"registryDependencies": [
+		"checkbox-input",
+		"citations",
+		"panel"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/controls/ToggleGroup.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\n\timport CheckboxInput from './CheckboxInput.svelte';\n\timport Panel from '../primitives/Panel.svelte';\n\timport type { CitationEntries as CitationsType } from '../feedback/Citations.svelte';\n\n\ttype $$Props = {\n\t\ttitle?: string;\n\t\tid: string;\n\t\tcitations?: CitationsType;\n\t\tshowEnableToggle?: boolean;\n\t\tenabled?: boolean;\n\t\tclass?: string;\n\t\theaderClass?: string;\n\t\tcontentClass?: string;\n\t\theader?: Snippet;\n\t\tchildren?: Snippet;\n\t\thasDefaultValue?: boolean;\n\t\tonReset?: () => void;\n\t};\n\n\tlet {\n\t\ttitle,\n\t\tid,\n\t\tcitations,\n\t\tshowEnableToggle = false,\n\t\tenabled = $bindable(false),\n\t\tclass: rootClass = '',\n\t\theaderClass = undefined,\n\t\tcontentClass = 'p-1.5 stack-field',\n\t\theader,\n\t\tchildren,\n\t\thasDefaultValue = false,\n\t\tonReset = undefined\n\t}: $$Props = $props();\n</script>\n\n<Panel {title} {id} {citations} {header} class={rootClass} {headerClass} contentClass={null}>\n\t{#snippet action()}\n\t\t{#if showEnableToggle}\n\t\t\t<CheckboxInput\n\t\t\t\tid={`${id}-enable-toggle`}\n\t\t\t\tbind:checked={enabled}\n\t\t\t\t{hasDefaultValue}\n\t\t\t\t{onReset}\n\t\t\t/>\n\t\t{/if}\n\t{/snippet}\n\t{#if !showEnableToggle || (showEnableToggle && enabled)}\n\t\t<div class={contentClass}>\n\t\t\t{@render children?.()}\n\t\t</div>\n\t{/if}\n</Panel>\n",
+			"type": "registry:ui",
+			"target": "lib/components/controls/ToggleGroup.svelte"
+		}
+	]
+}

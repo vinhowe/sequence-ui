@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "footnotes-provider",
+	"type": "registry:ui",
+	"title": "Footnotes Provider",
+	"description": "Footnotes Provider component for Sequence UI.",
+	"dependencies": [
+		"svelte"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/optional/FootnotesProvider.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\n\timport { setContext } from 'svelte';\n\n\t// Context key shared with Footnote.svelte\n\tconst FOOTNOTES_CTX = 'sequence-toy-footnotes';\n\n\tlet { children, start = 1 }: { children: Snippet; start?: number } = $props();\n\n\ttype Entry = { key: string; label: string; content: Snippet };\n\tlet entries = $state<Entry[]>([]);\n\t// svelte-ignore state_referenced_locally -- start is intentionally used only as the initial counter seed\n\tlet nextIndex = $state(start);\n\n\tfunction register(entry: { key?: string; label?: string | number; content: Snippet }) {\n\t\tconst resolvedKey = entry.key ?? `n${entries.length + 1}`;\n\t\tconst resolvedLabel = entry.label != null ? String(entry.label) : String(nextIndex++);\n\t\tif (!entries.some((e) => e.key === resolvedKey)) {\n\t\t\tentries = [...entries, { key: resolvedKey, label: resolvedLabel, content: entry.content }];\n\t\t}\n\t\treturn { key: resolvedKey, label: resolvedLabel };\n\t}\n\n\tsetContext(FOOTNOTES_CTX, { register });\n</script>\n\n{@render children()}\n\n<section class=\"mt-6\" aria-labelledby=\"footnote-label\" role=\"doc-endnotes\">\n\t<h2 id=\"footnote-label\" class=\"sr-only\">Footnotes</h2>\n\t<ol class=\"text-muted-foreground space-y-1 list-none type-caption\">\n\t\t{#each entries as e (e.key)}\n\t\t\t<li id={`fn-${e.key}`} role=\"doc-endnote\" class=\"grid grid-cols-[auto_1fr] gap-x-3\">\n\t\t\t\t<span class=\"text-subtle-foreground type-value\">{e.label + '.'}</span>\n\t\t\t\t<div>\n\t\t\t\t\t{@render e.content()}\n\t\t\t\t\t<a href={`#fnref-${e.key}`} class=\"ml-1 no-underline\" aria-label=\"Back to content\">↩︎</a>\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t{/each}\n\t</ol>\n</section>\n",
+			"type": "registry:ui",
+			"target": "lib/components/optional/FootnotesProvider.svelte"
+		}
+	]
+}

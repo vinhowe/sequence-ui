@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "statistic",
+	"type": "registry:ui",
+	"title": "Statistic",
+	"description": "Statistic component for Sequence UI.",
+	"dependencies": [
+		"svelte"
+	],
+	"registryDependencies": [
+		"katex-block"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/feedback/Statistic.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\n\timport KatexBlock from '../optional/KatexBlock.svelte';\n\n\ttype $$Props = {\n\t\tlabel: string;\n\t\tchildren: Snippet;\n\t\tfunFact?: Snippet;\n\t};\n\n\tlet { label, children, funFact }: $$Props = $props();\n</script>\n\n<div\n\tclass=\"stack-tight p-1 bg-muted/70 border border-border-strong/60 text-foreground\"\n>\n\t<span class=\"text-subtle-foreground type-label\"\n\t\t><KatexBlock text={label} /></span\n\t>\n\t<span class=\"flex items-baseline gap-x-1\">\n\t\t<span class=\"type-value\">\n\t\t\t{@render children?.()}\n\t\t</span>\n\t\t{#if funFact}\n\t\t\t<span class=\"text-right w-full text-muted-foreground type-caption\">\n\t\t\t\t{@render funFact?.()}\n\t\t\t</span>\n\t\t{/if}\n\t</span>\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/feedback/Statistic.svelte"
+		}
+	]
+}

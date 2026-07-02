@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "theme-provider",
+	"type": "registry:ui",
+	"title": "Theme Provider",
+	"description": "Theme Provider component for Sequence UI.",
+	"dependencies": [
+		"@sveltejs/kit",
+		"svelte"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/theme/ThemeProvider.svelte",
+			"content": "<script module lang=\"ts\">\n\timport { getContext, setContext } from 'svelte';\n\n\texport type ThemeMode = 'light' | 'dark' | 'system';\n\texport type ResolvedTheme = 'light' | 'dark';\n\n\texport interface ThemeContext {\n\t\treadonly theme: ThemeMode;\n\t\treadonly resolvedTheme: ResolvedTheme;\n\t\tsetTheme: (theme: ThemeMode) => void;\n\t}\n\n\tconst THEME_CONTEXT_KEY = Symbol('sequence-ui-theme');\n\n\texport function getThemeContext() {\n\t\tconst context = getContext<ThemeContext>(THEME_CONTEXT_KEY);\n\n\t\tif (!context) {\n\t\t\tthrow new Error('ThemeToggle must be used inside ThemeProvider.');\n\t\t}\n\n\t\treturn context;\n\t}\n</script>\n\n<script lang=\"ts\">\n\timport { browser } from '$app/environment';\n\timport type { Snippet } from 'svelte';\n\n\tinterface Props {\n\t\tchildren?: Snippet;\n\t\tdefaultTheme?: ThemeMode;\n\t}\n\n\tconst STORAGE_KEY = 'sequence-ui-theme';\n\n\tlet { children, defaultTheme = 'system' }: Props = $props();\n\t// svelte-ignore state_referenced_locally -- defaultTheme is intentionally used only as the initial seed\n\tlet theme = $state<ThemeMode>(defaultTheme);\n\tlet resolvedTheme = $state<ResolvedTheme>('light');\n\n\tfunction isThemeMode(value: string | null): value is ThemeMode {\n\t\treturn value === 'light' || value === 'dark' || value === 'system';\n\t}\n\n\tfunction systemTheme(): ResolvedTheme {\n\t\treturn window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';\n\t}\n\n\tfunction resolveTheme(mode: ThemeMode): ResolvedTheme {\n\t\treturn mode === 'system' ? systemTheme() : mode;\n\t}\n\n\tfunction applyTheme(mode: ThemeMode) {\n\t\tif (!browser) return;\n\n\t\tresolvedTheme = resolveTheme(mode);\n\t\tdocument.documentElement.classList.toggle('dark', resolvedTheme === 'dark');\n\t}\n\n\tfunction setTheme(nextTheme: ThemeMode) {\n\t\ttheme = nextTheme;\n\n\t\tif (browser) {\n\t\t\tlocalStorage.setItem(STORAGE_KEY, nextTheme);\n\t\t}\n\n\t\tapplyTheme(nextTheme);\n\t}\n\n\tsetContext<ThemeContext>(THEME_CONTEXT_KEY, {\n\t\tget theme() {\n\t\t\treturn theme;\n\t\t},\n\t\tget resolvedTheme() {\n\t\t\treturn resolvedTheme;\n\t\t},\n\t\tsetTheme\n\t});\n\n\t$effect(() => {\n\t\tif (!browser) return;\n\n\t\tconst storedTheme = localStorage.getItem(STORAGE_KEY);\n\t\ttheme = isThemeMode(storedTheme) ? storedTheme : defaultTheme;\n\t\tapplyTheme(theme);\n\n\t\tconst media = window.matchMedia('(prefers-color-scheme: dark)');\n\t\tconst handleSystemChange = () => {\n\t\t\tif (theme === 'system') {\n\t\t\t\tapplyTheme('system');\n\t\t\t}\n\t\t};\n\n\t\tmedia.addEventListener('change', handleSystemChange);\n\n\t\treturn () => {\n\t\t\tmedia.removeEventListener('change', handleSystemChange);\n\t\t};\n\t});\n</script>\n\n{@render children?.()}\n",
+			"type": "registry:ui",
+			"target": "lib/components/theme/ThemeProvider.svelte"
+		}
+	]
+}

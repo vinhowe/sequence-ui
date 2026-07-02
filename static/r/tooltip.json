@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "tooltip",
+	"type": "registry:ui",
+	"title": "Tooltip",
+	"description": "Tooltip component for Sequence UI.",
+	"dependencies": [
+		"@lucide/svelte",
+		"svelte"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/feedback/Tooltip.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { Settings2 } from '@lucide/svelte';\n\timport type { Snippet } from 'svelte';\n\timport type { AriaRole } from 'svelte/elements';\n\n\ttype $$Props = {\n\t\ticon: typeof Settings2;\n\t\tclass?: string;\n\t\trole?: AriaRole;\n\t\tcolorClass?: string;\n\t\tstrokeWidth?: number;\n\t\tchildren: Snippet;\n\t};\n\n\tlet {\n\t\trole = 'complementary',\n\t\tclass: additionalClasses = '',\n\t\tchildren,\n\t\ticon: Icon,\n\t\tcolorClass = 'border-primary bg-primary/15 text-foreground w-full'\n\t}: $$Props = $props();\n</script>\n\n<div\n\tclass={`flex items-center gap-2 ${additionalClasses}`.trim()}\n\taria-label=\"User guide tip\"\n\t{role}\n\tdata-nosnippet\n>\n\t<span class={`inline-flex items-start p-2 border border-l-4 type-body ${colorClass}`}>\n\t\t<Icon class=\"w-5 h-5 mr-2 mt-0.5 flex-shrink-0\" aria-hidden=\"true\" strokeWidth={1.8} />\n\t\t<div>\n\t\t\t{@render children?.()}\n\t\t</div>\n\t</span>\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/feedback/Tooltip.svelte"
+		}
+	]
+}

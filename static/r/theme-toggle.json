@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "theme-toggle",
+	"type": "registry:ui",
+	"title": "Theme Toggle",
+	"description": "Theme Toggle component for Sequence UI.",
+	"dependencies": [
+		"@lucide/svelte",
+		"tailwind-merge"
+	],
+	"registryDependencies": [
+		"theme-provider"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/theme/ThemeToggle.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Monitor, Moon, Sun } from '@lucide/svelte';\n\timport { twMerge } from 'tailwind-merge';\n\timport { getThemeContext, type ThemeMode } from './ThemeProvider.svelte';\n\n\tconst themeContext = getThemeContext();\n\n\tconst OPTIONS = [\n\t\t{ label: 'Light', value: 'light', icon: Sun },\n\t\t{ label: 'Dark', value: 'dark', icon: Moon },\n\t\t{ label: 'System', value: 'system', icon: Monitor }\n\t] satisfies Array<{ label: string; value: ThemeMode; icon: typeof Sun }>;\n\n\tconst baseButtonClasses =\n\t\t'inline-flex items-center gap-1 border-r border-border px-1.5 py-0.5 transition-colors last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';\n\tconst activeButtonClasses = 'bg-foreground text-background';\n\tconst inactiveButtonClasses =\n\t\t'bg-card text-muted-foreground hover:bg-muted hover:text-foreground dark:bg-card dark:hover:bg-muted';\n\n\tfunction optionClasses(value: ThemeMode) {\n\t\treturn twMerge(\n\t\t\tbaseButtonClasses,\n\t\t\tthemeContext.theme === value ? activeButtonClasses : inactiveButtonClasses\n\t\t);\n\t}\n</script>\n\n<div\n\tclass=\"inline-flex border border-border bg-card\"\n\trole=\"radiogroup\"\n\taria-label=\"Theme\"\n>\n\t{#each OPTIONS as option}\n\t\t{@const Icon = option.icon}\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\trole=\"radio\"\n\t\t\taria-checked={themeContext.theme === option.value}\n\t\t\tclass={optionClasses(option.value)}\n\t\t\tonclick={() => themeContext.setTheme(option.value)}\n\t\t>\n\t\t\t<Icon size={13} strokeWidth={2} aria-hidden=\"true\" />\n\t\t\t<span>{option.label}</span>\n\t\t</button>\n\t{/each}\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/theme/ThemeToggle.svelte"
+		}
+	]
+}

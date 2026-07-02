@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "katex-block",
+	"type": "registry:ui",
+	"title": "Katex Block",
+	"description": "Katex Block component for Sequence UI.",
+	"dependencies": [
+		"katex"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/optional/KatexBlock.svelte",
+			"content": "<script lang=\"ts\">\n  import katex from \"katex\";\n\n  import \"katex/dist/katex.min.css\";\n\n  let { text }: { text?: string } = $props();\n\n  const latexRegex = /\\$(.*?)\\$/gs;\n\n  function getProcessedContent(originalText: string): { output: string; isHtml: boolean } {\n    // Reset lastIndex before using test, as latexRegex is a global regex with state.\n    latexRegex.lastIndex = 0;\n    if (!latexRegex.test(originalText) || typeof document === \"undefined\") {\n      // No LaTeX found, return original text, mark as not HTML.\n      return { output: originalText, isHtml: false };\n    }\n\n    // Reset lastIndex again before using replace, to ensure it processes from the start.\n    latexRegex.lastIndex = 0;\n    const htmlOutput = originalText.replace(latexRegex, (match, latex) => {\n      try {\n        const rendered = katex.renderToString(latex, {\n          throwOnError: false,\n        });\n        // This allows us to use katex blocks in something that wraps the surrounding text in uppercase.\n        return `<span class=\"normal-case\">${rendered}</span>`;\n      } catch (e) {\n        console.error(\"Error rendering KaTeX:\", e);\n        return `<span style=\"color: red;\">${match}</span>`;\n      }\n    });\n    return { output: htmlOutput, isHtml: true };\n  }\n\n  const processed = $derived(text ? getProcessedContent(text) : { output: \"\", isHtml: false });\n</script>\n\n{#if processed.isHtml}\n  <!-- eslint-disable-next-line svelte/no-at-html-tags -->\n  {@html processed.output}\n{:else}\n  {processed.output}\n{/if}\n",
+			"type": "registry:ui",
+			"target": "lib/components/optional/KatexBlock.svelte"
+		}
+	]
+}

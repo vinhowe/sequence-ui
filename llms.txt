@@ -1,0 +1,77 @@
+Sequence UI: Svelte 5 runes + Tailwind v4 CSS-first + TypeScript design system for dense, flat, sharp, light/dark instrument-panel interfaces extracted from Sequence Toy.
+
+Key paths:
+- README.md: human-facing overview, install, usage, commands, component catalog.
+- AGENTS.md: prescriptive coding-agent visual spec and anti-patterns.
+- docs/design-spec.md: fonts, OKLCH tokens, type roles, spacing, dark-mode wiring.
+- src/app.css: authoritative tokens, @theme inline mappings, @custom-variant dark, 9 type-role utilities, stack utilities, base resets.
+- src/lib/index.ts: authoritative export list.
+- registry.json: registry source file expected by scripts/build-registry.mjs.
+- static/r/: generated shadcn-svelte registry item output directory.
+
+Install pattern:
+npx shadcn-svelte@latest add <url>/r/<name>.json
+
+Dev commands:
+- pnpm dev --port 5199
+- pnpm check
+- pnpm build
+- pnpm registry:build
+
+Design constants:
+- Base type: 13px.
+- Tailwind spacing: --spacing: 0.2rem.
+- Radius: --radius: 0rem.
+- Corners: sharp.
+- Surfaces: flat, no shadows.
+- Borders: thin border-border hairlines.
+- Fonts: Berkeley Mono Variable via bundled woff2 and @font-face; neue-haas-unica via Adobe Typekit; consumers bring their own fonts.
+- Dark mode: .dark class on html, localStorage key sequence-ui-theme, modes light/dark/system.
+
+Type roles:
+- type-display
+- type-heading
+- type-title
+- type-body
+- type-caption
+- type-label
+- type-button
+- type-value
+- type-code
+
+Stack utilities:
+- stack-tight: label/field and parts of one control.
+- stack-field: panel body internals.
+- stack-group: related groups or panels.
+- stack-section: sections.
+
+Component exports:
+- Buttons: ActionButton, IconButton.
+- Primitives: Panel, BorderedGroup, CollapsibleSection, Pane.
+- Controls: Slider, NumberInput, ScrubInput, AngleField, ThresholdMarker, TextInput, TimecodeField, BitField, BaseField, ToleranceField, SelectInput, ToggleGroup, CheckboxInput, RadioGroupInput, RadioInput, FormLabel, ResetValueButton.
+- Feedback: Statistic, ControlsStatistic, Note, ControlsNote, Citations, Tooltip, UserGuideTooltip.
+- Navigation: Menu, Breadcrumb, Pagination, Tree.
+- Data: CapacityBar, TimeBrush.
+- Icons: ChevronIcon, CheckboxIcon, RadioIcon.
+- Theme: ThemeProvider, ThemeToggle.
+- Optional: KatexBlock, Footnote, FootnotesProvider, Portal.
+
+Non-component exports:
+- getThemeContext
+- PaneTab
+- SelectOption
+- CitationEntries
+- MenuItem
+- TreeNode
+- CapacitySegment
+- ThemeMode
+- ThemeContext
+
+Agent warnings:
+- Use type roles, never raw text-* sizes for UI typography.
+- Spacing belongs to containers; components are margin-free.
+- Mono is reserved for buttons, numeric values/readouts, code, small instrument labels, and brand labels.
+- Never use uppercase mono eyebrow over a big title.
+- Never use left-border active selection cues; use background fill or text color.
+- Never add rounded corners, shadows, glass, skeuomorphism, or loose dashboard spacing.
+- Segmented controls use one outer border, borderless inner segments, and 1px dividers.

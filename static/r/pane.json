@@ -1,0 +1,20 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "pane",
+	"type": "registry:ui",
+	"title": "Pane",
+	"description": "Pane component for Sequence UI.",
+	"dependencies": [
+		"svelte",
+		"tailwind-merge"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/primitives/Pane.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { Component, Snippet } from 'svelte';\n\timport { twMerge } from 'tailwind-merge';\n\n\texport type PaneTab = {\n\t\tid: string;\n\t\tlabel: string;\n\t\ticon?: Component;\n\t\tdisabled?: boolean;\n\t};\n\n\ttype Props = {\n\t\ttabs: PaneTab[];\n\t\t/** The active tab id (bindable). */\n\t\tactive?: string;\n\t\tclass?: string;\n\t\ttabsClass?: string;\n\t\tbodyClass?: string;\n\t\t/** Optional controls pinned to the right of the tab strip (e.g. a settings button). */\n\t\tactions?: Snippet;\n\t\t/** Pane body; receives the active tab id. */\n\t\tchildren?: Snippet<[string]>;\n\t};\n\n\tlet {\n\t\ttabs,\n\t\tactive = $bindable(tabs[0]?.id),\n\t\tclass: rootClass = '',\n\t\ttabsClass = '',\n\t\tbodyClass = 'p-1.5 stack-field',\n\t\tactions,\n\t\tchildren\n\t}: Props = $props();\n</script>\n\n<div class={twMerge('flex min-h-0 flex-col border border-border bg-card', rootClass)}>\n\t<!-- Tab strip. The active tab uses the body's bg-card + a transparent bottom border,\n\t     and the row is pulled down 1px (-mb-px) so it merges into the pane below (VS Code look). -->\n\t<div\n\t\tclass={twMerge('flex shrink-0 items-stretch bg-panel', tabsClass)}\n\t\trole=\"tablist\"\n\t>\n\t\t<div class=\"-mb-px flex\">\n\t\t\t{#each tabs as tab (tab.id)}\n\t\t\t\t{@const isActive = tab.id === active}\n\t\t\t\t{@const Icon = tab.icon}\n\t\t\t\t<button\n\t\t\t\t\ttype=\"button\"\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\taria-selected={isActive}\n\t\t\t\t\tdisabled={tab.disabled}\n\t\t\t\t\tclass={twMerge(\n\t\t\t\t\t\t'flex items-center gap-1.5 border-r border-b border-border px-2 py-1 type-body transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',\n\t\t\t\t\t\tisActive\n\t\t\t\t\t\t\t? 'border-b-transparent bg-card text-foreground'\n\t\t\t\t\t\t\t: 'text-muted-foreground hover:text-foreground'\n\t\t\t\t\t)}\n\t\t\t\t\tonclick={() => (active = tab.id)}\n\t\t\t\t>\n\t\t\t\t\t{#if Icon}\n\t\t\t\t\t\t<Icon size={13} strokeWidth={2} aria-hidden=\"true\" />\n\t\t\t\t\t{/if}\n\t\t\t\t\t{tab.label}\n\t\t\t\t</button>\n\t\t\t{/each}\n\t\t</div>\n\t\t{#if actions}\n\t\t\t<div class=\"ml-auto flex items-center gap-1 border-b border-border px-1\">\n\t\t\t\t{@render actions()}\n\t\t\t</div>\n\t\t{/if}\n\t</div>\n\t<div class={twMerge('min-h-0 flex-1 overflow-y-auto', bodyClass)} role=\"tabpanel\">\n\t\t{@render children?.(active)}\n\t</div>\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/primitives/Pane.svelte"
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "radio-input",
+	"type": "registry:ui",
+	"title": "Radio Input",
+	"description": "Radio Input component for Sequence UI.",
+	"dependencies": [
+		"tailwind-merge"
+	],
+	"registryDependencies": [
+		"katex-block",
+		"radio-icon",
+		"reset-value-button"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/controls/RadioInput.svelte",
+			"content": "<script lang=\"ts\">\n  import KatexBlock from \"../optional/KatexBlock.svelte\";\n  import ResetValueButton from \"./ResetValueButton.svelte\";\n  import RadioIcon from \"../icons/RadioIcon.svelte\";\n  import { twMerge } from \"tailwind-merge\";\n\n  type $$Props = {\n    label?: string;\n    group: string | number;\n    value?: string | number;\n    name?: string;\n    id: string;\n    class?: string;\n    labelClass?: string;\n    hasDefaultValue?: boolean;\n    onReset?: () => void;\n    disabled?: boolean;\n  };\n\n  let {\n    label,\n    group = $bindable(\"\"),\n    value = undefined,\n    name = undefined,\n    id,\n    class: wrapperClass = \"\",\n    labelClass = \"type-label\",\n    hasDefaultValue = false,\n    onReset = undefined,\n    disabled = false,\n  }: $$Props = $props();\n</script>\n\n<label\n  for={id}\n  class={twMerge(\n    `cursor-pointer select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0`,\n    wrapperClass,\n  )}\n>\n  <div class=\"relative inline-flex items-center self-center justify-self-start\">\n    <input {id} type=\"radio\" bind:group {name} {value} class=\"sr-only peer\" {disabled} />\n    <RadioIcon checked={group === value} />\n  </div>\n\n  <div class=\"flex items-center justify-between gap-2 min-w-0\">\n    {#if label}\n      <span class={labelClass}>\n        <KatexBlock text={label} />\n      </span>\n    {/if}\n    {#if onReset}\n      <ResetValueButton {hasDefaultValue} {onReset} />\n    {/if}\n  </div>\n</label>\n",
+			"type": "registry:ui",
+			"target": "lib/components/controls/RadioInput.svelte"
+		}
+	]
+}

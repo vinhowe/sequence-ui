@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Sequence UI</title>
+		<link rel="preconnect" href="https://use.typekit.net" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://use.typekit.net/ixr7lrv.css" crossorigin="anonymous" />
+		<link
+			rel="preload"
+			href="/Berkeley Mono Variable.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+		<script>
+			(() => {
+				const key = 'sequence-ui-theme';
+				const stored = localStorage.getItem(key);
+				const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+				const theme = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+				document.documentElement.classList.toggle('dark', theme === 'dark' || (theme === 'system' && systemDark));
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

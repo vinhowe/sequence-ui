@@ -1,0 +1,19 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "chevron-icon",
+	"type": "registry:ui",
+	"title": "Chevron Icon",
+	"description": "Chevron Icon component for Sequence UI.",
+	"dependencies": [
+		"tailwind-merge"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"path": "src/lib/components/icons/ChevronIcon.svelte",
+			"content": "<script lang=\"ts\">\n\timport { twMerge } from 'tailwind-merge';\n\n\ttype $$Props = {\n\t\tdirection: 'down' | 'right';\n\t\tsize?: number;\n\t\tstrokeWidth?: number;\n\t\tclass?: string;\n\t};\n\n\tlet { direction, strokeWidth = 3, class: svgClass = '' }: $$Props = $props();\n</script>\n\n<svg\n\tclass={twMerge(`w-3.5 h-3.5 transition-transform translate-y-[0.5px]`, svgClass)}\n\tclass:rotate-90={direction === 'down'}\n\tfill=\"none\"\n\tstroke=\"currentColor\"\n\tviewBox=\"0 0 24 24\"\n>\n\t<path stroke-width={strokeWidth} d=\"M9 5l7 7-7 7\"></path>\n</svg>\n",
+			"type": "registry:ui",
+			"target": "lib/components/icons/ChevronIcon.svelte"
+		}
+	]
+}
