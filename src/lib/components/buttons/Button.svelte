@@ -39,11 +39,14 @@
 	}: Props = $props();
 
 	const base =
-		'relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap border transition-[background-color,color,border-color,opacity] select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:pointer-events-none type-button [&_svg]:shrink-0';
+		'relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap border transition-[background-color,color,border-color,opacity] select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:pointer-events-none font-sans font-medium [&_svg]:shrink-0';
 
+	// Fixed height + the font's NATURAL line-height, so every button matches height
+	// (icon or not) and the caps sit optically centered. (leading-none clips the
+	// font's ~18px line box and shoves the text low → "more space above".)
 	const SIZE: Record<Size, string> = {
-		sm: 'h-6 px-2 [&_svg]:h-3.5 [&_svg]:w-3.5',
-		md: 'h-7.5 px-2.5 [&_svg]:h-4 [&_svg]:w-4'
+		sm: 'h-6 px-2 text-sm [&_svg]:h-3.5 [&_svg]:w-3.5',
+		md: 'h-7.5 px-2.5 text-base [&_svg]:h-4 [&_svg]:w-4'
 	};
 
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
@@ -65,10 +68,10 @@
 			destructive: 'border-transparent text-destructive hover:bg-destructive/10'
 		},
 		link: {
-			default: 'h-auto border-transparent px-0 text-foreground underline-offset-2 hover:underline',
-			primary: 'h-auto border-transparent px-0 text-primary underline-offset-2 hover:underline',
+			default: 'border-transparent px-0 text-foreground underline-offset-2 hover:underline',
+			primary: 'border-transparent px-0 text-primary underline-offset-2 hover:underline',
 			destructive:
-				'h-auto border-transparent px-0 text-destructive underline-offset-2 hover:underline'
+				'border-transparent px-0 text-destructive underline-offset-2 hover:underline'
 		}
 	};
 
@@ -90,7 +93,7 @@
 		{:else if Icon}
 			<Icon aria-hidden="true" />
 		{/if}
-		{@render children?.()}
+		<span class="relative -top-px">{@render children?.()}</span>
 		{#if IconRight && !loading}
 			<IconRight aria-hidden="true" />
 		{/if}
@@ -102,7 +105,7 @@
 		{:else if Icon}
 			<Icon aria-hidden="true" />
 		{/if}
-		{@render children?.()}
+		<span class="relative -top-px">{@render children?.()}</span>
 		{#if IconRight && !loading}
 			<IconRight aria-hidden="true" />
 		{/if}

@@ -375,7 +375,7 @@ DO keep controls flat, sharp, bordered, and role-typed.
 
 Authoritative component names from `src/lib/index.ts`:
 
-- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`), `IconButton`
+- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, label nudged 1px for optical centering), `IconButton`
 - Primitives: `Panel`, `BorderedGroup`, `CollapsibleSection`, `Pane`
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`
