@@ -5,6 +5,7 @@
 		BitField,
 		Breadcrumb,
 		CapacityBar,
+		ProgressBar,
 		CheckboxIcon,
 		CheckboxInput,
 		ChevronIcon,
@@ -171,6 +172,8 @@
 		tree: `<Tree items={treeItems} bind:selected={selectedTree} bind:expanded={expandedTree} />`,
 		capacityBar: `<CapacityBar id="storage-capacity" label="Storage" segments={capacitySegments} max={128} thresholds={[112]} unit="GB" />`,
 		timeBrush: `<TimeBrush id="clip-brush" label="Clip window" bind:start={brushStart} bind:end={brushEnd} min={0} max={23} data={brushData} />`,
+		progressBar: `<ProgressBar label="Render" showValue value={progress} buffer={progress + 18} />
+<ProgressBar label="Scanning" />`,
 		selectInput: `<SelectInput id="waveform" label="Waveform" bind:value={waveform} options={options} />`,
 		toggleGroup: `<ToggleGroup id="mod" title="Modulation" showEnableToggle bind:enabled={modEnabled}>
   <CheckboxInput id="sync" label="Sync" bind:checked={sync} />
@@ -226,6 +229,13 @@
 	let currentPage = $state(4);
 	let selectedTree = $state('clip-a');
 	let expandedTree = $state(['session']);
+	let renderProgress = $state(24);
+	$effect(() => {
+		const timer = setInterval(() => {
+			renderProgress = renderProgress >= 100 ? 0 : renderProgress + 4;
+		}, 700);
+		return () => clearInterval(timer);
+	});
 	let brushStart = $state(5);
 	let brushEnd = $state(16);
 
@@ -864,6 +874,25 @@
 									Selected {brushStart} - {brushEnd}
 								</p>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.timeBrush}</code></pre>
+							</Panel>
+
+							<Panel title="ProgressBar" contentClass="p-1.5 stack-field">
+								<p class="text-muted-foreground type-body">
+									Determinate, buffered, and indeterminate progress with an optional label/value
+									readout plus color and size variants.
+								</p>
+								<div class="stack-field">
+									<ProgressBar
+										label="Render"
+										showValue
+										value={renderProgress}
+										buffer={Math.min(100, renderProgress + 18)}
+									/>
+									<ProgressBar label="Bounce" showValue value={92} color="success" />
+									<ProgressBar label="Disk" showValue value={87} color="warning" size="sm" />
+									<ProgressBar label="Scanning" />
+								</div>
+								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.progressBar}</code></pre>
 							</Panel>
 						</div>
 					</section>

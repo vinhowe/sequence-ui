@@ -54,6 +54,7 @@ export {
 	type CapacitySegment
 } from './components/data/CapacityBar.svelte';
 export { default as TimeBrush } from './components/data/TimeBrush.svelte';
+export { default as ProgressBar } from './components/data/ProgressBar.svelte';
 
 export { default as ChevronIcon } from './components/icons/ChevronIcon.svelte';
 export { default as CheckboxIcon } from './components/icons/CheckboxIcon.svelte';

@@ -118,6 +118,7 @@ Data:
 
 - `CapacityBar`
 - `TimeBrush`
+- `ProgressBar`
 
 Icons:
 

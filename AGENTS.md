@@ -378,7 +378,7 @@ Authoritative component names from `src/lib/index.ts`:
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`
 - Navigation: `Menu`, `Breadcrumb`, `Pagination`, `Tree`
-- Data: `CapacityBar`, `TimeBrush`
+- Data: `CapacityBar`, `TimeBrush`, `ProgressBar`
 - Icons: `ChevronIcon`, `CheckboxIcon`, `RadioIcon`
 - Theme: `ThemeProvider`, `ThemeToggle`
 - Optional: `KatexBlock`, `Footnote`, `FootnotesProvider`, `Portal`
