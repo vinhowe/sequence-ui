@@ -371,7 +371,7 @@
 							<Panel title="Density" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Base spacing is 0.2rem, with half-step sizing used for inputs, rows, and
-									buttons. Labels and controls are mono, uppercase, and border-first.
+									buttons. Labels and prose are sans; mono is reserved for values, code, and terse tags.
 								</p>
 								<div class="grid grid-cols-4 gap-1">
 									{#each [1, 2, 3, 4, 5, 6, 7, 8] as unit}
@@ -911,7 +911,7 @@
 								<p class="text-muted-foreground type-body">Directional disclosure glyph used by sections and selects.</p>
 								<button
 									type="button"
-									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 type-button"
+									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 type-body"
 									onclick={() => collapsibleOpen = !collapsibleOpen}
 								>
 									<ChevronIcon direction={collapsibleOpen ? 'down' : 'right'} />
@@ -928,7 +928,7 @@
 									onclick={() => checkIconState = !checkIconState}
 								>
 									<CheckboxIcon checked={checkIconState} />
-									<span class="type-button">{checkIconState ? 'Checked' : 'Clear'}</span>
+									<span class="type-body">{checkIconState ? 'Checked' : 'Clear'}</span>
 								</button>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.checkboxIcon}</code></pre>
 							</Panel>
@@ -941,7 +941,7 @@
 									onclick={() => radioIconState = !radioIconState}
 								>
 									<RadioIcon checked={radioIconState} />
-									<span class="type-button">{radioIconState ? 'Selected' : 'Idle'}</span>
+									<span class="type-body">{radioIconState ? 'Selected' : 'Idle'}</span>
 								</button>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.radioIcon}</code></pre>
 							</Panel>

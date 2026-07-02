@@ -43,12 +43,14 @@ All UI typography must use one of the nine semantic type utilities from `src/app
 - `type-title`: compact sans panel/card title.
 - `type-body`: sans prose and normal readable text.
 - `type-caption`: sans secondary explanatory text.
-- `type-label`: mono, uppercase, small instrument labels.
+- `type-label`: mono, uppercase, small — code-like tags and value annotations (token names, radix tags, units), NOT human-readable field labels.
 - `type-button`: mono, uppercase command text.
 - `type-value`: mono, tabular numeric readouts and input values.
 - `type-code`: mono code or base/radix editing.
 
 Mono is only for `type-button`, `type-value`, `type-code`, `type-label`, and the small brand/project label. Use sans for headings, navigation, prose, and most labels that are not instrument labels.
+
+**Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (`type-caption`), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-label`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), the brand label, and those small tags — never for labels or prose.
 
 DON'T:
 

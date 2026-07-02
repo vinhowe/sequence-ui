@@ -24,7 +24,7 @@
     name = undefined,
     id,
     class: wrapperClass = "",
-    labelClass = "type-label",
+    labelClass = "type-body",
     hasDefaultValue = false,
     onReset = undefined,
     disabled = false,

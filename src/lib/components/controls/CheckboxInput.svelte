@@ -21,7 +21,7 @@
 		checked = $bindable(),
 		id,
 		class: wrapperClass = '',
-		labelClass = 'type-label',
+		labelClass = 'type-body',
 		hasDefaultValue = false,
 		onReset = undefined
 	}: $$Props = $props();
