@@ -887,10 +887,11 @@
 										showValue
 										value={renderProgress}
 										buffer={Math.min(100, renderProgress + 18)}
+										size="sm"
 									/>
-									<ProgressBar label="Bounce" showValue value={92} color="success" />
+									<ProgressBar label="Bounce" showValue value={92} color="success" size="sm" />
 									<ProgressBar label="Disk" showValue value={87} color="warning" size="sm" />
-									<ProgressBar label="Scanning" />
+									<ProgressBar label="Scanning" size="sm" />
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.progressBar}</code></pre>
 							</Panel>
