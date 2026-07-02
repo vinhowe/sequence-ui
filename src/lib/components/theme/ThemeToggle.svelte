@@ -12,7 +12,7 @@
 	] satisfies Array<{ label: string; value: ThemeMode; icon: typeof Sun }>;
 
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 border-r border-border px-1.5 py-0.5 transition-colors last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';
+		'inline-flex items-center gap-1 border-r border-border px-1.5 py-0 leading-none transition-colors last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';
 	const activeButtonClasses = 'bg-foreground text-background';
 	const inactiveButtonClasses =
 		'bg-card text-muted-foreground hover:bg-muted hover:text-foreground dark:bg-card dark:hover:bg-muted';
