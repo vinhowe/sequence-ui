@@ -319,7 +319,7 @@
 <ThemeProvider>
 	<div class="fixed inset-0 flex flex-col overflow-hidden bg-background text-foreground">
 		<header
-			class="sticky top-0 z-30 flex shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 py-0.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200"
+			class="sticky top-0 z-30 flex h-[20px] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200"
 		>
 			<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence UI</span>
 			<ThemeToggle />
