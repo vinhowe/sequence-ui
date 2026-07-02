@@ -22,6 +22,25 @@
       "registryDependencies": []
     },
     {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button component for Sequence UI.",
+      "files": [
+        {
+          "path": "src/lib/components/buttons/Button.svelte",
+          "type": "registry:ui",
+          "target": "lib/components/buttons/Button.svelte"
+        }
+      ],
+      "dependencies": [
+        "svelte",
+        "tailwind-merge",
+        "@lucide/svelte"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "icon-button",
       "type": "registry:ui",
       "title": "Icon Button",

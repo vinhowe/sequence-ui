@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		ActionButton,
+		Button,
 		BaseField,
 		BitField,
 		Breadcrumb,
@@ -44,6 +45,7 @@
 		Activity,
 		Archive,
 		ChartLine,
+		ChevronDown,
 		Copy,
 		Database,
 		FileText,
@@ -141,6 +143,10 @@
 	const snippets = {
 		actionButton: `<ActionButton color="green" onclick={startSequence}>Start</ActionButton>
 <ActionButton color="purple" highlighted>Armed</ActionButton>`,
+		button: `<Button variant="solid" tone="primary" icon={Play}>Start</Button>
+<Button variant="outline">Cancel</Button>
+<Button variant="ghost" tone="destructive">Remove</Button>
+<Button variant="link" tone="primary" href="/docs">Learn more</Button>`,
 		iconButton: `<IconButton icon={RotateCcw} label="Restart" active={isLooping} />`,
 		panel: `<Panel title="Transport" citations={citations} contentClass="p-1">
   <ActionButton color="green">Start</ActionButton>
@@ -462,6 +468,36 @@
 									</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.iconButton}</code></pre>
+							</Panel>
+
+							<Panel title="Button" class="lg:col-span-2" contentClass="p-1.5 stack-field">
+								<p class="text-muted-foreground type-body">
+									The everyday flat button — variant (solid / outline / ghost / link) × tone
+									(default / primary / destructive) × size, with icon, loading, and disabled
+									states. The calm complement to ActionButton.
+								</p>
+								<div class="flex flex-wrap items-center gap-1.5">
+									<Button variant="solid" tone="primary" icon={Play}>Start</Button>
+									<Button variant="solid" tone="destructive" icon={Trash2}>Delete</Button>
+									<Button variant="solid">Solid</Button>
+									<Button>Outline</Button>
+									<Button variant="outline" tone="primary">Outline primary</Button>
+									<Button variant="outline" tone="destructive">Outline danger</Button>
+								</div>
+								<div class="flex flex-wrap items-center gap-1.5">
+									<Button variant="ghost">Ghost</Button>
+									<Button variant="ghost" tone="destructive">Ghost danger</Button>
+									<Button variant="link" tone="primary">Link</Button>
+									<Button iconRight={ChevronDown}>Menu</Button>
+									<Button variant="solid" tone="primary" loading>Saving</Button>
+									<Button disabled>Disabled</Button>
+								</div>
+								<div class="flex flex-wrap items-center gap-1.5">
+									<Button size="sm" variant="outline">Small</Button>
+									<Button size="sm" variant="solid" tone="primary" icon={Play}>Small primary</Button>
+									<Button size="sm" variant="ghost">Small ghost</Button>
+								</div>
+								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.button}</code></pre>
 							</Panel>
 						</div>
 					</section>

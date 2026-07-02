@@ -68,6 +68,7 @@ pnpm registry:build
 Buttons:
 
 - `ActionButton`
+- `Button`
 - `IconButton`
 
 Primitives:
