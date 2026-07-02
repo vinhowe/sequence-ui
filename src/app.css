@@ -39,6 +39,8 @@
 	--destructive-foreground: oklch(0.99 0 0);
 	--success: oklch(0.60 0.17 150);
 	--warning: oklch(0.80 0.16 85);
+	--warning-strong: oklch(0.52 0.13 85);
+	--destructive-strong: oklch(0.52 0.2 27);
 	--highlight: oklch(0.85 0.15 90);
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
@@ -76,6 +78,8 @@
 	--destructive-foreground: oklch(0.99 0 0);
 	--success: oklch(0.7 0.16 150);
 	--warning: oklch(0.8 0.15 85);
+	--warning-strong: oklch(0.84 0.15 85);
+	--destructive-strong: oklch(0.72 0.19 25);
 	--highlight: oklch(0.78 0.14 90);
 	--chart-1: oklch(0.7 0.2 41.116);
 	--chart-2: oklch(0.7 0.13 184.704);
@@ -110,6 +114,8 @@
 	--color-destructive-foreground: var(--destructive-foreground);
 	--color-success: var(--success);
 	--color-warning: var(--warning);
+	--color-warning-strong: var(--warning-strong);
+	--color-destructive-strong: var(--destructive-strong);
 	--color-highlight: var(--highlight);
 	--color-chart-1: var(--chart-1);
 	--color-chart-2: var(--chart-2);
@@ -220,6 +226,10 @@ body {
 @utility type-caption {
 	@apply font-sans text-xs font-normal;
 	line-height: 1.4;
+}
+@utility type-field {
+	@apply font-sans text-sm font-medium;
+	line-height: 1.25;
 }
 @utility type-label {
 	@apply font-mono text-2xs font-medium uppercase;

@@ -12,7 +12,7 @@
 
 <label
   for={forInputId}
-  class={twMerge("block font-sans text-sm font-medium leading-tight text-foreground", additionalClasses)}
+  class={twMerge("block type-field text-foreground", additionalClasses)}
 >
   <KatexBlock text={value} />
 </label>

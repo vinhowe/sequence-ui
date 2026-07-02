@@ -43,6 +43,7 @@ All UI typography must use one of the nine semantic type utilities from `src/app
 - `type-title`: compact sans panel/card title.
 - `type-body`: sans prose and normal readable text.
 - `type-caption`: sans secondary explanatory text.
+- `type-field`: sans, 12px, medium — the prominent title style for every field/metric/alert label (FormLabel, Statistic, ProgressBar, Note). This is the one label style; route new labels through it so they never drift.
 - `type-label`: mono, uppercase, small — code-like tags and value annotations (token names, radix tags, units), NOT human-readable field labels.
 - `type-button`: mono, uppercase command text.
 - `type-value`: mono, tabular numeric readouts and input values.
@@ -146,6 +147,7 @@ Sequence extensions:
 - `--subtle-foreground`
 - `--success`, `--warning`
 - `--chart-1` through `--chart-5`
+- `--warning-strong`, `--destructive-strong` (deep, readable status colors for alert TITLE text on light tints). The base `--warning`/`--destructive` are bright — use them for icons, borders, and fills only; NEVER as text on a light background (that's the low-contrast trap). Alert titles use `text-warning-strong` / `text-destructive-strong`.
 
 Chart colors are categorical. In dark mode, each chart series keeps its hue stable so series identity does not change across themes.
 

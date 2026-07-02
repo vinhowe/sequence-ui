@@ -13,7 +13,7 @@
 	"files": [
 		{
 			"path": "src/lib/components/controls/FormLabel.svelte",
-			"content": "<script lang=\"ts\">\n  import KatexBlock from \"../optional/KatexBlock.svelte\";\n  import { twMerge } from \"tailwind-merge\";\n\n  type $$Props = {\n    forInputId?: string;\n    class?: string;\n    value: string;\n  };\n  let { forInputId, class: additionalClasses = \"\", value }: $$Props = $props();\n</script>\n\n<label\n  for={forInputId}\n  class={twMerge(\"block font-sans text-sm font-medium leading-tight text-foreground\", additionalClasses)}\n>\n  <KatexBlock text={value} />\n</label>\n",
+			"content": "<script lang=\"ts\">\n  import KatexBlock from \"../optional/KatexBlock.svelte\";\n  import { twMerge } from \"tailwind-merge\";\n\n  type $$Props = {\n    forInputId?: string;\n    class?: string;\n    value: string;\n  };\n  let { forInputId, class: additionalClasses = \"\", value }: $$Props = $props();\n</script>\n\n<label\n  for={forInputId}\n  class={twMerge(\"block type-field text-foreground\", additionalClasses)}\n>\n  <KatexBlock text={value} />\n</label>\n",
 			"type": "registry:ui",
 			"target": "lib/components/controls/FormLabel.svelte"
 		}
