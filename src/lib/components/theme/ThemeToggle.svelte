@@ -11,13 +11,14 @@
 		{ label: 'System', value: 'system', icon: Monitor }
 	] satisfies Array<{ label: string; value: ThemeMode; icon: typeof Sun }>;
 
-	// Transparent + inherits the bar's text color so the toggle blends into whatever
-	// header it sits in; the active segment is a subtle translucent tint (never a
-	// stark bg-foreground box), and inactive segments are dimmed.
+	// Sits on a colored bar: inactive segments inherit the bar's crisp text color
+	// (no muddy opacity dimming); the active segment is a solid `primary` chip for
+	// a clear, high-contrast selected state. `primary` shares the bar's purple hue,
+	// so it harmonizes, and being a token it adapts to light/dark automatically.
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 border-r border-black/10 px-1.5 py-0 leading-none transition last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button dark:border-white/15';
-	const activeButtonClasses = 'bg-black/12 dark:bg-white/18';
-	const inactiveButtonClasses = 'opacity-55 hover:bg-black/5 hover:opacity-90 dark:hover:bg-white/10';
+		'inline-flex items-center gap-1 border-r border-primary/20 px-1.5 py-0 leading-none transition last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';
+	const activeButtonClasses = 'bg-primary text-primary-foreground';
+	const inactiveButtonClasses = 'hover:bg-primary/10';
 
 	function optionClasses(value: ThemeMode) {
 		return twMerge(
@@ -28,7 +29,7 @@
 </script>
 
 <div
-	class="inline-flex border border-black/15 dark:border-white/20"
+	class="inline-flex border border-primary/30"
 	role="radiogroup"
 	aria-label="Theme"
 >
