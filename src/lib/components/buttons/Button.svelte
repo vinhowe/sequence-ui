@@ -49,7 +49,7 @@
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
 	const STYLES: Record<Variant, Record<Tone, string>> = {
 		solid: {
-			default: 'border-transparent bg-foreground text-background hover:bg-foreground/85',
+			default: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/70',
 			primary: 'border-transparent bg-primary text-primary-foreground hover:bg-primary/85',
 			destructive:
 				'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/85'
