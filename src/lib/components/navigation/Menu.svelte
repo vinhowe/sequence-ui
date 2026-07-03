@@ -212,7 +212,7 @@
 					{:else if 'heading' in item}
 						<li
 							role="presentation"
-							class="px-1.5 py-1 font-sans text-2xs font-medium tracking-[0.06em] text-muted-foreground uppercase select-none"
+							class="px-1.5 py-1 font-sans text-xs font-medium text-muted-foreground select-none"
 						>
 							{item.heading}
 						</li>
