@@ -45,8 +45,8 @@
 	// (icon or not) and the caps sit optically centered. (leading-none clips the
 	// font's ~18px line box and shoves the text low → "more space above".)
 	const SIZE: Record<Size, string> = {
-		sm: 'h-6 px-2 text-sm [&_svg]:h-3.5 [&_svg]:w-3.5',
-		md: 'h-7.5 px-2.5 text-base [&_svg]:h-4 [&_svg]:w-4'
+		sm: 'h-6 px-2 text-sm [&_svg]:h-3 [&_svg]:w-3',
+		md: 'h-7.5 px-2.5 text-base [&_svg]:h-3.5 [&_svg]:w-3.5'
 	};
 
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
@@ -89,25 +89,25 @@
 {#if href}
 	<a {href} class={classes} aria-disabled={isDisabled} {...(restProps as Record<string, unknown>)}>
 		{#if loading}
-			<LoaderCircle class="animate-spin" aria-hidden="true" />
+			<LoaderCircle class="animate-spin" strokeWidth={2.5} aria-hidden="true" />
 		{:else if Icon}
-			<Icon aria-hidden="true" />
+			<Icon strokeWidth={2.5} aria-hidden="true" />
 		{/if}
 		<span class="relative -top-px">{@render children?.()}</span>
 		{#if IconRight && !loading}
-			<IconRight aria-hidden="true" />
+			<IconRight strokeWidth={2.5} aria-hidden="true" />
 		{/if}
 	</a>
 {:else}
 	<button type="button" class={classes} disabled={isDisabled} {...restProps}>
 		{#if loading}
-			<LoaderCircle class="animate-spin" aria-hidden="true" />
+			<LoaderCircle class="animate-spin" strokeWidth={2.5} aria-hidden="true" />
 		{:else if Icon}
-			<Icon aria-hidden="true" />
+			<Icon strokeWidth={2.5} aria-hidden="true" />
 		{/if}
 		<span class="relative -top-px">{@render children?.()}</span>
 		{#if IconRight && !loading}
-			<IconRight aria-hidden="true" />
+			<IconRight strokeWidth={2.5} aria-hidden="true" />
 		{/if}
 	</button>
 {/if}
