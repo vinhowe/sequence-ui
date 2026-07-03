@@ -53,9 +53,8 @@
 	const STYLES: Record<Variant, Record<Tone, string>> = {
 		solid: {
 			default: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/70',
-			primary: 'border-transparent bg-primary text-primary-foreground hover:bg-primary/85',
-			destructive:
-				'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/85'
+			primary: 'border-transparent bg-primary/15 text-primary hover:bg-primary/25',
+			destructive: 'border-transparent bg-destructive/15 text-destructive hover:bg-destructive/25'
 		},
 		outline: {
 			default: 'border-border bg-card text-foreground hover:bg-muted',
