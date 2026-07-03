@@ -228,7 +228,8 @@ body {
 	letter-spacing: -0.01em;
 }
 @utility type-title {
-	@apply font-sans text-base font-semibold;
+	@apply font-sans text-base;
+	font-weight: 550; /* between medium (500) and semibold (600); Inter is variable */
 	line-height: 1.3;
 }
 @utility type-body {
