@@ -144,7 +144,7 @@
 	const snippets = {
 		actionButton: `<ActionButton color="green" onclick={startSequence}>Start</ActionButton>
 <ActionButton color="purple" highlighted>Armed</ActionButton>`,
-		button: `<Button variant="solid" tone="primary" icon={Play}>Start</Button>
+		button: `<Button tone="primary" icon={Play}>Start</Button>
 <Button variant="outline">Cancel</Button>
 <Button variant="ghost" tone="destructive">Remove</Button>
 <Button variant="link" tone="primary" href="/docs">Learn more</Button>`,
@@ -481,29 +481,26 @@
 
 							<Panel title="Button" class="lg:col-span-2" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
-									The everyday flat button — variant (solid / outline / ghost / link) × tone
+									The everyday flat button — a thin hairline by default (1px border, accent in border + text) × tone
 									(default / primary / destructive) × size, with icon, loading, and disabled
 									states. The calm complement to ActionButton.
 								</p>
 								<div class="flex flex-wrap items-center gap-1">
-									<Button variant="solid" tone="primary" icon={Play}>Start</Button>
-									<Button variant="solid" tone="destructive" icon={Trash2}>Delete</Button>
-									<Button variant="solid">Solid</Button>
-									<Button>Outline</Button>
-									<Button variant="outline" tone="primary">Outline primary</Button>
-									<Button variant="outline" tone="destructive">Outline danger</Button>
+									<Button tone="primary" icon={Play}>Start</Button>
+									<Button tone="destructive" icon={Trash2}>Delete</Button>
+									<Button>Cancel</Button>
 								</div>
 								<div class="flex flex-wrap items-center gap-1">
 									<Button variant="ghost">Ghost</Button>
 									<Button variant="ghost" tone="destructive">Ghost danger</Button>
 									<Button variant="link" tone="primary">Link</Button>
 									<Button iconRight={ChevronDown}>Menu</Button>
-									<Button variant="solid" tone="primary" loading>Saving</Button>
+									<Button tone="primary" loading>Saving</Button>
 									<Button disabled>Disabled</Button>
 								</div>
 								<div class="flex flex-wrap items-center gap-1">
 									<Button size="sm" variant="outline">Small</Button>
-									<Button size="sm" variant="solid" tone="primary" icon={Play}>Small primary</Button>
+									<Button size="sm" tone="primary" icon={Play}>Small primary</Button>
 									<Button size="sm" variant="ghost">Small ghost</Button>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.button}</code></pre>
