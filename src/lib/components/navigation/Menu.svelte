@@ -210,7 +210,10 @@
 					{#if 'separator' in item}
 						<li role="separator" class="my-0.5 border-t border-border"></li>
 					{:else if 'heading' in item}
-						<li role="presentation" class="px-1.5 py-1 text-muted-foreground select-none type-label">
+						<li
+							role="presentation"
+							class="px-1.5 py-1 font-sans text-2xs font-medium tracking-[0.06em] text-muted-foreground uppercase select-none"
+						>
 							{item.heading}
 						</li>
 					{:else}
