@@ -210,15 +210,15 @@ body {
 
 /* Semantic type roles — the only sanctioned way to set typography.
    Never pick a raw size by hand in UI; use a role.
-   Distinct sizes: 10 / 11 / 12.5 / 16 / 18.
+   Distinct sizes: 10 / 11 / 12.5 / 14 / 16.
    To retune the system, edit a role here and every usage updates. */
 @utility type-display {
-	@apply font-sans text-2xl font-medium;
+	@apply font-sans text-xl font-medium;
 	line-height: 1.15;
 	letter-spacing: -0.01em;
 }
 @utility type-heading {
-	@apply font-sans text-xl font-medium;
+	@apply font-sans text-lg font-medium;
 	line-height: 1.2;
 	letter-spacing: -0.01em;
 }
