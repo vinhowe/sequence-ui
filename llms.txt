@@ -19,7 +19,7 @@ Dev commands:
 - pnpm registry:build
 
 Design constants:
-- Base type: 12px.
+- Base type: 12.5px.
 - Tailwind spacing: --spacing: 0.2rem.
 - Radius: --radius: 0rem.
 - Corners: sharp.
