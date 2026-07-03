@@ -23,7 +23,7 @@
 		citations,
 		class: rootClass = '',
 		headerClass = 'bg-panel border-b border-border px-1 py-0.5 flex justify-between items-center text-panel-foreground gap-2',
-		contentClass = 'p-1.5 stack-field',
+		contentClass = 'p-1 stack-field',
 		header,
 		action,
 		children

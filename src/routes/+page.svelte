@@ -357,11 +357,11 @@
 			</aside>
 
 			<main class="min-h-0 overflow-y-auto overscroll-contain scroll-smooth bg-background">
-				<div class="mx-auto flex max-w-7xl flex-col gap-4 p-2 sm:p-4">
+				<div class="mx-auto flex max-w-7xl flex-col gap-2 p-2 sm:p-4">
 					<section id="foundations" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Foundations</h2>
 
-						<div class="grid gap-2 xl:grid-cols-[1.15fr_0.85fr]">
+						<div class="grid gap-1 xl:grid-cols-[1.15fr_0.85fr]">
 							<Panel title="Color Tokens" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Semantic OKLCH variables drive the surfaces, text, borders, status colors, and
@@ -424,7 +424,7 @@
 
 					<section id="buttons" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Buttons</h2>
-						<div class="grid gap-2 lg:grid-cols-2">
+						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ActionButton" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Gradient command button with six semantic colors and a highlighted pulse state.
@@ -504,7 +504,7 @@
 
 					<section id="primitives" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Primitives</h2>
-						<div class="grid gap-2 xl:grid-cols-3">
+						<div class="grid gap-1 xl:grid-cols-3">
 							<Panel title="Panel" citations={panelCitations} contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Bordered surface with a filled header, optional citations, and action slot.
@@ -577,7 +577,7 @@
 
 					<section id="controls" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Controls</h2>
-						<div class="grid gap-2 xl:grid-cols-2">
+						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Slider" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Pointer, keyboard, typed entry, ticks, unit display, and reset support.
@@ -718,7 +718,7 @@
 
 					<section id="precision" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Precision</h2>
-						<div class="grid gap-2 xl:grid-cols-2">
+						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="TimecodeField" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Segmented frame-accurate entry with carry-aware arrow stepping.
@@ -815,7 +815,7 @@
 
 					<section id="navigation" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Navigation</h2>
-						<div class="grid gap-2 xl:grid-cols-2">
+						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Menu" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Portal action menu with roving keyboard navigation, shortcuts, headings, and
@@ -872,7 +872,7 @@
 
 					<section id="data" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Data</h2>
-						<div class="grid gap-2 xl:grid-cols-2">
+						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="CapacityBar" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									Stacked utilization with chart token fills, an empty remainder, threshold ticks, and
@@ -936,7 +936,7 @@
 
 					<section id="feedback" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Feedback</h2>
-						<div class="grid gap-2 lg:grid-cols-2 xl:grid-cols-4">
+						<div class="grid gap-1 lg:grid-cols-2 xl:grid-cols-4">
 							<Panel title="Statistic" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">Dense metric tile with mono value and optional contextual text.</p>
 								<Statistic label="Tempo">
@@ -972,7 +972,7 @@
 
 					<section id="icons" class="scroll-mt-14">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Icons</h2>
-						<div class="grid gap-2 lg:grid-cols-3">
+						<div class="grid gap-1 lg:grid-cols-3">
 							<Panel title="ChevronIcon" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">Directional disclosure glyph used by sections and selects.</p>
 								<button
@@ -1016,7 +1016,7 @@
 
 					<section id="theme" class="scroll-mt-14 pb-4">
 						<h2 class="mb-3 border-b border-border pb-2 type-heading">Theme</h2>
-						<div class="grid gap-2 lg:grid-cols-2">
+						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ThemeProvider" contentClass="p-1.5 stack-field">
 								<p class="text-muted-foreground type-body">
 									ThemeProvider resolves localStorage, system preference, and default theme, then

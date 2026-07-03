@@ -259,16 +259,18 @@ body {
 
 /* Spacing policy — spacing is owned by CONTAINERS, not components.
    Components ship margin-free; a parent stacks its children with one of these.
+   Instrument-dense, matching Sequence Toy's control panel: panel bodies use one
+   tight 3.2px step (its `space-y-1`), and panels butt together border-to-border.
    All gaps are multiples of the 0.2rem base grid. Retune here, everywhere updates. */
 @utility stack-tight {
-	@apply flex flex-col gap-1; /* 0.2rem — parts of one control */
+	@apply flex flex-col gap-1; /* 3.2px — parts of one control (label→field) */
 }
 @utility stack-field {
-	@apply flex flex-col gap-1.5; /* 0.3rem — elements inside a panel body */
+	@apply flex flex-col gap-1; /* 3.2px — controls inside a panel body (toy space-y-1) */
 }
 @utility stack-group {
-	@apply flex flex-col gap-2; /* 0.4rem — panels within a section */
+	@apply flex flex-col gap-1; /* 3.2px — panels within a section (prefer contiguous border-b) */
 }
 @utility stack-section {
-	@apply flex flex-col gap-4; /* 0.8rem — sections */
+	@apply flex flex-col gap-2; /* 6.4px — sections */
 }
