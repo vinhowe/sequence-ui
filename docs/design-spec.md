@@ -90,7 +90,7 @@ The dark chart values preserve each series hue for identity across themes.
 
 ## Density And Type Scale
 
-Base document type is 12.5px (base and below are 0.5px smaller than a standard scale, for instrument density):
+Base document type is 13px:
 
 ```css
 html {
@@ -102,19 +102,19 @@ body {
 }
 ```
 
-Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 9.5, 10.5, 11.5, 12, 12.5, 16, and 18px. UI must use semantic type roles, not raw `text-*` sizing.
+Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12.5, 13, 16, and 18px. UI must use semantic type roles, not raw `text-*` sizing.
 
 | Role | Utility | Font | Use |
 | --- | --- | --- | --- |
 | Display | `type-display` | sans | rare top-level display, 18px |
 | Heading | `type-heading` | sans | section headings, 16px |
-| Title | `type-title` | sans | panel titles, 12.5px |
-| Body | `type-body` | sans | prose and normal UI text, 12.5px |
-| Caption | `type-caption` | sans | secondary text, 10.5px |
-| Label | `type-label` | mono uppercase | small instrument labels, 9.5px |
-| Button | `type-button` | mono uppercase | command labels, 10.5px |
-| Value | `type-value` | mono tabular | numeric readouts and value inputs, 12px |
-| Code | `type-code` | mono | code and radix/base editing, 12.5px |
+| Title | `type-title` | sans | panel titles, 13px |
+| Body | `type-body` | sans | prose and normal UI text, 13px |
+| Caption | `type-caption` | sans | secondary text, 11px |
+| Label | `type-label` | mono uppercase | small instrument labels, 10px |
+| Button | `type-button` | mono uppercase | command labels, 11px |
+| Value | `type-value` | mono tabular | numeric readouts and value inputs, 12.5px |
+| Code | `type-code` | mono | code and radix/base editing, 13px |
 
 Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, small instrument labels, and the brand label. Sans is used for headings, navigation, and prose.
 

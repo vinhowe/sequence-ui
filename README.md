@@ -1,6 +1,6 @@
 # Sequence UI
 
-Sequence UI is a standalone Svelte 5, Tailwind v4, and TypeScript design system extracted from the Sequence Toy app aesthetic. It is built for dense instrument panels: 12.5px base type, very tight spacing, sharp corners, flat surfaces, thin hairline borders, Lucide icons, gradient action buttons, and first-class light/dark theming.
+Sequence UI is a standalone Svelte 5, Tailwind v4, and TypeScript design system extracted from the Sequence Toy app aesthetic. It is built for dense instrument panels: 13px base type, very tight spacing, sharp corners, flat surfaces, thin hairline borders, Lucide icons, gradient action buttons, and first-class light/dark theming.
 
 The system is CSS-first Tailwind v4 through `@tailwindcss/vite`. Components are plain Svelte 5 runes components designed to be copied into an app through a shadcn-svelte registry item or directly from source.
 
