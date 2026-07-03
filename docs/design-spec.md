@@ -107,12 +107,12 @@ body {
 }
 ```
 
-Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12.5, 14, and 16px. UI must use semantic type roles, not raw `text-*` sizing.
+Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12.5, 15, and 17px. UI must use semantic type roles, not raw `text-*` sizing.
 
 | Role | Utility | Font | Use |
 | --- | --- | --- | --- |
-| Display | `type-display` | sans | rare top-level display, 16px |
-| Heading | `type-heading` | sans | section headings, 14px |
+| Display | `type-display` | sans | rare top-level display, 17px |
+| Heading | `type-heading` | sans | section headings, 15px |
 | Title | `type-title` | sans | panel titles, 12.5px |
 | Body | `type-body` | sans | prose and normal UI text, 12.5px |
 | Caption | `type-caption` | sans | secondary text, 11px |

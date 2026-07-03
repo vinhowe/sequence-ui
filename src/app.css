@@ -146,10 +146,10 @@
 	--text-base--line-height: calc(1.125 / 0.78125);
 	--text-lg: 0.875rem;
 	--text-lg--line-height: calc(1.25 / 0.875);
-	--text-xl: 1rem;
-	--text-xl--line-height: calc(1.5 / 1);
-	--text-2xl: 1.125rem;
-	--text-2xl--line-height: calc(1.75 / 1.125);
+	--text-xl: 0.9375rem; /* 15px */
+	--text-xl--line-height: calc(1.5 / 0.9375);
+	--text-2xl: 1.0625rem; /* 17px */
+	--text-2xl--line-height: calc(1.75 / 1.0625);
 	--text-3xl: 1.25rem;
 	--text-3xl--line-height: calc(1.75 / 1.25);
 	--text-4xl: 1.5rem;
@@ -210,15 +210,15 @@ body {
 
 /* Semantic type roles — the only sanctioned way to set typography.
    Never pick a raw size by hand in UI; use a role.
-   Distinct sizes: 10 / 11 / 12.5 / 14 / 16.
+   Distinct sizes: 10 / 11 / 12.5 / 15 / 17.
    To retune the system, edit a role here and every usage updates. */
 @utility type-display {
-	@apply font-sans text-xl font-medium;
+	@apply font-sans text-2xl font-medium;
 	line-height: 1.15;
 	letter-spacing: -0.01em;
 }
 @utility type-heading {
-	@apply font-sans text-lg font-medium;
+	@apply font-sans text-xl font-medium;
 	line-height: 1.2;
 	letter-spacing: -0.01em;
 }
