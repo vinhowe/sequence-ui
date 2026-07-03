@@ -195,6 +195,11 @@ body {
 	overflow: clip;
 	overscroll-behavior: none;
 	@apply bg-background text-foreground font-sans text-base;
+	/* Normalize every font to Inter's cap-height (0.728) at a given font-size, so
+	   mono caps + digits (labels, values) line up with sans instead of rendering
+	   ~7% shorter. No-op for Inter (its cap-height already is 0.728); scales
+	   Berkeley Mono up ~7%. Also steadies fallback metrics before fonts load. */
+	font-size-adjust: cap-height 0.728;
 }
 
 /* Layered so Tailwind's font-* utilities (in @layer utilities) can override it.
