@@ -94,16 +94,19 @@ Headings are understated. They are sans, medium, tight, and followed by generous
 
 Spacing belongs to containers, not leaf components. Components ship margin-free: no external `mt-*`, `mb-*`, or hardcoded outside spacing. Parents arrange children with the stack utilities.
 
-- `stack-tight`: `gap-1`, 0.2rem, label to field or parts of one control.
-- `stack-field`: `gap-1.5`, 0.3rem, elements inside a panel body.
-- `stack-group`: `gap-2`, 0.4rem, panels or related groups.
-- `stack-section`: `gap-4`, 0.8rem, page sections.
+Instrument-dense, matching Sequence Toy's Control Panel: one tight 3.2px step inside panels, and panels that butt together (border-separated), not floated apart.
+
+- `stack-tight`: `gap-1`, 0.2rem (3.2px), label to field or parts of one control.
+- `stack-field`: `gap-1`, 0.2rem (3.2px), controls inside a panel body (the toy's `space-y-1`).
+- `stack-group`: `gap-1`, 0.2rem (3.2px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
+- `stack-section`: `gap-2`, 0.4rem (6.4px), page sections.
 
 Container defaults:
 
-- Panel body: `p-1.5 stack-field`.
-- Panel grids: `gap-2`.
-- Sections: `gap-4` or `stack-section`.
+- Panel / CollapsibleSection body: `p-1 stack-field` (3.2px padding + 3.2px gaps).
+- Panel grids: `gap-1`.
+- Sections: `gap-2` or `stack-section`.
+- Do NOT loosen these; the system is meant to read as a dense instrument panel.
 - Run tight. If it feels comfortable by modern SaaS defaults, it is probably too loose for Sequence UI.
 
 DON'T:
