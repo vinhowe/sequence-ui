@@ -70,6 +70,7 @@ Buttons:
 - `ActionButton`
 - `Button`
 - `IconButton`
+- `SegmentedControl`
 
 Primitives:
 

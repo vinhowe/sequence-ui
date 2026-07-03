@@ -56,10 +56,12 @@
 			primary: 'border-transparent bg-primary/15 text-primary hover:bg-primary/25',
 			destructive: 'border-transparent bg-destructive/15 text-destructive hover:bg-destructive/25'
 		},
+		// Flat Hairline (the default look): 1px hairline everywhere; the accent lives
+		// in the border + text, with only a faint wash of fill that deepens on hover.
 		outline: {
 			default: 'border-border bg-card text-foreground hover:bg-muted',
-			primary: 'border-primary/60 bg-card text-primary hover:bg-primary/10',
-			destructive: 'border-destructive/60 bg-card text-destructive hover:bg-destructive/10'
+			primary: 'border-primary/55 bg-primary/5 text-primary hover:bg-primary/12',
+			destructive: 'border-destructive/55 bg-destructive/5 text-destructive hover:bg-destructive/12'
 		},
 		ghost: {
 			default: 'border-transparent text-foreground hover:bg-muted',

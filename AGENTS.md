@@ -101,11 +101,18 @@ Instrument-dense, matching Sequence Toy's Control Panel: one tight 3.2px step in
 - `stack-group`: `gap-1`, 0.2rem (3.2px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
 - `stack-section`: `gap-2`, 0.4rem (6.4px), page sections.
 
+**Two spacing values, everywhere.** There are only two: **3.2px "within"** (`gap-1`) and **6.4px "between"** (`gap-2` / `stack-section`). Every gap — vertical or horizontal — resolves to one of them; nothing in between (no `gap-1.5`, no `mt-2` on a panel). This is what keeps vertical == horizontal: a panel grid's `gap-1` (horizontal) is the same 3.2px as the section's `stack-group` stacking (vertical).
+
+- **Within** a panel / cluster (3.2px, `gap-1`): controls in a panel body, buttons or radios in a row, panels within a section. Horizontal button/control clusters use `gap-1` too — the same as panels, never wider.
+- **Between** distinct groups or page sections (6.4px, `gap-2` / `stack-section`).
+
+Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 3.2px; the page column is `stack-section` (6.4px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
+
 Container defaults:
 
 - Panel / CollapsibleSection body: `p-1 stack-field` (3.2px padding + 3.2px gaps).
-- Panel grids: `gap-1`.
-- Sections: `gap-2` or `stack-section`.
+- Panel grids: `gap-1`. Button/control clusters: `flex ... gap-1`.
+- Sections: `scroll-mt-* stack-group` inside a `stack-section` page column.
 - Do NOT loosen these; the system is meant to read as a dense instrument panel.
 - Run tight. If it feels comfortable by modern SaaS defaults, it is probably too loose for Sequence UI.
 
@@ -380,7 +387,7 @@ DO keep controls flat, sharp, bordered, and role-typed.
 
 Authoritative component names from `src/lib/index.ts`:
 
-- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, natural line-height — Inter's tall x-height self-centers the label, no nudge needed), `IconButton`
+- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, natural line-height — Inter's tall x-height self-centers the label, no nudge needed. The default `outline` variant is the **Flat Hairline** look: 1px border, accent in border+text, only a faint fill that deepens on hover. `solid` primary/destructive are soft low-alpha tints, not saturated fills), `SegmentedControl` (single-select joined cluster with shared hairline dividers — a mode/tool switch, DAW/AE-style; text or icon-only segments, arrow-key + Home/End nav, `bind:value`), `IconButton`
 - Primitives: `Panel`, `BorderedGroup`, `CollapsibleSection`, `Pane`
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`

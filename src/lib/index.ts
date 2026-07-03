@@ -1,6 +1,10 @@
 export { default as ActionButton } from './components/buttons/ActionButton.svelte';
 export { default as Button } from './components/buttons/Button.svelte';
 export { default as IconButton } from './components/buttons/IconButton.svelte';
+export {
+	default as SegmentedControl,
+	type SegmentedOption
+} from './components/buttons/SegmentedControl.svelte';
 
 export { default as Panel } from './components/primitives/Panel.svelte';
 export { default as BorderedGroup } from './components/primitives/Panel.svelte';

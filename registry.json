@@ -41,6 +41,27 @@
       "registryDependencies": []
     },
     {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "SegmentedControl",
+      "description": "SegmentedControl component for Sequence UI.",
+      "files": [
+        {
+          "path": "src/lib/components/buttons/SegmentedControl.svelte",
+          "type": "registry:ui",
+          "target": "lib/components/buttons/SegmentedControl.svelte"
+        }
+      ],
+      "dependencies": [
+        "svelte",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "form-label",
+        "reset-value-button"
+      ]
+    },
+    {
       "name": "icon-button",
       "type": "registry:ui",
       "title": "Icon Button",
