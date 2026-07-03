@@ -6,7 +6,7 @@ This file is the implementation contract for coding agents recreating the Sequen
 
 Use these rules before inventing any component styling:
 
-- Base UI is 13px through `text-base: 0.8125rem`.
+- Base UI is 12.5px through `text-base: 0.78125rem`.
 - Tailwind spacing is tightened to `--spacing: 0.2rem`.
 - Corners are sharp: `--radius: 0rem`.
 - Surfaces are flat: no drop shadows, no glass, no skeuomorphic bevels.
