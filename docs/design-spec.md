@@ -7,7 +7,7 @@ Sequence UI is a Svelte 5 runes, Tailwind v4 CSS-first, TypeScript design system
 Sequence UI uses two font families:
 
 - Mono: `Berkeley Mono Variable`
-- Sans: `neue-haas-unica`
+- Sans: `Inter` (self-hosted v4.1 variable, SIL OFL)
 
 In this repo, Berkeley Mono is bundled for local dev and the gallery as `static/Berkeley Mono Variable.woff2` and loaded in `src/app.css`:
 
@@ -21,20 +21,25 @@ In this repo, Berkeley Mono is bundled for local dev and the gallery as `static/
 }
 ```
 
-`neue-haas-unica` is loaded in `src/app.html` from Adobe Typekit:
+Inter is open (SIL OFL), so it ships with the system — self-hosted as the v4.1 variable font `static/InterVariable.woff2`, loaded in `src/app.css`:
 
-```html
-<link rel="preconnect" href="https://use.typekit.net" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://use.typekit.net/ixr7lrv.css" crossorigin="anonymous" />
+```css
+@font-face {
+	font-family: 'Inter';
+	src: url('/InterVariable.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
 ```
 
-Consumers bring their own fonts. If a project cannot ship Berkeley Mono or neue-haas-unica, keep the same mono/sans role split and substitute licensed equivalents through `--font-mono` and `--font-sans`.
+Consumers get Inter for free. Berkeley Mono is licensed — consumers ship their own mono; if a project cannot, keep the same mono/sans role split and substitute a licensed equivalent through `--font-mono`.
 
 Tailwind font mappings in `@theme inline`:
 
 ```css
 --font-mono: 'Berkeley Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
---font-sans: 'neue-haas-unica', 'Inter', ui-sans-serif, system-ui, sans-serif;
+--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 ```
 
 ## OKLCH Tokens
@@ -133,21 +138,23 @@ On coarse pointers, spacing increases to `0.25rem` and `html` font-size becomes 
 
 Spacing is owned by containers. Components should not ship external margins. The stack utilities are:
 
+Only two values: 3.2px "within" and 6.4px "between". Every gap resolves to one of them — nothing in between, and no ad-hoc margins on panels/headings.
+
 | Utility | Tailwind gap | Rem | Use |
 | --- | --- | --- | --- |
-| `stack-tight` | `gap-1` | 0.2rem | parts of one control, label to field |
-| `stack-field` | `gap-1.5` | 0.3rem | elements inside a panel body |
-| `stack-group` | `gap-2` | 0.4rem | panels within a section |
-| `stack-section` | `gap-4` | 0.8rem | sections |
+| `stack-tight` | `gap-1` | 0.2rem (3.2px) | parts of one control, label to field |
+| `stack-field` | `gap-1` | 0.2rem (3.2px) | controls inside a panel body |
+| `stack-group` | `gap-1` | 0.2rem (3.2px) | heading + panels within a section |
+| `stack-section` | `gap-2` | 0.4rem (6.4px) | page sections |
 
 Panel defaults from `Panel.svelte`:
 
 ```ts
 headerClass = 'bg-panel border-b border-border px-1 py-0.5 flex justify-between items-center text-panel-foreground gap-2'
-contentClass = 'p-1.5 stack-field'
+contentClass = 'p-1 stack-field'
 ```
 
-Panel grids use `gap-2`; broader page sections use `gap-4` or `stack-section`.
+Panel grids and button/control clusters use `gap-1`; sections stack with `stack-group` inside a `stack-section` page column. A container owns the gap; children never set external margins.
 
 ## Light And Dark Wiring
 

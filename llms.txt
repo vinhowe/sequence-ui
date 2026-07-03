@@ -25,7 +25,7 @@ Design constants:
 - Corners: sharp.
 - Surfaces: flat, no shadows.
 - Borders: thin border-border hairlines.
-- Fonts: Berkeley Mono Variable via bundled woff2 and @font-face; neue-haas-unica via Adobe Typekit; consumers bring their own fonts.
+- Fonts: Berkeley Mono Variable (mono, bundled woff2 + @font-face, licensed — consumers bring their own); Inter (sans, self-hosted v4.1 variable woff2, SIL OFL — ships with the system).
 - Dark mode: .dark class on html, localStorage key sequence-ui-theme, modes light/dark/system.
 
 Type roles:
