@@ -45,8 +45,8 @@
 	// (icon or not) and the caps sit optically centered. (leading-none clips the
 	// font's ~18px line box and shoves the text low → "more space above".)
 	const SIZE: Record<Size, string> = {
-		sm: 'h-6 px-2 text-sm [&_svg]:h-3 [&_svg]:w-3',
-		md: 'h-7.5 px-2.5 text-base [&_svg]:h-3.5 [&_svg]:w-3.5'
+		sm: 'h-6 px-2 text-xs [&_svg]:h-3 [&_svg]:w-3',
+		md: 'h-7.5 px-2.5 text-sm [&_svg]:h-3.5 [&_svg]:w-3.5'
 	};
 
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
