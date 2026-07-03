@@ -51,6 +51,8 @@ All UI typography must use one of the nine semantic type utilities from `src/app
 
 Mono is only for `type-button`, `type-value`, `type-code`, `type-label`, and the small brand/project label. Use sans for headings, navigation, prose, and most labels that are not instrument labels.
 
+**Uppercase is a mono-only signal, and sans is always sentence-case.** The only uppercase text is mono: `type-label` (tags), `type-button` (commands), and the brand label. Never set `uppercase` on sans text — uppercase-sans reads as neither a technical tag nor natural prose. So a sans section heading (e.g. a `Menu` group heading) is sentence-case sans, not a sans eyebrow.
+
 **Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-label`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), the brand label, and those small tags — never for labels or prose.
 
 DON'T:
