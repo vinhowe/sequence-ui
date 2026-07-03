@@ -138,14 +138,14 @@ On coarse pointers, spacing increases to `0.25rem` and `html` font-size becomes 
 
 Spacing is owned by containers. Components should not ship external margins. The stack utilities are:
 
-Only two values: 3.2px "within" and 6.4px "between". Every gap resolves to one of them — nothing in between, and no ad-hoc margins on panels/headings.
+Three values in a clean x2 progression: 3.2px within, 6.4px between groups, 12.8px between sections (the healthy gap above each heading). Every gap resolves to one of them — nothing in between, and no ad-hoc margins on panels/headings.
 
 | Utility | Tailwind gap | Rem | Use |
 | --- | --- | --- | --- |
 | `stack-tight` | `gap-1` | 0.2rem (3.2px) | parts of one control, label to field |
 | `stack-field` | `gap-1` | 0.2rem (3.2px) | controls inside a panel body |
 | `stack-group` | `gap-1` | 0.2rem (3.2px) | heading + panels within a section |
-| `stack-section` | `gap-2` | 0.4rem (6.4px) | page sections |
+| `stack-section` | `gap-4` | 0.8rem (12.8px) | page sections (a real break above each heading) |
 
 Panel defaults from `Panel.svelte`:
 

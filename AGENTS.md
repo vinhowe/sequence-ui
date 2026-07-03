@@ -99,12 +99,13 @@ Instrument-dense, matching Sequence Toy's Control Panel: one tight 3.2px step in
 - `stack-tight`: `gap-1`, 0.2rem (3.2px), label to field or parts of one control.
 - `stack-field`: `gap-1`, 0.2rem (3.2px), controls inside a panel body (the toy's `space-y-1`).
 - `stack-group`: `gap-1`, 0.2rem (3.2px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
-- `stack-section`: `gap-2`, 0.4rem (6.4px), page sections.
+- `stack-section`: `gap-4`, 0.8rem (12.8px), page sections — a real break, a healthy gap above each heading.
 
-**Two spacing values, everywhere.** There are only two: **3.2px "within"** (`gap-1`) and **6.4px "between"** (`gap-2` / `stack-section`). Every gap — vertical or horizontal — resolves to one of them; nothing in between (no `gap-1.5`, no `mt-2` on a panel). This is what keeps vertical == horizontal: a panel grid's `gap-1` (horizontal) is the same 3.2px as the section's `stack-group` stacking (vertical).
+**Three spacing values — a clean ×2 progression.** Every gap resolves to one of `gap-1` / `gap-2` / `gap-4`; nothing in between (no `gap-1.5`, no `mt-2` on a panel).
 
-- **Within** a panel / cluster (3.2px, `gap-1`): controls in a panel body, buttons or radios in a row, panels within a section. Horizontal button/control clusters use `gap-1` too — the same as panels, never wider.
-- **Between** distinct groups or page sections (6.4px, `gap-2` / `stack-section`).
+- **Within** a panel / cluster — **3.2px, `gap-1`**: controls in a panel body, buttons or radios in a row, panels within a section. Both axes: a panel grid's horizontal `gap-1` is the same 3.2px as the section's `stack-group` vertical stacking (this is what keeps vertical == horizontal). Horizontal button/control clusters use `gap-1` too — never wider than panels.
+- **Between** distinct groups in a row — **6.4px, `gap-2`** (e.g. two separate control clusters side by side).
+- **Between page sections** — **12.8px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
 
 Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 3.2px; the page column is `stack-section` (6.4px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
 
