@@ -1,8 +1,15 @@
 @import 'tailwindcss';
 
-/* Berkeley Mono is a licensed typeface bundled here for local dev / the gallery.
-   Consumers of the registry supply their own copy (see docs). neue-haas-unica
-   loads via the Adobe Fonts (Typekit) link in app.html. */
+/* Inter (SIL OFL) is the sans face, self-hosted as the v4.1 variable font — it
+   ships with the system (open license). Berkeley Mono is a licensed typeface
+   bundled here for local dev / the gallery; consumers supply their own mono. */
+@font-face {
+	font-family: 'Inter';
+	src: url('/InterVariable.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
 @font-face {
 	font-family: 'Berkeley Mono Variable';
 	src: url('/Berkeley Mono Variable.woff2') format('woff2-variations');
@@ -125,7 +132,7 @@
 	--radius: var(--radius);
 
 	--font-mono: 'Berkeley Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
-	--font-sans: 'neue-haas-unica', 'Inter', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
 	--spacing: 0.2rem;
 

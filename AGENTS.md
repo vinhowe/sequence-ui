@@ -13,7 +13,7 @@ Use these rules before inventing any component styling:
 - Borders are thin `border border-border` hairlines; use `border-border-strong` only when hierarchy needs it.
 - Primary commands use `ActionButton` gradients, not generic pill buttons.
 - Icons come from Lucide when an icon exists.
-- Berkeley Mono is reserved. `neue-haas-unica` is the sans face.
+- Berkeley Mono is reserved. `Inter` (self-hosted v4.1 variable, SIL OFL) is the sans face.
 
 DON'T:
 
@@ -377,7 +377,7 @@ DO keep controls flat, sharp, bordered, and role-typed.
 
 Authoritative component names from `src/lib/index.ts`:
 
-- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, label nudged 1px for optical centering), `IconButton`
+- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, natural line-height — Inter's tall x-height self-centers the label, no nudge needed), `IconButton`
 - Primitives: `Panel`, `BorderedGroup`, `CollapsibleSection`, `Pane`
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`

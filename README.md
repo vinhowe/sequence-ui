@@ -12,7 +12,7 @@ Registry components live under `static/r/*.json` after running the registry buil
 npx shadcn-svelte@latest add <url>/r/<name>.json
 ```
 
-For local or manual use, copy the registry JSON or the source component file directly into the consuming project. Consumers must also bring the required CSS tokens and fonts. Berkeley Mono is bundled here for local dev and the gallery; downstream projects need their own licensed mono font file or a font substitution. `neue-haas-unica` is loaded in this repo through Adobe Typekit.
+For local or manual use, copy the registry JSON or the source component file directly into the consuming project. Consumers must also bring the required CSS tokens and fonts. The sans face is **Inter** (SIL Open Font License), self-hosted as the v4.1 variable font (`static/InterVariable.woff2`) — it ships with the system, so no external font service is required. Berkeley Mono is bundled here for local dev and the gallery; downstream projects need their own licensed mono font file or a font substitution.
 
 ## Minimal Usage
 

@@ -99,7 +99,7 @@
 		{:else if Icon}
 			<Icon strokeWidth={2.5} aria-hidden="true" />
 		{/if}
-		<span class="relative -top-px">{@render children?.()}</span>
+		{@render children?.()}
 		{#if IconRight && !loading}
 			<IconRight strokeWidth={2.5} aria-hidden="true" />
 		{/if}
@@ -111,7 +111,7 @@
 		{:else if Icon}
 			<Icon strokeWidth={2.5} aria-hidden="true" />
 		{/if}
-		<span class="relative -top-px">{@render children?.()}</span>
+		{@render children?.()}
 		{#if IconRight && !loading}
 			<IconRight strokeWidth={2.5} aria-hidden="true" />
 		{/if}
