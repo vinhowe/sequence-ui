@@ -25,6 +25,7 @@
 		ResetValueButton,
 		AngleField,
 		ScrubInput,
+		SegmentedControl,
 		SelectInput,
 		Slider,
 		Statistic,
@@ -148,6 +149,8 @@
 <Button variant="ghost" tone="destructive">Remove</Button>
 <Button variant="link" tone="primary" href="/docs">Learn more</Button>`,
 		iconButton: `<IconButton icon={RotateCcw} label="Restart" active={isLooping} />`,
+		segmentedControl: `<SegmentedControl id="view" label="View" bind:value={view}
+  options={[{ value: 'arrange', label: 'Arrange' }, { value: 'mix', label: 'Mix' }, { value: 'edit', label: 'Edit' }]} />`,
 		panel: `<Panel title="Transport" citations={citations} contentClass="p-1">
   <ActionButton color="green">Start</ActionButton>
 </Panel>`,
@@ -209,6 +212,8 @@
 	let actionCount = $state(0);
 	let paneTab = $state('metrics');
 	let activeTool = $state<'inspect' | 'zoom' | 'settings'>('inspect');
+	let segView = $state('mix');
+	let segTool = $state('zoom');
 	let collapsibleOpen = $state(true);
 	let toolbarRunning = $state(false);
 	let tempo = $state(128);
@@ -357,9 +362,13 @@
 			</aside>
 
 			<main class="min-h-0 overflow-y-auto overscroll-contain scroll-smooth bg-background">
-				<div class="mx-auto flex max-w-7xl flex-col gap-2 p-2 sm:p-4">
-					<section id="foundations" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Foundations</h2>
+				<!-- Spacing is container-owned, two levels only: sections are spaced by
+				     `stack-section` (6.4px); everything inside a section — heading to
+				     panels, panel to panel, both axes — is `stack-group` / `gap-1`
+				     (3.2px). No panel or heading sets its own external margin. -->
+				<div class="mx-auto max-w-7xl stack-section p-2 sm:p-4">
+					<section id="foundations" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Foundations</h2>
 
 						<div class="grid gap-1 xl:grid-cols-[1.15fr_0.85fr]">
 							<Panel title="Color Tokens" contentClass="p-1 stack-field">
@@ -405,7 +414,7 @@
 							</Panel>
 						</div>
 
-						<Panel title="Type Scale" class="mt-2" contentClass="p-1 stack-field">
+						<Panel title="Type Scale" contentClass="p-1 stack-field">
 							<div class="grid gap-1 lg:grid-cols-2">
 								{#each typeScale as type}
 									<div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-2 border border-border bg-muted/50 p-1">
@@ -422,8 +431,8 @@
 						</Panel>
 					</section>
 
-					<section id="buttons" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Buttons</h2>
+					<section id="buttons" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Buttons</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ActionButton" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -476,7 +485,7 @@
 									(default / primary / destructive) × size, with icon, loading, and disabled
 									states. The calm complement to ActionButton.
 								</p>
-								<div class="flex flex-wrap items-center gap-1.5">
+								<div class="flex flex-wrap items-center gap-1">
 									<Button variant="solid" tone="primary" icon={Play}>Start</Button>
 									<Button variant="solid" tone="destructive" icon={Trash2}>Delete</Button>
 									<Button variant="solid">Solid</Button>
@@ -484,7 +493,7 @@
 									<Button variant="outline" tone="primary">Outline primary</Button>
 									<Button variant="outline" tone="destructive">Outline danger</Button>
 								</div>
-								<div class="flex flex-wrap items-center gap-1.5">
+								<div class="flex flex-wrap items-center gap-1">
 									<Button variant="ghost">Ghost</Button>
 									<Button variant="ghost" tone="destructive">Ghost danger</Button>
 									<Button variant="link" tone="primary">Link</Button>
@@ -492,18 +501,59 @@
 									<Button variant="solid" tone="primary" loading>Saving</Button>
 									<Button disabled>Disabled</Button>
 								</div>
-								<div class="flex flex-wrap items-center gap-1.5">
+								<div class="flex flex-wrap items-center gap-1">
 									<Button size="sm" variant="outline">Small</Button>
 									<Button size="sm" variant="solid" tone="primary" icon={Play}>Small primary</Button>
 									<Button size="sm" variant="ghost">Small ghost</Button>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.button}</code></pre>
 							</Panel>
+
+							<Panel title="SegmentedControl" class="lg:col-span-2" contentClass="p-1 stack-field">
+								<p class="text-muted-foreground type-body">
+									Single-select cluster of joined segments with shared hairline dividers — a
+									mode or tool switch (DAW/AE-style). Keyboard: arrows, Home/End. Text or
+									icon-only segments.
+								</p>
+								<div class="flex flex-wrap items-center gap-2">
+									<SegmentedControl
+										id="seg-view"
+										ariaLabel="View"
+										bind:value={segView}
+										options={[
+											{ value: 'arrange', label: 'Arrange' },
+											{ value: 'mix', label: 'Mix' },
+											{ value: 'edit', label: 'Edit' }
+										]}
+									/>
+									<SegmentedControl
+										ariaLabel="Tool"
+										bind:value={segTool}
+										options={[
+											{ value: 'inspect', icon: Activity },
+											{ value: 'zoom', icon: ZoomIn },
+											{ value: 'settings', icon: Settings2 }
+										]}
+									/>
+									<SegmentedControl
+										size="sm"
+										ariaLabel="Density"
+										bind:value={segView}
+										options={[
+											{ value: 'arrange', label: 'A' },
+											{ value: 'mix', label: 'B' },
+											{ value: 'edit', label: 'C' }
+										]}
+									/>
+									<span class="text-muted-foreground type-label">{segView} · {segTool}</span>
+								</div>
+								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.segmentedControl}</code></pre>
+							</Panel>
 						</div>
 					</section>
 
-					<section id="primitives" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Primitives</h2>
+					<section id="primitives" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Primitives</h2>
 						<div class="grid gap-1 xl:grid-cols-3">
 							<Panel title="Panel" citations={panelCitations} contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -575,8 +625,8 @@
 						</div>
 					</section>
 
-					<section id="controls" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Controls</h2>
+					<section id="controls" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Controls</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Slider" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -688,7 +738,7 @@
 								/>
 								<div class="mt-1 border border-border bg-muted p-1">
 									<FormLabel value="Solo bus" />
-									<div class="mt-1 flex gap-2">
+									<div class="mt-1 flex gap-1">
 										<RadioInput id="bus-a" name="solo-bus" bind:group={soloBus} value="a" label="Bus A" />
 										<RadioInput id="bus-b" name="solo-bus" bind:group={soloBus} value="b" label="Bus B" />
 									</div>
@@ -716,8 +766,8 @@
 						</div>
 					</section>
 
-					<section id="precision" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Precision</h2>
+					<section id="precision" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Precision</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="TimecodeField" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -813,8 +863,8 @@
 						</div>
 					</section>
 
-					<section id="navigation" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Navigation</h2>
+					<section id="navigation" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Navigation</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Menu" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -870,8 +920,8 @@
 						</div>
 					</section>
 
-					<section id="data" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Data</h2>
+					<section id="data" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Data</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="CapacityBar" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
@@ -934,8 +984,8 @@
 						</div>
 					</section>
 
-					<section id="feedback" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Feedback</h2>
+					<section id="feedback" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Feedback</h2>
 						<div class="grid gap-1 lg:grid-cols-2 xl:grid-cols-4">
 							<Panel title="Statistic" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">Dense metric tile with mono value and optional contextual text.</p>
@@ -970,8 +1020,8 @@
 						</div>
 					</section>
 
-					<section id="icons" class="scroll-mt-14">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Icons</h2>
+					<section id="icons" class="scroll-mt-14 stack-group">
+						<h2 class="border-b border-border pb-2 type-heading">Icons</h2>
 						<div class="grid gap-1 lg:grid-cols-3">
 							<Panel title="ChevronIcon" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">Directional disclosure glyph used by sections and selects.</p>
@@ -1014,8 +1064,8 @@
 						</div>
 					</section>
 
-					<section id="theme" class="scroll-mt-14 pb-4">
-						<h2 class="mb-3 border-b border-border pb-2 type-heading">Theme</h2>
+					<section id="theme" class="scroll-mt-14 stack-group pb-4">
+						<h2 class="border-b border-border pb-2 type-heading">Theme</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ThemeProvider" contentClass="p-1 stack-field">
 								<p class="text-muted-foreground type-body">
