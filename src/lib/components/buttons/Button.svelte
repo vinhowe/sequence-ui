@@ -75,10 +75,16 @@
 		}
 	};
 
+	// A leading icon has visual air around its glyph, so the left gap reads larger
+	// than the right — trim the left padding a touch when one is present.
+	const LEADING_INSET: Record<Size, string> = { sm: 'pl-1.5', md: 'pl-2' };
+	const leadingGlyph = $derived(loading || Boolean(Icon));
+
 	const classes = $derived(
 		twMerge(
 			base,
 			SIZE[size],
+			leadingGlyph ? LEADING_INSET[size] : '',
 			STYLES[variant][tone],
 			typeof additionalClasses === 'string' ? additionalClasses : ''
 		)
