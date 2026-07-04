@@ -44,8 +44,8 @@
 	let buttonEls = $state<HTMLButtonElement[]>([]);
 
 	const SIZE = {
-		sm: 'h-6 px-1 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
-		md: 'h-7.5 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
+		sm: 'h-5 px-1 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
+		md: 'h-6 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	} as const;
 
 	function selectableIndices(): number[] {

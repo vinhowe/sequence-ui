@@ -47,7 +47,7 @@
 	};
 
 	const baseClasses =
-		'inline-flex h-7.5 cursor-pointer items-center justify-center border px-1.5 py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 disabled:saturate-50 type-button';
+		'inline-flex h-6 cursor-pointer items-center justify-center border px-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 disabled:saturate-50 type-button';
 
 	const computedColorClass = $derived(
 		color
