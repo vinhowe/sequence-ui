@@ -372,7 +372,7 @@
 
 						<div class="grid gap-1 xl:grid-cols-[1.15fr_0.85fr]">
 							<Panel title="Color Tokens" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Semantic OKLCH variables drive the surfaces, text, borders, status colors, and
 									focus rings. Toggle the theme to inspect the live token swap.
 								</p>
@@ -394,7 +394,7 @@
 							</Panel>
 
 							<Panel title="Density" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Base spacing is 0.25rem, with half-step sizing used for inputs, rows, and
 									buttons. Labels and prose are sans; mono is reserved for values, code, and terse tags.
 								</p>
@@ -435,7 +435,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Buttons</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ActionButton" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Gradient command button with six semantic colors and a highlighted pulse state.
 								</p>
 								<div class="flex flex-wrap gap-1">
@@ -450,7 +450,7 @@
 							</Panel>
 
 							<Panel title="IconButton" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Square icon command for toolbars, toggles, and dense control clusters.
 								</p>
 								<div class="flex items-center gap-1">
@@ -480,7 +480,7 @@
 							</Panel>
 
 							<Panel title="Button" class="lg:col-span-2" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									The everyday flat button — a thin hairline by default (1px border, accent in border + text) × tone
 									(default / primary / destructive) × size, with icon, loading, and disabled
 									states. The calm complement to ActionButton.
@@ -507,7 +507,7 @@
 							</Panel>
 
 							<Panel title="SegmentedControl" class="lg:col-span-2" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Single-select cluster of joined segments with shared hairline dividers — a
 									mode or tool switch (DAW/AE-style). Keyboard: arrows, Home/End. Text or
 									icon-only segments.
@@ -553,7 +553,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Primitives</h2>
 						<div class="grid gap-1 xl:grid-cols-3">
 							<Panel title="Panel" citations={panelCitations} contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Bordered surface with a filled header, optional citations, and action slot.
 								</p>
 								<div class="grid grid-cols-2 gap-1">
@@ -573,7 +573,7 @@
 									<Slider id="collapsible-swing" label="Swing" bind:value={swing} min={0} max={64} step={1} unit="%" />
 								</CollapsibleSection>
 								<div class="pad-box stack-field">
-									<p class="text-foreground type-body">
+									<p class="text-foreground prose">
 										Keyboard and pointer operable section row for nested settings.
 									</p>
 									<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.collapsible}</code></pre>
@@ -606,14 +606,14 @@
 												<IconButton icon={RotateCcw} label="Restart" onclick={() => (actionCount = 0)} />
 											</div>
 										{:else}
-											<p class="text-foreground type-body">
+											<p class="text-foreground prose">
 												Each tab switches the pane body; the strip carries an optional actions slot.
 											</p>
 										{/if}
 									{/snippet}
 								</Pane>
 								<div class="pad-box stack-field">
-									<p class="text-foreground type-body">
+									<p class="text-foreground prose">
 										Tabbed content pane (app-shell / editor-group pattern).
 									</p>
 									<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.pane}</code></pre>
@@ -626,7 +626,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Controls</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Slider" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Pointer, keyboard, typed entry, ticks, unit display, and reset support.
 								</p>
 								<Slider
@@ -644,7 +644,7 @@
 							</Panel>
 
 							<Panel title="NumberInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Compact numeric field with mono numeric sizing, unit affordance, and reset.
 								</p>
 								<NumberInput
@@ -662,7 +662,7 @@
 							</Panel>
 
 							<Panel title="TextInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Tokenized text field for compact forms and control captions.
 								</p>
 								<TextInput
@@ -677,7 +677,7 @@
 							</Panel>
 
 							<Panel title="SelectInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Custom listbox select with disabled options, keyboard navigation, and portal menu.
 								</p>
 								<SelectInput
@@ -698,7 +698,7 @@
 								bind:enabled={modEnabled}
 								contentClass="pad-box stack-field"
 							>
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Panel-backed enable group that gates child controls behind a checkbox toggle.
 								</p>
 								<CheckboxInput id="mod-sync" label="Sync to transport" bind:checked={modSync} />
@@ -707,7 +707,7 @@
 							</ToggleGroup>
 
 							<Panel title="CheckboxInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Accessible checkbox with custom icon, citation support, and reset action.
 								</p>
 								<CheckboxInput
@@ -721,7 +721,7 @@
 							</Panel>
 
 							<Panel title="RadioGroupInput / RadioInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Group helper for related radio options, plus the raw radio primitive for custom rows.
 								</p>
 								<RadioGroupInput
@@ -745,7 +745,7 @@
 							</Panel>
 
 							<Panel title="FormLabel / ResetValueButton" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Small label primitive and reset icon used by the input family.
 								</p>
 								<FormLabel forInputId="manual-reset-value" value="Manual reset lane" />
@@ -767,7 +767,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Precision</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="TimecodeField" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Segmented frame-accurate entry with carry-aware arrow stepping.
 								</p>
 								<TimecodeField
@@ -785,7 +785,7 @@
 							</Panel>
 
 							<Panel title="ScrubInput" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Horizontal drag-to-set numeric input with direct typed entry and reset support.
 								</p>
 								<ScrubInput
@@ -803,7 +803,7 @@
 							</Panel>
 
 							<Panel title="AngleField" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Flat angular drag control with accumulated revolutions and typed degree entry.
 								</p>
 								<AngleField id="phase-angle" label="Phase" bind:value={phase} />
@@ -811,7 +811,7 @@
 							</Panel>
 
 							<Panel title="ThresholdMarker" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Compact threshold scale with warning and critical ranges plus keyboard adjustment.
 								</p>
 								<ThresholdMarker
@@ -829,7 +829,7 @@
 							</Panel>
 
 							<Panel title="BitField" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									MSB-first bit toggles with editable hexadecimal and decimal readouts.
 								</p>
 								<BitField id="flags-field" label="Flags" bind:value={flags} bits={16} />
@@ -837,7 +837,7 @@
 							</Panel>
 
 							<Panel title="BaseField" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									One integer mirrored live across decimal, hexadecimal, binary, and octal.
 								</p>
 								<BaseField id="address-field" label="Address" bind:value={address} />
@@ -845,7 +845,7 @@
 							</Panel>
 
 							<Panel title="ToleranceField" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Nominal numeric value plus non-negative tolerance and optional unit.
 								</p>
 								<ToleranceField
@@ -864,7 +864,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Navigation</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="Menu" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Portal action menu with roving keyboard navigation, shortcuts, headings, and
 									destructive text treatment.
 								</p>
@@ -881,7 +881,7 @@
 							</Panel>
 
 							<Panel title="Breadcrumb" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Wrap-friendly hierarchy links with sans navigation labels and chevron separators.
 								</p>
 								<Breadcrumb items={breadcrumbItems} maxItems={3} />
@@ -889,7 +889,7 @@
 							</Panel>
 
 							<Panel title="Pagination" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Fixed-width page controls with first/last anchors, sibling pages, and collapsed
 									gaps.
 								</p>
@@ -901,7 +901,7 @@
 							</Panel>
 
 							<Panel title="Tree" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Expandable hierarchy with full-row selection fill, indentation depth, and roving
 									row focus.
 								</p>
@@ -921,7 +921,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Data</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
 							<Panel title="CapacityBar" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Stacked utilization with chart token fills, an empty remainder, threshold ticks, and
 									a compact legend.
 								</p>
@@ -940,7 +940,7 @@
 							</Panel>
 
 							<Panel title="TimeBrush" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Resizable range over a compact chart strip with edge handles, body dragging, and
 									track-to-create selection.
 								</p>
@@ -960,7 +960,7 @@
 							</Panel>
 
 							<Panel title="ProgressBar" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Determinate, buffered, and indeterminate progress with an optional label/value
 									readout plus color and size variants.
 								</p>
@@ -985,7 +985,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Feedback</h2>
 						<div class="grid gap-1 lg:grid-cols-2 xl:grid-cols-4">
 							<Panel title="Statistic" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Dense metric tile with mono value and optional contextual text.</p>
+								<p class="text-foreground prose">Dense metric tile with mono value and optional contextual text.</p>
 								<Statistic label="Tempo">
 									{tempo}
 									{#snippet funFact()}bpm{/snippet}
@@ -994,7 +994,7 @@
 							</Panel>
 
 							<Panel title="Note" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Status callout with info, warning, and error color treatments.</p>
+								<p class="text-foreground prose">Status callout with info, warning, and error color treatments.</p>
 								<Note label="Clock warning" type="warning">
 									Swing above 50% may destabilize tightly clocked patterns.
 								</Note>
@@ -1002,13 +1002,13 @@
 							</Panel>
 
 							<Panel title="Citations" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Inline provenance text for formulas, imported models, or specs.</p>
+								<p class="text-foreground prose">Inline provenance text for formulas, imported models, or specs.</p>
 								<Citations citations={panelCitations} />
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.citations}</code></pre>
 							</Panel>
 
 							<Panel title="Tooltip" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Icon-led helper block for dense interfaces that need one precise hint.</p>
+								<p class="text-foreground prose">Icon-led helper block for dense interfaces that need one precise hint.</p>
 								<Tooltip icon={Settings2}>
 									Hold Alt while dragging the slider thumb to snap to major ticks.
 								</Tooltip>
@@ -1021,7 +1021,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Icons</h2>
 						<div class="grid gap-1 lg:grid-cols-3">
 							<Panel title="ChevronIcon" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Directional disclosure glyph used by sections and selects.</p>
+								<p class="text-foreground prose">Directional disclosure glyph used by sections and selects.</p>
 								<button
 									type="button"
 									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 type-body"
@@ -1034,7 +1034,7 @@
 							</Panel>
 
 							<Panel title="CheckboxIcon" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Standalone check state icon that powers CheckboxInput.</p>
+								<p class="text-foreground prose">Standalone check state icon that powers CheckboxInput.</p>
 								<button
 									type="button"
 									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2"
@@ -1047,7 +1047,7 @@
 							</Panel>
 
 							<Panel title="RadioIcon" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">Standalone radio state icon that powers RadioInput.</p>
+								<p class="text-foreground prose">Standalone radio state icon that powers RadioInput.</p>
 								<button
 									type="button"
 									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2"
@@ -1065,7 +1065,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Theme</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ThemeProvider" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									ThemeProvider resolves localStorage, system preference, and default theme, then
 									applies the html.dark class that powers Tailwind's custom dark variant.
 								</p>
@@ -1076,7 +1076,7 @@
 							</Panel>
 
 							<Panel title="ThemeToggle" contentClass="pad-box stack-field">
-								<p class="text-foreground type-body">
+								<p class="text-foreground prose">
 									Three-way segmented control for light, dark, and system modes.
 								</p>
 								<ThemeToggle />

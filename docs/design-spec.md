@@ -158,6 +158,8 @@ Every content box — panel/CollapsibleSection/Pane/ToggleGroup body, code block
 
 Panel grids and button/control clusters use `gap-1`; sections stack with `stack-group` inside a `stack-section` page column. A container owns the gap; children never set external margins.
 
+Running text is the one exception. A paragraph of prose (panel/section descriptions, help copy) uses the `prose` utility, which `@apply`s `type-body` and additionally owns its vertical rhythm: `margin-block` of 1U on each edge, zeroed at a stack's first/last child (modeled on `@tailwindcss/typography`'s `prose`). With the stack's own 4px gap that yields an 8px boundary against adjacent controls, and the block sits flush at the panel edges. It's an explicit marker so the control text that also wears `type-body` (inputs, menu items, option labels) is unaffected — real running text gets `prose`; UI text keeps its `type-*` role. This is the only margin a child may carry, and it lives in the utility (`@layer components`, so it beats Preflight's `p{margin:0}` yet yields to an explicit `mt-*`).
+
 ## Light And Dark Wiring
 
 Theme is end-to-end class-based.

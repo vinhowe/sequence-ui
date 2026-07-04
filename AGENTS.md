@@ -56,6 +56,8 @@ Mono is only for `type-button`, `type-value`, `type-code`, `type-label`, and the
 
 **Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-label`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), the brand label, and those small tags — never for labels or prose.
 
+**Running text uses `prose`, not bare `type-body`.** A paragraph of running text — panel/section descriptions, help copy — gets the `prose` utility. `prose` applies the body font *and* owns its vertical rhythm: it separates from an adjacent control/grid/code block by 8px and sits flush at a stack's edges (modeled on `@tailwindcss/typography`'s `prose`). This is the ONE sanctioned exception to "components ship margin-free" — prose rhythm belongs to prose, not the container. It's an explicit marker, so the many control usages of `type-body` (inputs, menu items, option labels) are untouched. Rule: real running text → `prose`; UI text → the appropriate `type-*` role.
+
 DON'T:
 
 ```svelte
@@ -108,7 +110,7 @@ Instrument-dense, matching Sequence Toy's Control Panel: one tight 4px step insi
 - **Between** distinct groups in a row — **8px, `gap-2`** (e.g. two separate control clusters side by side).
 - **Between page sections** — **16px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
 
-Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 4px; the page column is `stack-section` (16px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
+Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 4px; the page column is `stack-section` (16px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead. The **one exception is `prose`** (running-text blocks), which owns its own rhythm on purpose — see Typography. That's the ONLY margin a child may carry, and it comes from the utility, not a hand-added `mt-*`.
 
 **One content-box inset: `pad-box`.** Every text-in-a-box — panel body, CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility, never a hand-picked `p-*`. It resolves to `--pad-box` (a token, currently 1U / 4px, decoupled from `--spacing`). Bump `--pad-box` once and every box reflows together; that's the whole point, so do not sprinkle `p-2`/`p-3` on individual boxes.
 

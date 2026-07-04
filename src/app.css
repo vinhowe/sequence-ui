@@ -303,3 +303,24 @@ body {
 @utility pad-box {
 	padding: var(--pad-box);
 }
+
+/* Prose — a block of running text. Unlike a control it carries visual mass, so it
+   owns its separation from neighbours, the way @tailwindcss/typography's `prose` owns
+   its children's rhythm. It's an EXPLICIT marker (only genuine prose opts in), so the
+   spacing is decoupled from `type-body` — which also styles control text (inputs,
+   labels, menu items) that must NOT get prose air. */
+@utility prose {
+	@apply type-body;
+}
+/* Prose owns its air, zeroed at a stack's edges (Tailwind's first/last reset) so the
+   block sits flush. In @layer components so it beats Preflight's `p{margin:0}` reset
+   yet still yields to an explicit margin utility. The stack's own 4px gap + this 4px
+   = an 8px boundary against adjacent controls; two stacked prose blocks keep flowing. */
+@layer components {
+	.prose:not(:first-child) {
+		margin-block-start: var(--spacing);
+	}
+	.prose:not(:last-child) {
+		margin-block-end: var(--spacing);
+	}
+}
