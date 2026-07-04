@@ -48,6 +48,9 @@
 		md: 'h-6 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	} as const;
 
+	// Match the bolder sm label: thicken sm icon strokes (they render at 10px).
+	const iconStroke = $derived(size === 'sm' ? 3 : 2.5);
+
 	function selectableIndices(): number[] {
 		return options.map((o, i) => (o.disabled ? -1 : i)).filter((i) => i >= 0);
 	}
@@ -120,7 +123,7 @@
 						opt.label ? '' : 'aspect-square px-0'
 					)}
 				>
-					{#if Icon}<Icon strokeWidth={2.5} aria-hidden="true" />{/if}
+					{#if Icon}<Icon strokeWidth={iconStroke} aria-hidden="true" />{/if}
 					{#if opt.label}<span>{opt.label}</span>{/if}
 				</button>
 			{/each}

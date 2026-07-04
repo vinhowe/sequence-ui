@@ -81,6 +81,10 @@
 	const LEADING_INSET: Record<Size, string> = { sm: 'pl-0.75', md: 'pl-1.25' };
 	const leadingGlyph = $derived(loading || Boolean(Icon));
 
+	// sm glyphs render smaller (10px), so a flat stroke reads thinner — thicken it
+	// to keep icon weight in step with the bolder (550) sm label.
+	const iconStroke = $derived(size === 'sm' ? 3 : 2.5);
+
 	const classes = $derived(
 		twMerge(
 			base,
@@ -96,25 +100,25 @@
 {#if href}
 	<a {href} class={classes} aria-disabled={isDisabled} {...(restProps as Record<string, unknown>)}>
 		{#if loading}
-			<LoaderCircle class="animate-spin" strokeWidth={2.5} aria-hidden="true" />
+			<LoaderCircle class="animate-spin" strokeWidth={iconStroke} aria-hidden="true" />
 		{:else if Icon}
-			<Icon strokeWidth={2.5} aria-hidden="true" />
+			<Icon strokeWidth={iconStroke} aria-hidden="true" />
 		{/if}
 		{@render children?.()}
 		{#if IconRight && !loading}
-			<IconRight strokeWidth={2.5} aria-hidden="true" />
+			<IconRight strokeWidth={iconStroke} aria-hidden="true" />
 		{/if}
 	</a>
 {:else}
 	<button type="button" class={classes} disabled={isDisabled} {...restProps}>
 		{#if loading}
-			<LoaderCircle class="animate-spin" strokeWidth={2.5} aria-hidden="true" />
+			<LoaderCircle class="animate-spin" strokeWidth={iconStroke} aria-hidden="true" />
 		{:else if Icon}
-			<Icon strokeWidth={2.5} aria-hidden="true" />
+			<Icon strokeWidth={iconStroke} aria-hidden="true" />
 		{/if}
 		{@render children?.()}
 		{#if IconRight && !loading}
-			<IconRight strokeWidth={2.5} aria-hidden="true" />
+			<IconRight strokeWidth={iconStroke} aria-hidden="true" />
 		{/if}
 	</button>
 {/if}
