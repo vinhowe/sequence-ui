@@ -338,7 +338,7 @@
 
 		<div class="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[10rem_1fr]">
 			<aside
-				class="hidden min-h-0 overflow-y-auto overscroll-contain border-r border-border bg-card md:block"
+				class="hidden min-h-0 overflow-y-auto overscroll-contain border-r border-border bg-panel md:block"
 				aria-label="Gallery sections"
 			>
 				<nav class="flex flex-col">
@@ -351,8 +351,8 @@
 								i < navItems.length - 1 ? 'border-b border-b-border/60' : ''
 							} ${
 								active
-									? 'bg-primary/12 text-foreground'
-									: 'text-muted-foreground hover:bg-muted hover:text-foreground'
+									? 'bg-card text-foreground'
+									: 'text-muted-foreground hover:bg-card/50 hover:text-foreground'
 							}`}
 						>
 							{item.label}
