@@ -51,20 +51,20 @@
 					{/each}
 				</Panel>
 
-				<Panel title="Size — (subtle-foreground · lh 1.5 · weight 400)" contentClass="p-2 flex flex-col gap-2">
+				<Panel title="Size — (foreground · lh 1.5 · weight 400)" contentClass="p-2 flex flex-col gap-2">
 					{#each sizes as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
 							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
-							<p class={`font-sans leading-[1.5] font-normal text-subtle-foreground ${v.cls}`}>{sample}</p>
+							<p class={`font-sans leading-[1.5] font-normal text-foreground ${v.cls}`}>{sample}</p>
 						</div>
 					{/each}
 				</Panel>
 
-				<Panel title="Line-height — (subtle-foreground · 13px · weight 400)" contentClass="p-2 flex flex-col gap-2">
+				<Panel title="Line-height — (foreground · 13px · weight 400)" contentClass="p-2 flex flex-col gap-2">
 					{#each leadings as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
 							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
-							<p class={`font-sans text-[13px] font-normal text-subtle-foreground ${v.cls}`}>{sample}</p>
+							<p class={`font-sans text-[13px] font-normal text-foreground ${v.cls}`}>{sample}</p>
 						</div>
 					{/each}
 				</Panel>
