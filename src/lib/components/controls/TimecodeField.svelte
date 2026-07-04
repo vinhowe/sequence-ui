@@ -176,7 +176,7 @@
 					inputmode="numeric"
 					aria-label={segment}
 					value={editValues[segment]}
-					class="h-6 w-6 border-0 bg-card px-0.5 text-center text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+					class="w-6 border-0 bg-card px-0.5 py-0.5 text-center text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 					onfocus={(event) => {
 						focusedIndex = index;
 						(event.currentTarget as HTMLInputElement).select();

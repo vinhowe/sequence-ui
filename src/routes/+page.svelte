@@ -749,10 +749,10 @@
 									Small label primitive and reset icon used by the input family.
 								</p>
 								<FormLabel forInputId="manual-reset-value" value="Manual reset lane" />
-								<div class="mt-1 flex items-center gap-1">
+								<div class="flex items-center gap-1">
 									<input
 										id="manual-reset-value"
-										class="h-7.5 flex-1 border border-border bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
+										class="flex-1 border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
 										bind:value={sequenceName}
 									/>
 									<ResetValueButton hasDefaultValue={nameIsDefault} onReset={resetName} />
@@ -1024,7 +1024,7 @@
 								<p class="text-foreground prose">Directional disclosure glyph used by sections and selects.</p>
 								<button
 									type="button"
-									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 type-body"
+									class="inline-flex h-6 items-center gap-1 border border-border bg-panel px-1.5 type-body"
 									onclick={() => collapsibleOpen = !collapsibleOpen}
 								>
 									<ChevronIcon direction={collapsibleOpen ? 'down' : 'right'} />
@@ -1037,7 +1037,7 @@
 								<p class="text-foreground prose">Standalone check state icon that powers CheckboxInput.</p>
 								<button
 									type="button"
-									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2"
+									class="inline-flex h-6 items-center gap-1 border border-border bg-panel px-1.5"
 									onclick={() => checkIconState = !checkIconState}
 								>
 									<CheckboxIcon checked={checkIconState} />
@@ -1050,7 +1050,7 @@
 								<p class="text-foreground prose">Standalone radio state icon that powers RadioInput.</p>
 								<button
 									type="button"
-									class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2"
+									class="inline-flex h-6 items-center gap-1 border border-border bg-panel px-1.5"
 									onclick={() => radioIconState = !radioIconState}
 								>
 									<RadioIcon checked={radioIconState} />

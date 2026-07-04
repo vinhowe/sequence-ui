@@ -62,19 +62,19 @@
 			inputmode="decimal"
 			value={valueText}
 			aria-label="Nominal value"
-			class="h-6 w-20 border-0 bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+			class="w-20 border-0 bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 			onfocus={() => focusedField = 'value'}
 			onblur={() => focusedField = null}
 			oninput={(event) => updateValue((event.currentTarget as HTMLInputElement).value)}
 		/>
-		<span class="flex h-6 items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">±</span>
+		<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">±</span>
 		<input
 			id={`${id}-tolerance`}
 			type="text"
 			inputmode="decimal"
 			value={toleranceText}
 			aria-label="Tolerance"
-			class={`h-6 w-16 border-0 bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
+			class={`w-16 border-0 bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
 				toleranceInvalid ? 'border border-destructive' : ''
 			}`}
 			onfocus={() => focusedField = 'tolerance'}
@@ -82,7 +82,7 @@
 			oninput={(event) => updateTolerance((event.currentTarget as HTMLInputElement).value)}
 		/>
 		{#if unit}
-			<span class="flex h-6 items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">{unit}</span>
+			<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">{unit}</span>
 		{/if}
 	</div>
 </div>

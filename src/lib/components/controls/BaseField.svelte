@@ -97,7 +97,7 @@
 					type="text"
 					inputmode={row.key === 'hex' ? 'text' : 'numeric'}
 					value={entries[row.key]}
-					class={`h-6 border-0 bg-card px-1 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-code ${
+					class={`border-0 bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-code ${
 						invalid[row.key] ? 'border border-destructive' : ''
 					}`}
 					onfocus={() => focusedKey = row.key}

@@ -216,13 +216,13 @@
 				onkeydown={onMarkerKeydown}
 			></div>
 		</div>
-		<div class="flex">
+		<div class="flex items-stretch">
 			<input
 				{id}
 				type="text"
 				inputmode="decimal"
 				bind:value={inputValue}
-				class="h-7 w-16 border border-border bg-card px-1.5 text-right text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+				class="w-16 border border-border bg-card px-1.5 py-0.5 text-right text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 				onfocus={() => {
 					isFocused = true;
 				}}
@@ -234,7 +234,7 @@
 			/>
 			{#if unit}
 				<span
-					class="inline-flex h-7 items-center border border-l-0 border-border bg-muted px-1.5 text-subtle-foreground type-value"
+					class="inline-flex items-center border border-l-0 border-border bg-muted px-1.5 text-subtle-foreground type-value"
 				>
 					{unit}
 				</span>

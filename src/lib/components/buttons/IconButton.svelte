@@ -37,7 +37,7 @@
 				? 'bg-card text-foreground'
 				: 'hover:bg-muted'
 	);
-	const iconClasses = $derived(size === 'sm' ? 'h-[11px] w-[11px]' : 'h-[13px] w-[13px]');
+	const iconClasses = $derived(size === 'sm' ? 'h-[10px] w-[10px]' : 'h-[11px] w-[11px]');
 	const normalizedAdditionalClasses = $derived(
 		typeof additionalClasses === 'string' ? additionalClasses : ''
 	);

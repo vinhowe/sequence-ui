@@ -171,13 +171,13 @@
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
-	<div class="flex items-center gap-1.5">
+	<div class="flex items-stretch gap-1.5">
 		<button
 			bind:this={ringRef}
 			type="button"
 			aria-label={label ?? 'Angle'}
 			class={twMerge(
-				'flex h-7 w-7 cursor-grab items-center justify-center border border-border-strong bg-transparent text-foreground active:cursor-grabbing focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+				'flex aspect-square cursor-grab items-center justify-center border border-border-strong bg-transparent text-foreground active:cursor-grabbing focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
 				isDragging && 'cursor-grabbing bg-muted ring-1 ring-border-strong'
 			)}
 			onpointerdown={onRingPointerDown}
@@ -201,7 +201,7 @@
 			type="text"
 			inputmode="decimal"
 			bind:value={inputValue}
-			class="h-7 w-27 border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+			class="w-32 border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 			onfocus={() => {
 				isFocused = true;
 			}}
