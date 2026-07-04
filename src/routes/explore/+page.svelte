@@ -24,6 +24,14 @@
 		{ label: '1.55', cls: 'leading-[1.55]' },
 		{ label: '1.65', cls: 'leading-[1.65]' }
 	];
+	const weights = [
+		{ label: '400 (current)', w: 400 },
+		{ label: '415', w: 415 },
+		{ label: '430', w: 430 },
+		{ label: '450', w: 450 },
+		{ label: '470', w: 470 },
+		{ label: '500 (medium)', w: 500 }
+	];
 </script>
 
 <ThemeProvider>
@@ -65,6 +73,17 @@
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
 							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
 							<p class={`font-sans text-[13px] font-normal text-foreground ${v.cls}`}>{sample}</p>
+						</div>
+					{/each}
+				</Panel>
+
+				<Panel title="Weight — (foreground · 12.5px · lh 1.5)" contentClass="p-2 flex flex-col gap-2">
+					{#each weights as v}
+						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
+							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
+							<p class="font-sans text-[12.5px] leading-[1.5] text-foreground" style={`font-weight:${v.w}`}>
+								{sample}
+							</p>
 						</div>
 					{/each}
 				</Panel>
