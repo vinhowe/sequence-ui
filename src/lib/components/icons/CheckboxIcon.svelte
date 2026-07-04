@@ -3,12 +3,12 @@
 </script>
 
 <span
-	class="h-4 w-4 flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring transition-opacity duration-100"
+	class="h-[13px] w-[13px] flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
 	class:bg-foreground={checked}
 	class:bg-border-strong={!checked}
 >
 	<svg
-		class={`h-3.5 w-3.5 transition-opacity duration-100 ${checked ? 'opacity-100' : 'opacity-0'}`}
+		class={`h-[11px] w-[11px] ${checked ? 'opacity-100' : 'opacity-0'}`}
 		aria-hidden={!checked}
 		viewBox="0 0 16 16"
 		fill="currentColor"

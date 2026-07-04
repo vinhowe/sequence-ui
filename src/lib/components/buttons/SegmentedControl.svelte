@@ -44,8 +44,8 @@
 	let buttonEls = $state<HTMLButtonElement[]>([]);
 
 	const SIZE = {
-		sm: 'h-6 px-2 text-xs [&_svg]:h-3 [&_svg]:w-3',
-		md: 'h-7.5 px-2.5 text-sm [&_svg]:h-3.5 [&_svg]:w-3.5'
+		sm: 'h-6 px-2 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
+		md: 'h-7.5 px-2.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	} as const;
 
 	function selectableIndices(): number[] {
@@ -114,7 +114,7 @@
 					onclick={() => select(i)}
 					onkeydown={(e) => onKeydown(e, i)}
 					class={twMerge(
-						'relative inline-flex cursor-pointer items-center justify-center gap-1.5 font-sans leading-none font-medium whitespace-nowrap transition-colors select-none focus-visible:z-10 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0',
+						'relative inline-flex cursor-pointer items-center justify-center gap-1.5 font-sans leading-none font-medium whitespace-nowrap select-none focus-visible:z-10 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0',
 						SIZE[size],
 						selected ? 'bg-primary/15 text-primary' : 'text-foreground hover:bg-muted',
 						opt.label ? '' : 'aspect-square px-0'

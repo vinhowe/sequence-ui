@@ -27,7 +27,7 @@
 	}: Props = $props();
 
 	const baseClasses =
-		'inline-flex shrink-0 cursor-pointer items-center justify-center border border-border bg-panel text-foreground transition-[background-color,color,opacity] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 type-button';
+		'inline-flex shrink-0 cursor-pointer items-center justify-center border border-border bg-panel text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 type-button';
 
 	const sizeClasses = $derived(size === 'sm' ? 'h-5 w-5' : 'h-7.5 w-7.5');
 	const stateClasses = $derived(
@@ -37,7 +37,7 @@
 				? 'bg-card text-foreground'
 				: 'hover:bg-muted'
 	);
-	const iconClasses = $derived(size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4');
+	const iconClasses = $derived(size === 'sm' ? 'h-[11px] w-[11px]' : 'h-[13px] w-[13px]');
 	const normalizedAdditionalClasses = $derived(
 		typeof additionalClasses === 'string' ? additionalClasses : ''
 	);

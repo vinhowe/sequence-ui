@@ -9,7 +9,7 @@
 	"files": [
 		{
 			"path": "src/lib/components/icons/CheckboxIcon.svelte",
-			"content": "<script lang=\"ts\">\n\tlet { checked }: { checked: boolean } = $props();\n</script>\n\n<span\n\tclass=\"h-4 w-4 flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring transition-opacity duration-100\"\n\tclass:bg-foreground={checked}\n\tclass:bg-border-strong={!checked}\n>\n\t<svg\n\t\tclass={`h-3.5 w-3.5 transition-opacity duration-100 ${checked ? 'opacity-100' : 'opacity-0'}`}\n\t\taria-hidden={!checked}\n\t\tviewBox=\"0 0 16 16\"\n\t\tfill=\"currentColor\"\n\t\tclass:text-background={checked}\n\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t>\n\t\t<path\n\t\t\td=\"M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z\"\n\t\t/>\n\t</svg>\n</span>\n",
+			"content": "<script lang=\"ts\">\n\tlet { checked }: { checked: boolean } = $props();\n</script>\n\n<span\n\tclass=\"h-[13px] w-[13px] flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring\"\n\tclass:bg-foreground={checked}\n\tclass:bg-border-strong={!checked}\n>\n\t<svg\n\t\tclass={`h-[11px] w-[11px] ${checked ? 'opacity-100' : 'opacity-0'}`}\n\t\taria-hidden={!checked}\n\t\tviewBox=\"0 0 16 16\"\n\t\tfill=\"currentColor\"\n\t\tclass:text-background={checked}\n\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t>\n\t\t<path\n\t\t\td=\"M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z\"\n\t\t/>\n\t</svg>\n</span>\n",
 			"type": "registry:ui",
 			"target": "lib/components/icons/CheckboxIcon.svelte"
 		}

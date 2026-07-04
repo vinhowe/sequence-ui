@@ -45,9 +45,9 @@
 		destructive: 'bg-destructive/25'
 	};
 	const SIZE: Record<ProgressSize, string> = {
-		sm: 'h-1',
-		md: 'h-2',
-		lg: 'h-3'
+		sm: 'h-2',
+		md: 'h-3',
+		lg: 'h-4'
 	};
 
 	const indeterminate = $derived(value == null);
@@ -85,7 +85,7 @@
 			<div class={`sui-progress-indeterminate absolute inset-y-0 ${FILL[color]}`}></div>
 		{:else}
 			<div
-				class={`absolute inset-y-0 left-0 ${FILL[color]} transition-[width] duration-300 ease-out`}
+				class={`absolute inset-y-0 left-0 ${FILL[color]}`}
 				style={`width:${pct}%`}
 			></div>
 		{/if}
@@ -95,7 +95,7 @@
 <style>
 	.sui-progress-indeterminate {
 		width: 30%;
-		animation: sui-progress-slide 1.15s ease-in-out infinite;
+		animation: sui-progress-slide 1.15s infinite;
 	}
 
 	@keyframes sui-progress-slide {

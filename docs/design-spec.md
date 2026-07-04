@@ -130,22 +130,22 @@ Headings are understated: sans, medium weight, tight tracking, and followed by s
 Tailwind spacing is globally tightened:
 
 ```css
---spacing: 0.2rem;
+--spacing: 0.25rem; /* 4px = 1U; every gap/padding/size is a multiple */
 --radius: 0rem;
 ```
 
-On coarse pointers, spacing increases to `0.25rem` and `html` font-size becomes `18px`.
+On coarse pointers, `html` font-size becomes `18px`, which scales the rem-based grid (and everything else) up ~12% for touch targets.
 
 Spacing is owned by containers. Components should not ship external margins. The stack utilities are:
 
-Three values in a clean x2 progression: 3.2px within, 6.4px between groups, 12.8px between sections (the healthy gap above each heading). Every gap resolves to one of them — nothing in between, and no ad-hoc margins on panels/headings.
+Two levels: a tight 4px within/between related controls, and a real 16px break above each section heading. Every gap resolves to one of them — no ad-hoc margins on panels/headings.
 
 | Utility | Tailwind gap | Rem | Use |
 | --- | --- | --- | --- |
-| `stack-tight` | `gap-1` | 0.2rem (3.2px) | parts of one control, label to field |
-| `stack-field` | `gap-1` | 0.2rem (3.2px) | controls inside a panel body |
-| `stack-group` | `gap-1` | 0.2rem (3.2px) | heading + panels within a section |
-| `stack-section` | `gap-4` | 0.8rem (12.8px) | page sections (a real break above each heading) |
+| `stack-tight` | `gap-1` | 0.25rem (4px) | parts of one control, label to field |
+| `stack-field` | `gap-1` | 0.25rem (4px) | controls inside a panel body |
+| `stack-group` | `gap-1` | 0.25rem (4px) | heading + panels within a section |
+| `stack-section` | `gap-4` | 1rem (16px) | page sections (a real break above each heading) |
 
 Panel defaults from `Panel.svelte`:
 
@@ -154,7 +154,7 @@ headerClass = 'bg-panel border-b border-border px-1 py-0.5 flex justify-between 
 contentClass = 'pad-box stack-field'
 ```
 
-Every content box — panel/CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility (`padding: var(--pad-box)`), not a hand-picked `p-*`. `--pad-box` starts at 1U (3.2px) and is decoupled from `--spacing`, so bumping it reflows every box at once. This is the single source of truth for box padding; never set `p-2`/`p-3` on an individual box.
+Every content box — panel/CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility (`padding: var(--pad-box)`), not a hand-picked `p-*`. `--pad-box` starts at 1U (4px) and is decoupled from `--spacing`, so bumping it reflows every box at once. This is the single source of truth for box padding; never set `p-2`/`p-3` on an individual box.
 
 Panel grids and button/control clusters use `gap-1`; sections stack with `stack-group` inside a `stack-section` page column. A container owns the gap; children never set external margins.
 

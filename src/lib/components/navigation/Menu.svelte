@@ -188,7 +188,7 @@
 		aria-controls="sequence-menu"
 		onclick={toggleMenu}
 		onkeydown={onTriggerKeydown}
-		class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button"
+		class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button"
 	>
 		{@render trigger(isOpen)}
 		<ChevronIcon direction={isOpen ? 'down' : 'right'} class="text-subtle-foreground" />
@@ -229,7 +229,7 @@
 								role="menuitem"
 								disabled={item.disabled}
 								class={twMerge(
-									'grid w-full grid-cols-[auto_1fr_auto] items-center gap-1.5 px-1.5 py-1 text-left transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body',
+									'grid w-full grid-cols-[auto_1fr_auto] items-center gap-1.5 px-1.5 py-1 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body',
 									item.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
 									item.destructive ? 'text-destructive' : 'text-popover-foreground'
 								)}

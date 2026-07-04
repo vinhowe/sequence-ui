@@ -72,7 +72,7 @@
 					type="button"
 					aria-current={token === page ? 'page' : undefined}
 					class={twMerge(
-						'flex h-7.5 w-7.5 items-center justify-center border border-border tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button',
+						'flex h-7.5 w-7.5 items-center justify-center border border-border tabular-nums focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button',
 						token === page ? 'bg-foreground text-background' : 'bg-panel text-foreground hover:bg-muted'
 					)}
 					onclick={() => setPage(token)}

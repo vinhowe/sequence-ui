@@ -174,10 +174,9 @@
 }
 
 @media (pointer: coarse) {
-	:root {
-		--spacing: 0.25rem;
-	}
-
+	/* Coarse pointers (touch) get a bigger grid for fat-finger targets. `--spacing`
+	   is already 0.25rem in rem units, so bumping the root font-size to 18px scales
+	   it (and every rem-based size) up ~12% — no separate --spacing override needed. */
 	html {
 		font-size: 18px;
 	}
@@ -216,6 +215,17 @@ body {
 	select,
 	textarea {
 		font: inherit;
+	}
+
+	/* RULE: no state-transition animations. The design language is professional
+	   software (DAW / After Effects) — state changes are INSTANT, never faded.
+	   This kills every CSS transition globally; continuous feedback (loading
+	   spinners, indeterminate bars) uses `animation`/@keyframes, which is untouched.
+	   Do not add `transition-*` to components. */
+	*,
+	::before,
+	::after {
+		transition-property: none !important;
 	}
 }
 
@@ -274,7 +284,7 @@ body {
    Components ship margin-free; a parent stacks its children with one of these.
    Instrument-dense, matching Sequence Toy's control panel: panel bodies use one
    tight 3.2px step (its `space-y-1`), and panels butt together border-to-border.
-   All gaps are multiples of the 0.2rem base grid. Retune here, everywhere updates. */
+   All gaps are multiples of the 0.25rem base grid. Retune here, everywhere updates. */
 @utility stack-tight {
 	@apply flex flex-col gap-1; /* 3.2px — parts of one control (label→field) */
 }

@@ -4,7 +4,7 @@ Key paths:
 - README.md: human-facing overview, install, usage, commands, component catalog.
 - AGENTS.md: prescriptive coding-agent visual spec and anti-patterns.
 - docs/design-spec.md: fonts, OKLCH tokens, type roles, spacing, dark-mode wiring.
-- src/app.css: authoritative tokens, @theme inline mappings, @custom-variant dark, 9 type-role utilities, stack utilities, base resets.
+- src/app.css: authoritative tokens, @theme inline mappings, @custom-variant dark, 10 type-role utilities, stack utilities, base resets.
 - src/lib/index.ts: authoritative export list.
 - registry.json: registry source file expected by scripts/build-registry.mjs.
 - static/r/: generated shadcn-svelte registry item output directory.
@@ -20,10 +20,12 @@ Dev commands:
 
 Design constants:
 - Base type: 12.5px.
-- Tailwind spacing: --spacing: 0.2rem.
+- Tailwind spacing: --spacing: 0.25rem.
 - Radius: --radius: 0rem.
 - Corners: sharp.
 - Surfaces: flat, no shadows.
+- Motion: no state-transition animations — state changes are instant (professional-software feel); only continuous feedback (spinners, indeterminate bars) animates via @keyframes.
+- Icons: fixed-px glyphs (10/11/13), decoupled from --spacing so they don't scale with density.
 - Borders: thin border-border hairlines.
 - Fonts: Berkeley Mono Variable (mono, bundled woff2 + @font-face, licensed — consumers bring their own); Inter (sans, self-hosted v4.1 variable woff2, SIL OFL — ships with the system).
 - Dark mode: .dark class on html, localStorage key sequence-ui-theme, modes light/dark/system.
@@ -34,6 +36,7 @@ Type roles:
 - type-title
 - type-body
 - type-caption
+- type-field
 - type-label
 - type-button
 - type-value
@@ -46,12 +49,12 @@ Stack utilities:
 - stack-section: sections.
 
 Component exports:
-- Buttons: ActionButton, IconButton.
+- Buttons: ActionButton, Button, IconButton, SegmentedControl.
 - Primitives: Panel, BorderedGroup, CollapsibleSection, Pane.
 - Controls: Slider, NumberInput, ScrubInput, AngleField, ThresholdMarker, TextInput, TimecodeField, BitField, BaseField, ToleranceField, SelectInput, ToggleGroup, CheckboxInput, RadioGroupInput, RadioInput, FormLabel, ResetValueButton.
 - Feedback: Statistic, ControlsStatistic, Note, ControlsNote, Citations, Tooltip, UserGuideTooltip.
 - Navigation: Menu, Breadcrumb, Pagination, Tree.
-- Data: CapacityBar, TimeBrush.
+- Data: CapacityBar, ProgressBar, TimeBrush.
 - Icons: ChevronIcon, CheckboxIcon, RadioIcon.
 - Theme: ThemeProvider, ThemeToggle.
 - Optional: KatexBlock, Footnote, FootnotesProvider, Portal.

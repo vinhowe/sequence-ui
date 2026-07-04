@@ -46,7 +46,7 @@
 			<button
 				type="button"
 				aria-label="Show full path"
-				class="px-0.5 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
+				class="px-0.5 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
 				onclick={() => (expanded = true)}
 			>
 				…
@@ -56,7 +56,7 @@
 		{:else if visible.item.href}
 			<a
 				href={visible.item.href}
-				class="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
+				class="text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
 				onclick={() => visible.item.onSelect?.()}
 			>
 				{visible.item.label}
@@ -64,7 +64,7 @@
 		{:else if visible.item.onSelect}
 			<button
 				type="button"
-				class="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
+				class="text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"
 				onclick={visible.item.onSelect}
 			>
 				{visible.item.label}

@@ -12,7 +12,7 @@
 </script>
 
 <svg
-	class={twMerge(`w-3.5 h-3.5 transition-transform translate-y-[0.5px]`, svgClass)}
+	class={twMerge(`w-[11px] h-[11px] translate-y-[0.5px]`, svgClass)}
 	class:rotate-90={direction === 'down'}
 	fill="none"
 	stroke="currentColor"

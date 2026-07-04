@@ -7,12 +7,13 @@ This file is the implementation contract for coding agents recreating the Sequen
 Use these rules before inventing any component styling:
 
 - Base UI is 12.5px through `text-base: 0.78125rem`.
-- Tailwind spacing is tightened to `--spacing: 0.2rem`.
+- Tailwind spacing base is `--spacing: 0.25rem` (4px = 1U); every gap/padding/size is a multiple. Content boxes pad with `pad-box` (`--pad-box`, 1U), not hand-picked `p-*`.
 - Corners are sharp: `--radius: 0rem`.
 - Surfaces are flat: no drop shadows, no glass, no skeuomorphic bevels.
+- **No state-transition animations.** State changes are INSTANT (professional-software / DAW / AE feel) — a global rule kills every CSS `transition`. Never add `transition-*`. Continuous feedback (loading spinners, indeterminate bars) uses `animation`/@keyframes, which is fine.
 - Borders are thin `border border-border` hairlines; use `border-border-strong` only when hierarchy needs it.
 - Primary commands use `ActionButton` gradients, not generic pill buttons.
-- Icons come from Lucide when an icon exists.
+- Icons come from Lucide. Size icon glyphs in **fixed px** (10 / 11 / 13), never `--spacing`-multiples (`h-3.5`), so icon size is decoupled from layout density and doesn't scale when `--spacing` changes.
 - Berkeley Mono is reserved. `Inter` (self-hosted v4.1 variable, SIL OFL) is the sans face.
 
 DON'T:
@@ -94,26 +95,26 @@ Headings are understated. They are sans, medium, tight, and followed by generous
 
 Spacing belongs to containers, not leaf components. Components ship margin-free: no external `mt-*`, `mb-*`, or hardcoded outside spacing. Parents arrange children with the stack utilities.
 
-Instrument-dense, matching Sequence Toy's Control Panel: one tight 3.2px step inside panels, and panels that butt together (border-separated), not floated apart.
+Instrument-dense, matching Sequence Toy's Control Panel: one tight 4px step inside panels, and panels that butt together (border-separated), not floated apart.
 
-- `stack-tight`: `gap-1`, 0.2rem (3.2px), label to field or parts of one control.
-- `stack-field`: `gap-1`, 0.2rem (3.2px), controls inside a panel body (the toy's `space-y-1`).
-- `stack-group`: `gap-1`, 0.2rem (3.2px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
-- `stack-section`: `gap-4`, 0.8rem (12.8px), page sections — a real break, a healthy gap above each heading.
+- `stack-tight`: `gap-1`, 0.25rem (4px), label to field or parts of one control.
+- `stack-field`: `gap-1`, 0.25rem (4px), controls inside a panel body (the toy's `space-y-1`).
+- `stack-group`: `gap-1`, 0.25rem (4px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
+- `stack-section`: `gap-4`, 1rem (16px), page sections — a real break, a healthy gap above each heading.
 
 **Three spacing values — a clean ×2 progression.** Every gap resolves to one of `gap-1` / `gap-2` / `gap-4`; nothing in between (no `gap-1.5`, no `mt-2` on a panel).
 
-- **Within** a panel / cluster — **3.2px, `gap-1`**: controls in a panel body, buttons or radios in a row, panels within a section. Both axes: a panel grid's horizontal `gap-1` is the same 3.2px as the section's `stack-group` vertical stacking (this is what keeps vertical == horizontal). Horizontal button/control clusters use `gap-1` too — never wider than panels.
-- **Between** distinct groups in a row — **6.4px, `gap-2`** (e.g. two separate control clusters side by side).
-- **Between page sections** — **12.8px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
+- **Within** a panel / cluster — **4px, `gap-1`**: controls in a panel body, buttons or radios in a row, panels within a section. Both axes: a panel grid's horizontal `gap-1` is the same 4px as the section's `stack-group` vertical stacking (this is what keeps vertical == horizontal). Horizontal button/control clusters use `gap-1` too — never wider than panels.
+- **Between** distinct groups in a row — **8px, `gap-2`** (e.g. two separate control clusters side by side).
+- **Between page sections** — **16px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
 
-Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 3.2px; the page column is `stack-section` (6.4px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
+Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 4px; the page column is `stack-section` (16px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
 
-**One content-box inset: `pad-box`.** Every text-in-a-box — panel body, CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility, never a hand-picked `p-*`. It resolves to `--pad-box` (a token, currently 1U / 3.2px, decoupled from `--spacing`). Bump `--pad-box` once and every box reflows together; that's the whole point, so do not sprinkle `p-2`/`p-3` on individual boxes.
+**One content-box inset: `pad-box`.** Every text-in-a-box — panel body, CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility, never a hand-picked `p-*`. It resolves to `--pad-box` (a token, currently 1U / 4px, decoupled from `--spacing`). Bump `--pad-box` once and every box reflows together; that's the whole point, so do not sprinkle `p-2`/`p-3` on individual boxes.
 
 Container defaults:
 
-- Panel / CollapsibleSection / Pane / ToggleGroup body: `pad-box stack-field` (one inset + 3.2px gaps).
+- Panel / CollapsibleSection / Pane / ToggleGroup body: `pad-box stack-field` (one inset + 4px gaps).
 - Panel grids: `gap-1`. Button/control clusters: `flex ... gap-1`.
 - Sections: `scroll-mt-* stack-group` inside a `stack-section` page column.
 - Do NOT loosen these; the system is meant to read as a dense instrument panel.

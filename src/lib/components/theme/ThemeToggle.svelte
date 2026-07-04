@@ -16,7 +16,7 @@
 	// a clear, high-contrast selected state. `primary` shares the bar's purple hue,
 	// so it harmonizes, and being a token it adapts to light/dark automatically.
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 border-r border-primary/20 px-1.5 py-0 leading-none transition last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';
+		'inline-flex items-center gap-1 border-r border-primary/20 px-1.5 py-0 leading-none last:border-r-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 type-button';
 	const activeButtonClasses = 'bg-primary text-primary-foreground';
 	const inactiveButtonClasses = 'hover:bg-primary/10';
 
