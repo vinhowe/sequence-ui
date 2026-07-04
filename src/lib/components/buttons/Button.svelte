@@ -39,14 +39,14 @@
 	}: Props = $props();
 
 	const base =
-		'relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap border select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:pointer-events-none font-sans font-medium [&_svg]:shrink-0';
+		'relative inline-flex shrink-0 cursor-pointer items-center justify-center whitespace-nowrap border select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:pointer-events-none font-sans font-medium [&_svg]:shrink-0';
 
 	// Fixed height + the font's NATURAL line-height, so every button matches height
 	// (icon or not) and the caps sit optically centered. (leading-none clips the
 	// font's ~18px line box and shoves the text low → "more space above".)
 	const SIZE: Record<Size, string> = {
-		sm: 'h-5 px-1 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
-		md: 'h-6 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
+		sm: 'h-5 gap-1 px-1 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
+		md: 'h-6 gap-1.25 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	};
 
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
@@ -78,7 +78,7 @@
 
 	// A leading icon has visual air around its glyph, so the left gap reads larger
 	// than the right — trim the left padding a touch when one is present.
-	const LEADING_INSET: Record<Size, string> = { sm: 'pl-0.5', md: 'pl-1' };
+	const LEADING_INSET: Record<Size, string> = { sm: 'pl-0.75', md: 'pl-1.25' };
 	const leadingGlyph = $derived(loading || Boolean(Icon));
 
 	const classes = $derived(
