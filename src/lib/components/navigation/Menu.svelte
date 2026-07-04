@@ -188,7 +188,7 @@
 		aria-controls="sequence-menu"
 		onclick={toggleMenu}
 		onkeydown={onTriggerKeydown}
-		class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-2 text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button"
+		class="inline-flex h-7.5 items-center gap-1 border border-border bg-panel px-1.5 text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button"
 	>
 		{@render trigger(isOpen)}
 		<ChevronIcon direction={isOpen ? 'down' : 'right'} class="text-subtle-foreground" />

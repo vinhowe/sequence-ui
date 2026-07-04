@@ -45,8 +45,8 @@
 	// (icon or not) and the caps sit optically centered. (leading-none clips the
 	// font's ~18px line box and shoves the text low → "more space above".)
 	const SIZE: Record<Size, string> = {
-		sm: 'h-6 px-2 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
-		md: 'h-7.5 px-2.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
+		sm: 'h-6 px-1 text-xs [&_svg]:h-[10px] [&_svg]:w-[10px]',
+		md: 'h-7.5 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	};
 
 	// [variant][tone] — `border` is in base; each sets its border color (or transparent).
@@ -78,7 +78,7 @@
 
 	// A leading icon has visual air around its glyph, so the left gap reads larger
 	// than the right — trim the left padding a touch when one is present.
-	const LEADING_INSET: Record<Size, string> = { sm: 'pl-1.5', md: 'pl-2' };
+	const LEADING_INSET: Record<Size, string> = { sm: 'pl-0.5', md: 'pl-1' };
 	const leadingGlyph = $derived(loading || Boolean(Icon));
 
 	const classes = $derived(
