@@ -233,7 +233,8 @@ body {
 	line-height: 1.3;
 }
 @utility type-body {
-	@apply font-sans text-base font-normal;
+	@apply font-sans text-base;
+	font-weight: 430; /* a hair thicker than 400 for body legibility; Inter is variable */
 	line-height: 1.45;
 }
 @utility type-caption {
