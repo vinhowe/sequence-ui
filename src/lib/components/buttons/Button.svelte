@@ -53,26 +53,28 @@
 	const STYLES: Record<Variant, Record<Tone, string>> = {
 		solid: {
 			default: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/70',
-			primary: 'border-transparent bg-primary/15 text-primary hover:bg-primary/25',
-			destructive: 'border-transparent bg-destructive/15 text-destructive hover:bg-destructive/25'
+			primary: 'border-transparent bg-primary-accent/15 text-primary-accent hover:bg-primary-accent/25',
+			destructive:
+				'border-transparent bg-destructive-accent/15 text-destructive-accent hover:bg-destructive-accent/25'
 		},
 		// Flat Hairline (the default look): 1px hairline everywhere; the accent lives
 		// in the border + text, with only a faint wash of fill that deepens on hover.
 		outline: {
 			default: 'border-border bg-card text-foreground hover:bg-muted',
-			primary: 'border-primary/55 bg-primary/5 text-primary hover:bg-primary/12',
-			destructive: 'border-destructive/55 bg-destructive/5 text-destructive hover:bg-destructive/12'
+			primary: 'border-primary-accent/55 bg-primary-accent/5 text-primary-accent hover:bg-primary-accent/12',
+			destructive:
+				'border-destructive-accent/55 bg-destructive-accent/5 text-destructive-accent hover:bg-destructive-accent/12'
 		},
 		ghost: {
 			default: 'border-transparent text-foreground hover:bg-muted',
-			primary: 'border-transparent text-primary hover:bg-primary/10',
-			destructive: 'border-transparent text-destructive hover:bg-destructive/10'
+			primary: 'border-transparent text-primary-accent hover:bg-primary-accent/10',
+			destructive: 'border-transparent text-destructive-accent hover:bg-destructive-accent/10'
 		},
 		link: {
 			default: 'border-transparent px-0 text-foreground underline-offset-2 hover:underline',
-			primary: 'border-transparent px-0 text-primary underline-offset-2 hover:underline',
+			primary: 'border-transparent px-0 text-primary-accent underline-offset-2 hover:underline',
 			destructive:
-				'border-transparent px-0 text-destructive underline-offset-2 hover:underline'
+				'border-transparent px-0 text-destructive-accent underline-offset-2 hover:underline'
 		}
 	};
 
