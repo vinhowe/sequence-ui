@@ -1079,7 +1079,7 @@
 								<p class="text-foreground prose">
 									Three-way segmented control for light, dark, and system modes.
 								</p>
-								<ThemeToggle />
+								<div><ThemeToggle /></div>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.themeToggle}</code></pre>
 							</Panel>
 						</div>
