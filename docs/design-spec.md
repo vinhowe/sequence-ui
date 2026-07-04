@@ -79,9 +79,9 @@ for the tight surface ladder, and the charts are a curated categorical set.
 | Token | Light | Dark |
 | --- | --- | --- |
 | `--primary` | `purple-700` | `purple-500` |
-| `--primary-accent` | `= --primary` | `purple-300` |
+| `--primary-accent` | `= --primary` | `purple-400` |
 | `--destructive` | `red-600` | `red-500` |
-| `--destructive-accent` | `= --destructive` | `red-300` |
+| `--destructive-accent` | `= --destructive` | `red-400` |
 | `--destructive-strong` | `red-700` | `red-400` |
 | `--success` | `green-600` | `green-500` |
 | `--warning` | `amber-400` | `amber-400` |
