@@ -395,7 +395,7 @@
 
 							<Panel title="Density" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
-									Base spacing is 0.2rem, with half-step sizing used for inputs, rows, and
+									Base spacing is 0.25rem, with half-step sizing used for inputs, rows, and
 									buttons. Labels and prose are sans; mono is reserved for values, code, and terse tags.
 								</p>
 								<div class="grid grid-cols-4 gap-1">

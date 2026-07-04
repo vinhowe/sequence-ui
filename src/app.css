@@ -134,7 +134,7 @@
 	--font-mono: 'Berkeley Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
 	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-	--spacing: 0.2rem;
+	--spacing: 0.25rem;
 
 	/* Single inset for every content box — panel/collapsible/pane bodies, code
 	   blocks, callouts. Starts at 1U (3.2px). Bump the multiplier to reflow every
