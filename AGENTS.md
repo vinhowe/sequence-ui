@@ -11,6 +11,7 @@ Use these rules before inventing any component styling:
 - Corners are sharp: `--radius: 0rem`.
 - Surfaces are flat: no drop shadows, no glass, no skeuomorphic bevels.
 - **No state-transition animations.** State changes are INSTANT (professional-software / DAW / AE feel) — a global rule kills every CSS `transition`. Never add `transition-*`. Continuous feedback (loading spinners, indeterminate bars) uses `animation`/@keyframes, which is fine.
+- Accent colors operate within the **Tailwind palette rungs**, behind semantic tokens (`--primary: var(--color-purple-700)`, `--destructive` = red, `--success` = green, `--warning` = amber, `--ring` = blue). Use the semantic utilities (`bg-primary`, `text-destructive`) — never raw palette classes in product UI. The surface gray ladder and the chart palette stay bespoke OKLCH (deliberate). Colored buttons use `--primary-accent`/`--destructive-accent` (paler rung in dark).
 - Borders are thin `border border-border` hairlines; use `border-border-strong` only when hierarchy needs it.
 - Primary commands use `ActionButton` gradients, not generic pill buttons.
 - Icons come from Lucide. Size icon glyphs in **fixed px** (10 / 11 / 13), never `--spacing`-multiples (`h-3.5`), so icon size is decoupled from layout density and doesn't scale when `--spacing` changes.

@@ -70,16 +70,29 @@ Dark surface spread:
 | `--border` | `oklch(0.34 0 0)` | hairline border |
 | `--border-strong` | `oklch(0.48 0 0)` | stronger divider |
 
-Primary and semantic tokens:
+Accent tokens operate within the **Tailwind palette rungs**, behind the semantic
+names (set as e.g. `--primary: var(--color-purple-700)`). Components keep using
+`bg-primary` / `text-destructive`; only the values are rungs. Surface grays (above)
+and the chart palette (below) stay bespoke — Tailwind neutrals are spaced too wide
+for the tight surface ladder, and the charts are a curated categorical set.
 
 | Token | Light | Dark |
 | --- | --- | --- |
-| `--primary` | `oklch(0.50 0.24 303)` | `oklch(0.64 0.22 303)` |
-| `--ring` | `oklch(0.62 0.19 255)` | `oklch(0.7 0.16 250)` |
-| `--destructive` | `oklch(0.58 0.22 27)` | `oklch(0.62 0.2 25)` |
-| `--success` | `oklch(0.60 0.17 150)` | `oklch(0.7 0.16 150)` |
-| `--warning` | `oklch(0.80 0.16 85)` | `oklch(0.8 0.15 85)` |
-| `--highlight` | `oklch(0.85 0.15 90)` | `oklch(0.78 0.14 90)` |
+| `--primary` | `purple-700` | `purple-500` |
+| `--primary-accent` | `= --primary` | `purple-300` |
+| `--destructive` | `red-600` | `red-500` |
+| `--destructive-accent` | `= --destructive` | `red-300` |
+| `--destructive-strong` | `red-700` | `red-400` |
+| `--success` | `green-600` | `green-500` |
+| `--warning` | `amber-400` | `amber-400` |
+| `--warning-strong` | `amber-700` | `amber-300` |
+| `--highlight` | `amber-300` | `amber-400` |
+| `--ring` | `blue-500` | `blue-400` |
+
+`--primary-accent` / `--destructive-accent` are the accent-on-surface variants used by
+the colored `Button` / `SegmentedControl` — identical to the base in light, a lighter
+rung in dark so colored buttons soften on the dark ground without weakening
+solid-primary fills (which keep `--primary` for white-on-primary contrast).
 
 Categorical chart palette:
 
