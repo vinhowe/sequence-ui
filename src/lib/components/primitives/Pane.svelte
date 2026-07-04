@@ -27,7 +27,7 @@
 		active = $bindable(tabs[0]?.id),
 		class: rootClass = '',
 		tabsClass = '',
-		bodyClass = 'p-1.5 stack-field',
+		bodyClass = 'pad-box stack-field',
 		actions,
 		children
 	}: Props = $props();

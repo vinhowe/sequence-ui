@@ -18,7 +18,7 @@
 		isOpen,
 		class: wrapperClass = '',
 		ontoggle,
-		contentClass = 'p-1 stack-field',
+		contentClass = 'pad-box stack-field',
 		children
 	}: $$Props = $props();
 

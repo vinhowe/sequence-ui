@@ -136,6 +136,12 @@
 
 	--spacing: 0.2rem;
 
+	/* Single inset for every content box — panel/collapsible/pane bodies, code
+	   blocks, callouts. Starts at 1U (3.2px). Bump the multiplier to reflow every
+	   box at once; decoupled from --spacing so box padding moves without disturbing
+	   the rest of the grid. */
+	--pad-box: calc(var(--spacing) * 1);
+
 	--text-2xs: 0.625rem; /* 10px */
 	--text-2xs--line-height: calc(1 / 0.625);
 	--text-xs: 0.6875rem; /* 11px */
@@ -280,4 +286,10 @@ body {
 }
 @utility stack-section {
 	@apply flex flex-col gap-4; /* 12.8px — page sections; a real break, a healthy gap above each heading */
+}
+
+/* The one content-box inset. Every text-in-a-box uses this instead of a hand-picked
+   p-* value, so box padding is consistent and bumping --pad-box reflows all of them. */
+@utility pad-box {
+	padding: var(--pad-box);
 }

@@ -371,7 +371,7 @@
 						<h2 class="border-b border-border pb-2 type-heading">Foundations</h2>
 
 						<div class="grid gap-1 xl:grid-cols-[1.15fr_0.85fr]">
-							<Panel title="Color Tokens" contentClass="p-1 stack-field">
+							<Panel title="Color Tokens" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Semantic OKLCH variables drive the surfaces, text, borders, status colors, and
 									focus rings. Toggle the theme to inspect the live token swap.
@@ -393,7 +393,7 @@
 								</div>
 							</Panel>
 
-							<Panel title="Density" contentClass="p-1 stack-field">
+							<Panel title="Density" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Base spacing is 0.2rem, with half-step sizing used for inputs, rows, and
 									buttons. Labels and prose are sans; mono is reserved for values, code, and terse tags.
@@ -414,7 +414,7 @@
 							</Panel>
 						</div>
 
-						<Panel title="Type Scale" contentClass="p-1 stack-field">
+						<Panel title="Type Scale" contentClass="pad-box stack-field">
 							<div class="grid gap-1 lg:grid-cols-2">
 								{#each typeScale as type}
 									<div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-2 border border-border bg-muted/50 p-1">
@@ -434,7 +434,7 @@
 					<section id="buttons" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Buttons</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
-							<Panel title="ActionButton" contentClass="p-1 stack-field">
+							<Panel title="ActionButton" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Gradient command button with six semantic colors and a highlighted pulse state.
 								</p>
@@ -446,10 +446,10 @@
 										Armed {actionCount}
 									</ActionButton>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.actionButton}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.actionButton}</code></pre>
 							</Panel>
 
-							<Panel title="IconButton" contentClass="p-1 stack-field">
+							<Panel title="IconButton" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Square icon command for toolbars, toggles, and dense control clusters.
 								</p>
@@ -476,10 +476,10 @@
 										{activeTool}
 									</span>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.iconButton}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.iconButton}</code></pre>
 							</Panel>
 
-							<Panel title="Button" class="lg:col-span-2" contentClass="p-1 stack-field">
+							<Panel title="Button" class="lg:col-span-2" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									The everyday flat button — a thin hairline by default (1px border, accent in border + text) × tone
 									(default / primary / destructive) × size, with icon, loading, and disabled
@@ -503,10 +503,10 @@
 									<Button size="sm" tone="primary" icon={Play}>Small primary</Button>
 									<Button size="sm" variant="ghost">Small ghost</Button>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.button}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.button}</code></pre>
 							</Panel>
 
-							<Panel title="SegmentedControl" class="lg:col-span-2" contentClass="p-1 stack-field">
+							<Panel title="SegmentedControl" class="lg:col-span-2" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Single-select cluster of joined segments with shared hairline dividers — a
 									mode or tool switch (DAW/AE-style). Keyboard: arrows, Home/End. Text or
@@ -544,7 +544,7 @@
 									/>
 									<span class="text-muted-foreground type-label">{segView} · {segTool}</span>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.segmentedControl}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.segmentedControl}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -552,7 +552,7 @@
 					<section id="primitives" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Primitives</h2>
 						<div class="grid gap-1 xl:grid-cols-3">
-							<Panel title="Panel" citations={panelCitations} contentClass="p-1 stack-field">
+							<Panel title="Panel" citations={panelCitations} contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Bordered surface with a filled header, optional citations, and action slot.
 								</p>
@@ -560,7 +560,7 @@
 									<Statistic label="Tempo">{tempo}<span>bpm</span></Statistic>
 									<Statistic label="Steps">{steps}<span>total</span></Statistic>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.panel}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.panel}</code></pre>
 							</Panel>
 
 							<Panel title="CollapsibleSection" contentClass="p-0">
@@ -572,11 +572,11 @@
 									<CheckboxInput id="collapsible-sync" label="Sync modulation" bind:checked={modSync} />
 									<Slider id="collapsible-swing" label="Swing" bind:value={swing} min={0} max={64} step={1} unit="%" />
 								</CollapsibleSection>
-								<div class="p-1.5 stack-field">
+								<div class="pad-box stack-field">
 									<p class="text-foreground type-body">
 										Keyboard and pointer operable section row for nested settings.
 									</p>
-									<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.collapsible}</code></pre>
+									<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.collapsible}</code></pre>
 								</div>
 							</Panel>
 
@@ -612,11 +612,11 @@
 										{/if}
 									{/snippet}
 								</Pane>
-								<div class="p-1.5 stack-field">
+								<div class="pad-box stack-field">
 									<p class="text-foreground type-body">
 										Tabbed content pane (app-shell / editor-group pattern).
 									</p>
-									<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.pane}</code></pre>
+									<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.pane}</code></pre>
 								</div>
 							</Panel>
 						</div>
@@ -625,7 +625,7 @@
 					<section id="controls" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Controls</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
-							<Panel title="Slider" contentClass="p-1 stack-field">
+							<Panel title="Slider" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Pointer, keyboard, typed entry, ticks, unit display, and reset support.
 								</p>
@@ -640,10 +640,10 @@
 									hasDefaultValue={tempoIsDefault}
 									onReset={resetTempo}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.slider}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.slider}</code></pre>
 							</Panel>
 
-							<Panel title="NumberInput" contentClass="p-1 stack-field">
+							<Panel title="NumberInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Compact numeric field with mono numeric sizing, unit affordance, and reset.
 								</p>
@@ -658,10 +658,10 @@
 									hasDefaultValue={stepsIsDefault}
 									onReset={resetSteps}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.numberInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.numberInput}</code></pre>
 							</Panel>
 
-							<Panel title="TextInput" contentClass="p-1 stack-field">
+							<Panel title="TextInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Tokenized text field for compact forms and control captions.
 								</p>
@@ -673,10 +673,10 @@
 									hasDefaultValue={nameIsDefault}
 									onReset={resetName}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.textInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.textInput}</code></pre>
 							</Panel>
 
-							<Panel title="SelectInput" contentClass="p-1 stack-field">
+							<Panel title="SelectInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Custom listbox select with disabled options, keyboard navigation, and portal menu.
 								</p>
@@ -688,7 +688,7 @@
 									hasDefaultValue={waveformIsDefault}
 									onReset={resetWaveform}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.selectInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.selectInput}</code></pre>
 							</Panel>
 
 							<ToggleGroup
@@ -696,17 +696,17 @@
 								title="ToggleGroup"
 								showEnableToggle
 								bind:enabled={modEnabled}
-								contentClass="p-1 stack-field"
+								contentClass="pad-box stack-field"
 							>
 								<p class="text-foreground type-body">
 									Panel-backed enable group that gates child controls behind a checkbox toggle.
 								</p>
 								<CheckboxInput id="mod-sync" label="Sync to transport" bind:checked={modSync} />
 								<Slider id="mod-depth" label="Depth" bind:value={swing} min={0} max={100} step={1} unit="%" />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.toggleGroup}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.toggleGroup}</code></pre>
 							</ToggleGroup>
 
-							<Panel title="CheckboxInput" contentClass="p-1 stack-field">
+							<Panel title="CheckboxInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Accessible checkbox with custom icon, citation support, and reset action.
 								</p>
@@ -717,10 +717,10 @@
 									hasDefaultValue={quantizedIsDefault}
 									onReset={resetQuantized}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.checkboxInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.checkboxInput}</code></pre>
 							</Panel>
 
-							<Panel title="RadioGroupInput / RadioInput" contentClass="p-1 stack-field">
+							<Panel title="RadioGroupInput / RadioInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Group helper for related radio options, plus the raw radio primitive for custom rows.
 								</p>
@@ -740,11 +740,11 @@
 										<RadioInput id="bus-b" name="solo-bus" bind:group={soloBus} value="b" label="Bus B" />
 									</div>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.radioGroupInput}</code></pre>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.radioInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.radioGroupInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.radioInput}</code></pre>
 							</Panel>
 
-							<Panel title="FormLabel / ResetValueButton" contentClass="p-1 stack-field">
+							<Panel title="FormLabel / ResetValueButton" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Small label primitive and reset icon used by the input family.
 								</p>
@@ -757,8 +757,8 @@
 									/>
 									<ResetValueButton hasDefaultValue={nameIsDefault} onReset={resetName} />
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.formLabel}</code></pre>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.resetValueButton}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.formLabel}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.resetValueButton}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -766,7 +766,7 @@
 					<section id="precision" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Precision</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
-							<Panel title="TimecodeField" contentClass="p-1 stack-field">
+							<Panel title="TimecodeField" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Segmented frame-accurate entry with carry-aware arrow stepping.
 								</p>
@@ -781,10 +781,10 @@
 								<p class="text-muted-foreground type-label">
 									{cueFrames} frames
 								</p>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.timecodeField}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.timecodeField}</code></pre>
 							</Panel>
 
-							<Panel title="ScrubInput" contentClass="p-1 stack-field">
+							<Panel title="ScrubInput" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Horizontal drag-to-set numeric input with direct typed entry and reset support.
 								</p>
@@ -799,18 +799,18 @@
 									hasDefaultValue={velocity === 96}
 									onReset={() => velocity = 96}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.scrubInput}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.scrubInput}</code></pre>
 							</Panel>
 
-							<Panel title="AngleField" contentClass="p-1 stack-field">
+							<Panel title="AngleField" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Flat angular drag control with accumulated revolutions and typed degree entry.
 								</p>
 								<AngleField id="phase-angle" label="Phase" bind:value={phase} />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.angleField}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.angleField}</code></pre>
 							</Panel>
 
-							<Panel title="ThresholdMarker" contentClass="p-1 stack-field">
+							<Panel title="ThresholdMarker" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Compact threshold scale with warning and critical ranges plus keyboard adjustment.
 								</p>
@@ -825,26 +825,26 @@
 									warnAt={-12}
 									critAt={-3}
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.thresholdMarker}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.thresholdMarker}</code></pre>
 							</Panel>
 
-							<Panel title="BitField" contentClass="p-1 stack-field">
+							<Panel title="BitField" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									MSB-first bit toggles with editable hexadecimal and decimal readouts.
 								</p>
 								<BitField id="flags-field" label="Flags" bind:value={flags} bits={16} />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.bitField}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.bitField}</code></pre>
 							</Panel>
 
-							<Panel title="BaseField" contentClass="p-1 stack-field">
+							<Panel title="BaseField" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									One integer mirrored live across decimal, hexadecimal, binary, and octal.
 								</p>
 								<BaseField id="address-field" label="Address" bind:value={address} />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.baseField}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.baseField}</code></pre>
 							</Panel>
 
-							<Panel title="ToleranceField" contentClass="p-1 stack-field">
+							<Panel title="ToleranceField" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Nominal numeric value plus non-negative tolerance and optional unit.
 								</p>
@@ -855,7 +855,7 @@
 									bind:tolerance={pitchTolerance}
 									unit="Hz"
 								/>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.toleranceField}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.toleranceField}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -863,7 +863,7 @@
 					<section id="navigation" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Navigation</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
-							<Panel title="Menu" contentClass="p-1 stack-field">
+							<Panel title="Menu" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Portal action menu with roving keyboard navigation, shortcuts, headings, and
 									destructive text treatment.
@@ -877,18 +877,18 @@
 									</Menu>
 									<span class="ml-2 text-muted-foreground type-label">{menuAction}</span>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.menu}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.menu}</code></pre>
 							</Panel>
 
-							<Panel title="Breadcrumb" contentClass="p-1 stack-field">
+							<Panel title="Breadcrumb" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Wrap-friendly hierarchy links with sans navigation labels and chevron separators.
 								</p>
 								<Breadcrumb items={breadcrumbItems} maxItems={3} />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.breadcrumb}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.breadcrumb}</code></pre>
 							</Panel>
 
-							<Panel title="Pagination" contentClass="p-1 stack-field">
+							<Panel title="Pagination" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Fixed-width page controls with first/last anchors, sibling pages, and collapsed
 									gaps.
@@ -897,10 +897,10 @@
 									<Pagination bind:page={currentPage} pageCount={10} />
 									<span class="text-muted-foreground type-label">Page {currentPage}</span>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.pagination}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.pagination}</code></pre>
 							</Panel>
 
-							<Panel title="Tree" contentClass="p-1 stack-field">
+							<Panel title="Tree" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Expandable hierarchy with full-row selection fill, indentation depth, and roving
 									row focus.
@@ -912,7 +912,7 @@
 									class="border border-border bg-card p-1"
 								/>
 								<p class="text-muted-foreground type-label">Selected {selectedTree}</p>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.tree}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.tree}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -920,7 +920,7 @@
 					<section id="data" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Data</h2>
 						<div class="grid gap-1 xl:grid-cols-2">
-							<Panel title="CapacityBar" contentClass="p-1 stack-field">
+							<Panel title="CapacityBar" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Stacked utilization with chart token fills, an empty remainder, threshold ticks, and
 									a compact legend.
@@ -936,10 +936,10 @@
 								<p class="text-muted-foreground type-label">
 									Threshold 112GB
 								</p>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.capacityBar}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.capacityBar}</code></pre>
 							</Panel>
 
-							<Panel title="TimeBrush" contentClass="p-1 stack-field">
+							<Panel title="TimeBrush" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Resizable range over a compact chart strip with edge handles, body dragging, and
 									track-to-create selection.
@@ -956,10 +956,10 @@
 								<p class="text-muted-foreground type-label">
 									Selected {brushStart} - {brushEnd}
 								</p>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.timeBrush}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.timeBrush}</code></pre>
 							</Panel>
 
-							<Panel title="ProgressBar" contentClass="p-1 stack-field">
+							<Panel title="ProgressBar" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Determinate, buffered, and indeterminate progress with an optional label/value
 									readout plus color and size variants.
@@ -976,7 +976,7 @@
 									<ProgressBar label="Disk" showValue value={87} color="warning" size="sm" />
 									<ProgressBar label="Scanning" size="sm" />
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.progressBar}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.progressBar}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -984,35 +984,35 @@
 					<section id="feedback" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Feedback</h2>
 						<div class="grid gap-1 lg:grid-cols-2 xl:grid-cols-4">
-							<Panel title="Statistic" contentClass="p-1 stack-field">
+							<Panel title="Statistic" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Dense metric tile with mono value and optional contextual text.</p>
 								<Statistic label="Tempo">
 									{tempo}
 									{#snippet funFact()}bpm{/snippet}
 								</Statistic>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.statistic}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.statistic}</code></pre>
 							</Panel>
 
-							<Panel title="Note" contentClass="p-1 stack-field">
+							<Panel title="Note" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Status callout with info, warning, and error color treatments.</p>
 								<Note label="Clock warning" type="warning">
 									Swing above 50% may destabilize tightly clocked patterns.
 								</Note>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.note}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.note}</code></pre>
 							</Panel>
 
-							<Panel title="Citations" contentClass="p-1 stack-field">
+							<Panel title="Citations" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Inline provenance text for formulas, imported models, or specs.</p>
 								<Citations citations={panelCitations} />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.citations}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.citations}</code></pre>
 							</Panel>
 
-							<Panel title="Tooltip" contentClass="p-1 stack-field">
+							<Panel title="Tooltip" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Icon-led helper block for dense interfaces that need one precise hint.</p>
 								<Tooltip icon={Settings2}>
 									Hold Alt while dragging the slider thumb to snap to major ticks.
 								</Tooltip>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.tooltip}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.tooltip}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -1020,7 +1020,7 @@
 					<section id="icons" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Icons</h2>
 						<div class="grid gap-1 lg:grid-cols-3">
-							<Panel title="ChevronIcon" contentClass="p-1 stack-field">
+							<Panel title="ChevronIcon" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Directional disclosure glyph used by sections and selects.</p>
 								<button
 									type="button"
@@ -1030,10 +1030,10 @@
 									<ChevronIcon direction={collapsibleOpen ? 'down' : 'right'} />
 									{collapsibleOpen ? 'Open' : 'Closed'}
 								</button>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.chevronIcon}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.chevronIcon}</code></pre>
 							</Panel>
 
-							<Panel title="CheckboxIcon" contentClass="p-1 stack-field">
+							<Panel title="CheckboxIcon" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Standalone check state icon that powers CheckboxInput.</p>
 								<button
 									type="button"
@@ -1043,10 +1043,10 @@
 									<CheckboxIcon checked={checkIconState} />
 									<span class="type-body">{checkIconState ? 'Checked' : 'Clear'}</span>
 								</button>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.checkboxIcon}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.checkboxIcon}</code></pre>
 							</Panel>
 
-							<Panel title="RadioIcon" contentClass="p-1 stack-field">
+							<Panel title="RadioIcon" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">Standalone radio state icon that powers RadioInput.</p>
 								<button
 									type="button"
@@ -1056,7 +1056,7 @@
 									<RadioIcon checked={radioIconState} />
 									<span class="type-body">{radioIconState ? 'Selected' : 'Idle'}</span>
 								</button>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.radioIcon}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.radioIcon}</code></pre>
 							</Panel>
 						</div>
 					</section>
@@ -1064,7 +1064,7 @@
 					<section id="theme" class="scroll-mt-14 stack-group pb-4">
 						<h2 class="border-b border-border pb-2 type-heading">Theme</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
-							<Panel title="ThemeProvider" contentClass="p-1 stack-field">
+							<Panel title="ThemeProvider" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									ThemeProvider resolves localStorage, system preference, and default theme, then
 									applies the html.dark class that powers Tailwind's custom dark variant.
@@ -1072,15 +1072,15 @@
 								<div class="border border-border bg-muted p-1 text-muted-foreground type-caption">
 									Storage key: sequence-ui-theme / class target: document.documentElement
 								</div>
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.themeProvider}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.themeProvider}</code></pre>
 							</Panel>
 
-							<Panel title="ThemeToggle" contentClass="p-1 stack-field">
+							<Panel title="ThemeToggle" contentClass="pad-box stack-field">
 								<p class="text-foreground type-body">
 									Three-way segmented control for light, dark, and system modes.
 								</p>
 								<ThemeToggle />
-								<pre class="overflow-x-auto border border-border bg-muted p-3 text-foreground type-code"><code>{snippets.themeToggle}</code></pre>
+								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.themeToggle}</code></pre>
 							</Panel>
 						</div>
 					</section>

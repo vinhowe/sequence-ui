@@ -109,9 +109,11 @@ Instrument-dense, matching Sequence Toy's Control Panel: one tight 3.2px step in
 
 Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 3.2px; the page column is `stack-section` (6.4px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead.
 
+**One content-box inset: `pad-box`.** Every text-in-a-box — panel body, CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility, never a hand-picked `p-*`. It resolves to `--pad-box` (a token, currently 1U / 3.2px, decoupled from `--spacing`). Bump `--pad-box` once and every box reflows together; that's the whole point, so do not sprinkle `p-2`/`p-3` on individual boxes.
+
 Container defaults:
 
-- Panel / CollapsibleSection body: `p-1 stack-field` (3.2px padding + 3.2px gaps).
+- Panel / CollapsibleSection / Pane / ToggleGroup body: `pad-box stack-field` (one inset + 3.2px gaps).
 - Panel grids: `gap-1`. Button/control clusters: `flex ... gap-1`.
 - Sections: `scroll-mt-* stack-group` inside a `stack-section` page column.
 - Do NOT loosen these; the system is meant to read as a dense instrument panel.

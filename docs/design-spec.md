@@ -151,8 +151,10 @@ Panel defaults from `Panel.svelte`:
 
 ```ts
 headerClass = 'bg-panel border-b border-border px-1 py-0.5 flex justify-between items-center text-panel-foreground gap-2'
-contentClass = 'p-1 stack-field'
+contentClass = 'pad-box stack-field'
 ```
+
+Every content box — panel/CollapsibleSection/Pane/ToggleGroup body, code blocks, callouts — pads with the `pad-box` utility (`padding: var(--pad-box)`), not a hand-picked `p-*`. `--pad-box` starts at 1U (3.2px) and is decoupled from `--spacing`, so bumping it reflows every box at once. This is the single source of truth for box padding; never set `p-2`/`p-3` on an individual box.
 
 Panel grids and button/control clusters use `gap-1`; sections stack with `stack-group` inside a `stack-section` page column. A container owns the gap; children never set external margins.
 

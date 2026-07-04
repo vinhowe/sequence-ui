@@ -28,7 +28,7 @@
 		enabled = $bindable(false),
 		class: rootClass = '',
 		headerClass = undefined,
-		contentClass = 'p-1.5 stack-field',
+		contentClass = 'pad-box stack-field',
 		header,
 		children,
 		hasDefaultValue = false,
