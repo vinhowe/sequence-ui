@@ -158,7 +158,7 @@
 			tabindex={activeId === row.node.id ? 0 : -1}
 			data-row-index={i}
 			class={twMerge(
-				'flex min-h-7.5 w-full items-center gap-1 py-1 pr-1.5 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body',
+				'flex min-h-6 w-full items-center gap-1 py-0.5 pr-1.5 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body',
 				selected === row.node.id ? 'bg-primary/12 text-foreground' : 'text-foreground hover:bg-muted'
 			)}
 			style={`padding-left: ${0.4 + row.depth * 1.2}rem;`}

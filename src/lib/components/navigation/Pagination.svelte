@@ -66,13 +66,13 @@
 	<div class="flex items-center gap-1">
 		{#each tokens as token, i (`${token}-${i}`)}
 			{#if token === 'gap'}
-				<span class="flex h-7.5 w-7.5 items-center justify-center text-muted-foreground type-button">…</span>
+				<span class="flex h-6 w-6 items-center justify-center text-muted-foreground type-button">…</span>
 			{:else}
 				<button
 					type="button"
 					aria-current={token === page ? 'page' : undefined}
 					class={twMerge(
-						'flex h-7.5 w-7.5 items-center justify-center border border-border tabular-nums focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button',
+						'flex h-6 w-6 items-center justify-center border border-border tabular-nums focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-button',
 						token === page ? 'bg-foreground text-background' : 'bg-panel text-foreground hover:bg-muted'
 					)}
 					onclick={() => setPage(token)}
