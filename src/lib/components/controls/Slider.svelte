@@ -527,8 +527,9 @@
 					bind:this={trackRef}
 					class="relative cursor-pointer py-1 px-0.5 touch-none"
 				>
-					<!-- Track -->
-					<div class="absolute h-0.5 w-full bg-muted"></div>
+					<!-- Track (inactive/leftover) — border tone, not muted, so it reads as a
+					     groove against the panel body (muted ≈ card, near-invisible). -->
+					<div class="absolute h-0.5 w-full bg-border"></div>
 
 					<!-- Filled Track -->
 					<div
