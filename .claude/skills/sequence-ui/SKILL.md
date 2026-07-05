@@ -11,7 +11,7 @@ description: >-
 
 # Sequence UI
 
-Sequence UI is a standalone **Svelte 5 (runes) + Tailwind v4 (CSS-first) + TypeScript** design system with first-class light/dark. Aesthetic: **instrument-panel density** — 13px base, very tight spacing, **sharp corners (radius 0)**, **flat surfaces (no shadows)**, hairline borders, and monospace reserved for a few punchy roles.
+Sequence UI is a standalone **Svelte 5 (runes) + Tailwind v4 (CSS-first) + TypeScript** design system with first-class light/dark. Aesthetic: **instrument-panel density** — 12.5px base, very tight spacing, **sharp corners (radius 0)**, **flat surfaces (no shadows)**, hairline borders, **no state-transition animations** (state changes are instant), and monospace reserved for a few punchy roles.
 
 Source of truth: **github.com/vinhowe/sequence-ui** (branch `main`, public). Raw base used below:
 
@@ -31,10 +31,11 @@ Fetch and read the design contract before writing UI (use WebFetch or your file 
 
 **Non-negotiables** (full detail + examples in AGENTS.md):
 
-- **Type roles, never raw sizes.** Use the 9 `type-*` utilities: `type-display / heading / title / body / caption / label / button / value / code`. Never pick a raw `text-*` size in product UI. **Mono only** for `type-button / type-value / type-code / type-label` and the brand label; **sans** for headings, navigation, and prose.
-- **Container-owned spacing.** Components ship margin-free (no `mt-*`/`mb-*` on components). Parents stack children with `stack-tight` (0.2rem) / `stack-field` (0.3) / `stack-group` (0.4) / `stack-section` (0.8). A control's label→field gap is `stack-tight` on the control root. Run **tight** — SaaS-comfortable spacing is too loose here.
-- **Tokens, never hardcoded colors.** shadcn-compatible names (`--background --foreground --card --popover --muted --primary --border --ring …`) + Sequence extensions (`--panel --highlight --border-strong --subtle-foreground --success --warning --chart-1..5`). OKLCH. Dark mode via a `.dark` class.
-- **Flat + sharp.** No rounded corners, no drop shadows, no glass, no skeuomorphism. Hairline `border-border`.
+- **Type roles, never raw sizes.** Use the 10 `type-*` utilities: `type-display / heading / title / body / caption / field / label / button / value / code`. Never pick a raw `text-*` size in product UI. **Mono only** for `type-button / type-value / type-code / type-label` and the brand label; **sans** for headings, navigation, and prose.
+- **Container-owned spacing.** Base grid `--spacing: 0.25rem` (4px = 1U). Components ship margin-free (no `mt-*`/`mb-*`). Parents stack children with `stack-tight` / `stack-field` / `stack-group` (all 4px) and `stack-section` (16px between sections). A control's label→field gap is `stack-tight` on the control root. Content boxes pad with the `pad-box` utility (not hand-picked `p-*`); running prose uses the `prose` class (owns its own rhythm — the one sanctioned child margin). Run **tight** — SaaS-comfortable spacing is too loose here.
+- **Tokens, never hardcoded colors.** shadcn-compatible names (`--background --foreground --card --popover --muted --primary --border --ring …`) + Sequence extensions (`--panel --highlight --border-strong --subtle-foreground --success --warning --warning-strong --destructive-strong --primary-accent --destructive-accent --chart-1..5`). **Accent values operate within Tailwind palette rungs** (`--primary: var(--color-purple-700)` light / `purple-500` dark, destructive→red, success→green, warning→amber, ring→blue); surface grays + charts stay bespoke OKLCH. `--primary-accent`/`--destructive-accent` are a paler dark rung for colored buttons. Dark mode via a `.dark` class.
+- **Flat + sharp + still.** No rounded corners, no drop shadows, no glass, no skeuomorphism; hairline `border-border`. **No `transition-*`** — state changes are instant (a global rule enforces it); only continuous feedback (spinners, indeterminate bars) animates via `@keyframes`.
+- **Fixed-px icons.** Icon glyphs are 10 / 11 / 13px (not `--spacing`-multiples) so they don't scale with density.
 - **Anti-patterns — never do these** (they read as generic AI slop):
   1. A small uppercase-mono eyebrow/overline above a big title. Use one normal sans section heading.
   2. Left-border selection cues (`border-l-2 border-l-primary`) on active nav/list/tree rows. Use a **background fill** (`bg-primary/12`) or text color.
@@ -46,7 +47,7 @@ Fetch and read the design contract before writing UI (use WebFetch or your file 
 Prerequisites: Tailwind v4 (`@tailwindcss/vite`) + Svelte 5.
 
 1. **Tokens + type roles + utilities.** Copy `src/app.css` (`…/main/src/app.css`) into your global stylesheet, or merge its pieces: the `:root` (light) and `.dark` token blocks, the `@theme inline` mappings, `@custom-variant dark (&:where(.dark, .dark *))`, the nine `type-*` `@utility` roles, the `stack-*` utilities, and the `@layer base` resets. Import it once in your root layout. (Alternatively use the registry `theme` item at `…/main/static/r/theme.json`, whose `cssVars` carry the light/dark tokens.)
-2. **Fonts (bring your own).** The system expects a mono (Berkeley Mono) and a sans (neue-haas-unica). Supply your own licensed equivalents and wire `--font-mono` / `--font-sans`; keep the mono/sans role split. GOTCHA: keep any `button,input,select,textarea { font: inherit }` reset inside `@layer base`, or it silently beats Tailwind's `font-mono`.
+2. **Fonts.** Sans is **Inter** (self-hosted variable, SIL OFL — ships with the system at `static/InterVariable.woff2`). Mono is **Berkeley Mono** (licensed — bring your own mono equivalent and wire `--font-mono`; `--font-sans` is Inter). Keep the mono/sans role split. GOTCHA: keep any `button,input,select,textarea { font: inherit }` reset inside `@layer base`, or it silently beats Tailwind's `font-mono`.
 3. **Theming runtime.** Add the `theme-provider` and `theme-toggle` components (step 3), wrap the app in `ThemeProvider`, add the no-flash inline script from the repo's `src/app.html`, and place a `ThemeToggle` in your header.
 4. **Project-header motif (optional, on-brand).** A full-width bar: `bg-purple-200 text-purple-900 border-b border-purple-300` (dark: `purple-950 / purple-200 / purple-900`), with the project name in small `font-mono uppercase tracking-wider text-xs`.
 
@@ -70,15 +71,15 @@ If cross-item dependency resolution fails, fall back to A.
 - **primitives:** `panel`, `collapsible-section`, `pane`
 - **controls:** `slider`, `number-input`, `text-input`, `select-input`, `toggle-group`, `checkbox-input`, `radio-input`, `radio-group-input`, `form-label`, `reset-value-button`, `timecode-field`, `bit-field`, `base-field`, `tolerance-field`, `scrub-input`, `angle-field`, `threshold-marker`
 - **navigation:** `menu`, `breadcrumb`, `pagination`, `tree`
-- **data:** `capacity-bar`, `time-brush`
+- **data:** `capacity-bar`, `progress-bar`, `time-brush`
 - **feedback:** `statistic`, `note`, `citations`, `tooltip`
 - **icons:** `chevron-icon`, `checkbox-icon`, `radio-icon`
 - **theme:** `theme-provider`, `theme-toggle`
-- **buttons:** `action-button`, `icon-button`
+- **buttons:** `action-button`, `button`, `icon-button`, `segmented-control`
 
 ## 4. Compose by the rules
 
-- Group controls inside `Panel` (title + bordered body, defaults to `p-1.5 stack-field`). Stack sections with `gap-4`; panel grids `gap-2`.
+- Group controls inside `Panel` (title + bordered body, defaults to `pad-box stack-field`). Stack sections with `stack-section`; panel grids `gap-1`.
 - Labeled inputs pair `<FormLabel>` + the control in a `stack-tight` root (the shipped control components already do this).
 - Numeric readouts → `type-value` (mono, tabular). Commands → `ActionButton` or `type-button`. Small instrument labels → `type-label`.
 - Active/selected states → background fill (`bg-primary/12`) or text color, **never** a left border.

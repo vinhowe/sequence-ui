@@ -14,6 +14,29 @@ npx shadcn-svelte@latest add <url>/r/<name>.json
 
 For local or manual use, copy the registry JSON or the source component file directly into the consuming project. Consumers must also bring the required CSS tokens and fonts. The sans face is **Inter** (SIL Open Font License), self-hosted as the v4.1 variable font (`static/InterVariable.woff2`) — it ships with the system, so no external font service is required. Berkeley Mono is bundled here for local dev and the gallery; downstream projects need their own licensed mono font file or a font substitution.
 
+## Claude Code Skill
+
+This repo ships an installable [Claude Code](https://claude.com/claude-code) **skill** that teaches an agent to build or restyle a UI in the Sequence UI style — read the design contract, set up the theme once, copy components from the registry, and compose by the rules. It lives at [`.claude/skills/sequence-ui/SKILL.md`](.claude/skills/sequence-ui/SKILL.md) and pulls the authoritative rules (`AGENTS.md`, `docs/design-spec.md`, `llms.txt`) and registry items live from this repo, so it never goes stale.
+
+The skill is a single self-contained `SKILL.md`. Install it **globally** (available in every project):
+
+```sh
+mkdir -p ~/.claude/skills/sequence-ui
+curl -fsSL https://raw.githubusercontent.com/vinhowe/sequence-ui/main/.claude/skills/sequence-ui/SKILL.md \
+  -o ~/.claude/skills/sequence-ui/SKILL.md
+```
+
+…or **per-project** (check it in for your team) by copying the folder into the target project's `.claude/skills/`:
+
+```sh
+mkdir -p .claude/skills
+cp -r /path/to/cloned/sequence-ui/.claude/skills/sequence-ui .claude/skills/
+```
+
+(If you clone this repo and work *inside* it, the skill is already active as a project skill — nothing to install.)
+
+Then in Claude Code, run `/sequence-ui`, or just ask for the Sequence UI look — the skill auto-triggers on mentions of Sequence UI, sequence.toys, or the Sequence Toy aesthetic. The only requirement in the target app is Tailwind v4 (`@tailwindcss/vite`) + Svelte 5.
+
 ## Minimal Usage
 
 Import `src/app.css` once in the app shell, then wrap the application in `ThemeProvider`. Import copied components from wherever the registry installed them.
