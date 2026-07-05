@@ -94,6 +94,18 @@ the colored `Button` / `SegmentedControl` — identical to the base in light, a 
 rung in dark so colored buttons soften on the dark ground without weakening
 solid-primary fills (which keep `--primary` for white-on-primary contrast).
 
+**Purple is Sequence UI's own brand default, not a requirement — and the brand color
+is the user's decision.** A consuming app uses its own primary/brand hue; if the user
+hasn't specified one, **ask them to pick a color from the
+[Tailwind palette](https://tailwindcss.com/docs/colors)** rather than defaulting to
+purple or choosing for them. Once you have their hue, since the accents are already
+rungs, switching is a
+find/replace of `purple` in the token block: `--primary` (light `<hue>-700` / dark
+`<hue>-500`), `--primary-accent` (dark → a lighter rung such as `<hue>-400`), and the
+`AppBar`'s `bg-purple-*` / `text-purple-*` / `border-purple-*` classes. Leave the
+surface grays, the status colors (`--destructive`/`--success`/`--warning`), and
+`--ring` (blue) — those are semantic, not brand.
+
 Categorical chart palette:
 
 | Token | Light | Dark |
