@@ -266,11 +266,11 @@ body {
 	@apply font-sans text-xs font-normal;
 	line-height: 1.4;
 }
-@utility type-field {
+@utility type-label {
 	@apply font-sans text-sm font-medium;
 	line-height: 1.25;
 }
-@utility type-label {
+@utility type-tag {
 	@apply font-mono text-2xs font-medium uppercase;
 	line-height: 1;
 	letter-spacing: 0.06em;

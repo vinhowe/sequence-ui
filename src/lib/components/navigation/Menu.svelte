@@ -242,7 +242,7 @@
 								{/if}
 								<span>{item.label}</span>
 								{#if item.shortcut}
-									<kbd class="border border-border bg-muted px-1 text-muted-foreground type-label">
+									<kbd class="border border-border bg-muted px-1 text-muted-foreground type-tag">
 										{item.shortcut}
 									</kbd>
 								{/if}

@@ -53,7 +53,7 @@
 				<Panel title="Color — (12.5px · lh 1.45 · weight 400)" contentClass="p-2 flex flex-col gap-2">
 					{#each colors as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
-							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
+							<div class="type-tag mb-1 text-muted-foreground">{v.label}</div>
 							<p class={`font-sans text-[12.5px] leading-[1.45] font-normal ${v.cls}`}>{sample}</p>
 						</div>
 					{/each}
@@ -62,7 +62,7 @@
 				<Panel title="Size — (foreground · lh 1.5 · weight 400)" contentClass="p-2 flex flex-col gap-2">
 					{#each sizes as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
-							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
+							<div class="type-tag mb-1 text-muted-foreground">{v.label}</div>
 							<p class={`font-sans leading-[1.5] font-normal text-foreground ${v.cls}`}>{sample}</p>
 						</div>
 					{/each}
@@ -71,7 +71,7 @@
 				<Panel title="Line-height — (foreground · 13px · weight 400)" contentClass="p-2 flex flex-col gap-2">
 					{#each leadings as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
-							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
+							<div class="type-tag mb-1 text-muted-foreground">{v.label}</div>
 							<p class={`font-sans text-[13px] font-normal text-foreground ${v.cls}`}>{sample}</p>
 						</div>
 					{/each}
@@ -80,7 +80,7 @@
 				<Panel title="Weight — (foreground · 12.5px · lh 1.5)" contentClass="p-2 flex flex-col gap-2">
 					{#each weights as v}
 						<div class="border-b border-border/60 pb-2 last:border-0 last:pb-0">
-							<div class="type-label mb-1 text-muted-foreground">{v.label}</div>
+							<div class="type-tag mb-1 text-muted-foreground">{v.label}</div>
 							<p class="font-sans text-[12.5px] leading-[1.5] text-foreground" style={`font-weight:${v.w}`}>
 								{sample}
 							</p>

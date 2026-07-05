@@ -384,7 +384,7 @@
 												style={`background: var(--${token});`}
 											></div>
 											<div
-												class="mt-1 truncate text-muted-foreground type-label"
+												class="mt-1 truncate text-muted-foreground type-tag"
 											>
 												{token}
 											</div>
@@ -402,7 +402,7 @@
 									{#each [1, 2, 3, 4, 5, 6, 7, 8] as unit}
 										<div class="border border-border bg-muted p-1">
 											<div class="h-3 bg-foreground" style={`width: ${unit * 0.2}rem;`}></div>
-											<div class="mt-1 text-subtle-foreground type-label">
+											<div class="mt-1 text-subtle-foreground type-tag">
 												{unit}u
 											</div>
 										</div>
@@ -472,7 +472,7 @@
 										highlighted={activeTool === 'settings'}
 										onclick={() => activeTool = 'settings'}
 									/>
-									<span class="ml-2 text-muted-foreground type-label">
+									<span class="ml-2 text-muted-foreground type-tag">
 										{activeTool}
 									</span>
 								</div>
@@ -542,7 +542,7 @@
 											{ value: 'edit', label: 'C' }
 										]}
 									/>
-									<span class="text-muted-foreground type-label">{segView} · {segTool}</span>
+									<span class="text-muted-foreground type-tag">{segView} · {segTool}</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.segmentedControl}</code></pre>
 							</Panel>
@@ -778,7 +778,7 @@
 									hasDefaultValue={cueFrames === 109845}
 									onReset={() => cueFrames = 109845}
 								/>
-								<p class="text-muted-foreground type-label">
+								<p class="text-muted-foreground type-tag">
 									{cueFrames} frames
 								</p>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.timecodeField}</code></pre>
@@ -875,7 +875,7 @@
 											{open ? 'Open' : 'Actions'}
 										{/snippet}
 									</Menu>
-									<span class="ml-2 text-muted-foreground type-label">{menuAction}</span>
+									<span class="ml-2 text-muted-foreground type-tag">{menuAction}</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.menu}</code></pre>
 							</Panel>
@@ -895,7 +895,7 @@
 								</p>
 								<div class="flex flex-wrap items-center gap-1">
 									<Pagination bind:page={currentPage} pageCount={10} />
-									<span class="text-muted-foreground type-label">Page {currentPage}</span>
+									<span class="text-muted-foreground type-tag">Page {currentPage}</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.pagination}</code></pre>
 							</Panel>
@@ -911,7 +911,7 @@
 									bind:expanded={expandedTree}
 									class="border border-border bg-card p-1"
 								/>
-								<p class="text-muted-foreground type-label">Selected {selectedTree}</p>
+								<p class="text-muted-foreground type-tag">Selected {selectedTree}</p>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.tree}</code></pre>
 							</Panel>
 						</div>
@@ -933,7 +933,7 @@
 									thresholds={[112]}
 									unit="GB"
 								/>
-								<p class="text-muted-foreground type-label">
+								<p class="text-muted-foreground type-tag">
 									Threshold 112GB
 								</p>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.capacityBar}</code></pre>
@@ -953,7 +953,7 @@
 									max={23}
 									data={brushData}
 								/>
-								<p class="text-muted-foreground type-label">
+								<p class="text-muted-foreground type-tag">
 									Selected {brushStart} - {brushEnd}
 								</p>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.timeBrush}</code></pre>

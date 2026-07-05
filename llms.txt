@@ -36,8 +36,8 @@ Type roles:
 - type-title
 - type-body
 - type-caption
-- type-field
 - type-label
+- type-tag
 - type-button
 - type-value
 - type-code

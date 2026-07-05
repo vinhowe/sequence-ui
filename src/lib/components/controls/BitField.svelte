@@ -114,7 +114,7 @@
 
 		<div class="grid gap-1 sm:grid-cols-2">
 			<div class="stack-tight">
-				<label for={`${id}-hex`} class="text-muted-foreground type-label">HEX</label>
+				<label for={`${id}-hex`} class="text-muted-foreground type-tag">HEX</label>
 				<input
 					id={`${id}-hex`}
 					type="text"
@@ -127,7 +127,7 @@
 				/>
 			</div>
 			<div class="stack-tight">
-				<label for={`${id}-dec`} class="text-muted-foreground type-label">DEC</label>
+				<label for={`${id}-dec`} class="text-muted-foreground type-tag">DEC</label>
 				<input
 					id={`${id}-dec`}
 					type="text"

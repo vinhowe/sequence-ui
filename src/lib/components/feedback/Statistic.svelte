@@ -15,7 +15,7 @@
 <div
 	class="stack-tight p-1 bg-muted/70 border border-border-strong/60 text-foreground"
 >
-	<span class="text-foreground type-field"
+	<span class="text-foreground type-label"
 		><KatexBlock text={label} /></span
 	>
 	<span class="flex items-baseline gap-x-1">

@@ -39,7 +39,7 @@
 		borderAndBackgroundClasses
 	)}
 >
-	<span class={twMerge('flex items-center gap-1.25 type-field', labelColorClass)}>
+	<span class={twMerge('flex items-center gap-1.25 type-label', labelColorClass)}>
 		{#if type === 'info'}
 			<InfoIcon class="w-3 h-3 shrink-0" strokeWidth={2.8} />
 		{:else if type === 'warning'}

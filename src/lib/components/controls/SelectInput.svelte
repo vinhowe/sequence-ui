@@ -330,7 +330,7 @@
 								<li
 									role="group"
 									aria-label={item.label}
-									class="px-1 py-0.5 text-muted-foreground select-none border-border bg-muted type-label"
+									class="px-1 py-0.5 text-muted-foreground select-none border-border bg-muted type-tag"
 									class:border-t={i > 0}
 									class:border-b={i < menuItems.length - 1}
 								>

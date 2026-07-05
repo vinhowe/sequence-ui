@@ -62,7 +62,7 @@
 <div class={`stack-tight ${className}`.trim()}>
 	{#if label || showValue}
 		<div class="flex items-baseline justify-between gap-2">
-			{#if label}<span class="type-field text-foreground">{label}</span>{/if}
+			{#if label}<span class="type-label text-foreground">{label}</span>{/if}
 			{#if showValue && !indeterminate}
 				<span class="ml-auto type-value text-muted-foreground">{readout}</span>
 			{/if}

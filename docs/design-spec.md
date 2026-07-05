@@ -120,7 +120,7 @@ body {
 }
 ```
 
-Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12.5, 15, and 17px. UI must use semantic type roles, not raw `text-*` sizing.
+Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12, 12.5, 15, and 17px. UI must use semantic type roles, not raw `text-*` sizing.
 
 | Role | Utility | Font | Use |
 | --- | --- | --- | --- |
@@ -129,12 +129,13 @@ Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 
 | Title | `type-title` | sans | panel titles, 12.5px |
 | Body | `type-body` | sans | prose and normal UI text, 12.5px |
 | Caption | `type-caption` | sans | secondary text, 11px |
-| Label | `type-label` | mono uppercase | small instrument labels, 10px |
+| Label | `type-label` | sans | field / metric / readout labels, 12px |
+| Tag | `type-tag` | mono uppercase | terse code-like tags — units, HEX/DEC, token names, 10px |
 | Button | `type-button` | mono uppercase | command labels, 11px |
 | Value | `type-value` | mono tabular | numeric readouts and value inputs, 12.5px |
 | Code | `type-code` | mono | code and radix/base editing, 12.5px |
 
-Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, small instrument labels, and the brand label. Sans is used for headings, navigation, and prose.
+Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, terse instrument tags (`type-tag`), and the brand label. Sans is used for headings, navigation, prose, and labels (`type-label`).
 
 Headings are understated: sans, medium weight, tight tracking, and followed by space from the parent stack. They are not big/bold display treatments.
 

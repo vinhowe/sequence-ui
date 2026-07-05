@@ -88,7 +88,7 @@
 			<div class={`grid grid-cols-[3rem_1fr] items-stretch ${index > 0 ? 'border-t border-border' : ''}`}>
 				<label
 					for={`${id}-${row.key}`}
-					class="flex items-center border-r border-border bg-muted px-1 text-muted-foreground type-label"
+					class="flex items-center border-r border-border bg-muted px-1 text-muted-foreground type-tag"
 				>
 					{row.label}
 				</label>

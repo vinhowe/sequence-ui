@@ -67,7 +67,7 @@
 			onblur={() => focusedField = null}
 			oninput={(event) => updateValue((event.currentTarget as HTMLInputElement).value)}
 		/>
-		<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">±</span>
+		<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-tag">±</span>
 		<input
 			id={`${id}-tolerance`}
 			type="text"
@@ -82,7 +82,7 @@
 			oninput={(event) => updateTolerance((event.currentTarget as HTMLInputElement).value)}
 		/>
 		{#if unit}
-			<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-label">{unit}</span>
+			<span class="flex items-center border-l border-border bg-muted px-2 text-muted-foreground type-tag">{unit}</span>
 		{/if}
 	</div>
 </div>
