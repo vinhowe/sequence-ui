@@ -53,6 +53,10 @@ Prerequisites: Tailwind v4 (`@tailwindcss/vite`) + Svelte 5.
 
 ## 3. Add a component
 
+**Use the real registry components — do not reinvent them.** Especially in a greenfield app, install from the registry instead of hand-rolling lookalikes: the shipped components carry the exact tokens, type-roles, spacing, keyboard/a11y behavior, and light/dark wiring the look depends on, and reimplementations drift from the system immediately. A good **minimum instrument-panel set** to pull in first: `panel`, `slider`, `number-input`, `select-input`, `action-button`, `theme-provider`, `theme-toggle`.
+
+Reimplement a component locally **only** when the registry item genuinely cannot be installed (a real dependency/tooling blocker) or is mismatched to the interaction you actually need. And when you find yourself wanting a component that doesn't exist yet, **tell the user what's missing and what it's for** — so it can be built into the upstream Sequence UI system rather than forked into one app.
+
 Every component is published as a shadcn-style registry item at `…/main/static/r/<name>.json`.
 
 **A. Manual (most reliable):**
