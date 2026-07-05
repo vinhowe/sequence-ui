@@ -791,6 +791,24 @@
       ]
     },
     {
+      "name": "app-bar",
+      "type": "registry:ui",
+      "title": "AppBar",
+      "description": "AppBar component for Sequence UI.",
+      "files": [
+        {
+          "path": "src/lib/components/primitives/AppBar.svelte",
+          "type": "registry:ui",
+          "target": "lib/components/primitives/AppBar.svelte"
+        }
+      ],
+      "dependencies": [
+        "svelte",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "theme-provider",
       "type": "registry:ui",
       "title": "Theme Provider",

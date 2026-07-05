@@ -97,6 +97,7 @@ Buttons:
 
 Primitives:
 
+- `AppBar` — full-width top chrome bar (fixed `--bar-height`, brand + actions slots)
 - `Panel`
 - `BorderedGroup` alias for `Panel`
 - `CollapsibleSection`

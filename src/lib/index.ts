@@ -6,6 +6,7 @@ export {
 	type SegmentedOption
 } from './components/buttons/SegmentedControl.svelte';
 
+export { default as AppBar } from './components/primitives/AppBar.svelte';
 export { default as Panel } from './components/primitives/Panel.svelte';
 export { default as BorderedGroup } from './components/primitives/Panel.svelte';
 export { default as CollapsibleSection } from './components/primitives/CollapsibleSection.svelte';

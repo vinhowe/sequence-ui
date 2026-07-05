@@ -198,18 +198,26 @@ DO:
 
 ## Project Header Motif
 
-The reusable project header is a full-width top bar with a purple identity strip. The project name is small mono uppercase text.
+The reusable project header is a full-width top bar with a purple identity strip and the project name in small mono uppercase.
 
-DO:
+**Use the `AppBar` component** — it bakes in the height/padding that are otherwise easy to get wrong:
 
 ```svelte
-<header class="flex items-center justify-between border-b border-purple-300 bg-purple-200 px-2 py-1 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
-	<div class="font-mono text-xs uppercase tracking-wider">Sequence Toy</div>
+<AppBar title="Sequence Toy">
+	<ThemeToggle />
+</AppBar>
+```
+
+If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (20px), and NEVER `py-*`.** At ~20px it must center a ~18px `ThemeToggle` + 11px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `px-1.5`.
+
+```svelte
+<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
+	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
 	<ThemeToggle />
 </header>
 ```
 
-Keep the header flat and full-width. Do not put the project name in a rounded card, large hero, or marketing nav.
+Keep it flat and full-width. Do NOT: use `py-*` for its height, put the project name in a rounded card / large hero / marketing nav, or "normalize" `h-[var(--bar-height)]` back onto the 4px grid — this bar is the sanctioned exception.
 
 ## Segmented Controls
 

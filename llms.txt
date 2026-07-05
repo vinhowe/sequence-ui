@@ -52,7 +52,7 @@ Stack utilities:
 
 Component exports:
 - Buttons: ActionButton, Button, IconButton, SegmentedControl.
-- Primitives: Panel, BorderedGroup, CollapsibleSection, Pane.
+- Primitives: AppBar, Panel, BorderedGroup, CollapsibleSection, Pane.
 - Controls: Slider, NumberInput, ScrubInput, AngleField, ThresholdMarker, TextInput, TimecodeField, BitField, BaseField, ToleranceField, SelectInput, ToggleGroup, CheckboxInput, RadioGroupInput, RadioInput, FormLabel, ResetValueButton.
 - Feedback: Statistic, ControlsStatistic, Note, ControlsNote, Citations, Tooltip, UserGuideTooltip.
 - Navigation: Menu, Breadcrumb, Pagination, Tree.

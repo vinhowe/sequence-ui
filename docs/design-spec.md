@@ -223,11 +223,11 @@ Use token utilities such as `bg-card`, `text-card-foreground`, `border-border`, 
 
 ## Structural Motifs
 
-Project header:
+Project header — use the `AppBar` component (`<AppBar title="…"><ThemeToggle /></AppBar>`). It's app chrome, so its height is a **fixed integer px** via `--bar-height` (20px), **not `py-*`** and not the 4px grid — at ~20px, padding-based sizing rounds unevenly and drifts the ~18px toggle + 11px text off-center. The raw recipe the component encapsulates:
 
 ```svelte
-<header class="flex items-center justify-between border-b border-purple-300 bg-purple-200 px-2 py-1 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
-	<div class="font-mono text-xs uppercase tracking-wider">Sequence Toy</div>
+<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
+	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
 	<ThemeToggle />
 </header>
 ```

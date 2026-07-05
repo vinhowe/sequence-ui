@@ -49,7 +49,7 @@ Prerequisites: Tailwind v4 (`@tailwindcss/vite`) + Svelte 5.
 1. **Tokens + type roles + utilities.** Copy `src/app.css` (`…/main/src/app.css`) into your global stylesheet, or merge its pieces: the `:root` (light) and `.dark` token blocks, the `@theme inline` mappings, `@custom-variant dark (&:where(.dark, .dark *))`, the nine `type-*` `@utility` roles, the `stack-*` utilities, and the `@layer base` resets. Import it once in your root layout. (Alternatively use the registry `theme` item at `…/main/static/r/theme.json`, whose `cssVars` carry the light/dark tokens.)
 2. **Fonts.** Sans is **Inter** (self-hosted variable, SIL OFL — ships with the system at `static/InterVariable.woff2`). Mono is **Berkeley Mono** (licensed — bring your own mono equivalent and wire `--font-mono`; `--font-sans` is Inter). Keep the mono/sans role split. GOTCHA: keep any `button,input,select,textarea { font: inherit }` reset inside `@layer base`, or it silently beats Tailwind's `font-mono`.
 3. **Theming runtime.** Add the `theme-provider` and `theme-toggle` components (step 3), wrap the app in `ThemeProvider`, add the no-flash inline script from the repo's `src/app.html`, and place a `ThemeToggle` in your header.
-4. **Project-header motif (optional, on-brand).** A full-width bar: `bg-purple-200 text-purple-900 border-b border-purple-300` (dark: `purple-950 / purple-200 / purple-900`), with the project name in small `font-mono uppercase tracking-wider text-xs`.
+4. **Project-header motif (optional, on-brand).** Use the **`AppBar`** component: `<AppBar title="…"><ThemeToggle /></AppBar>` — a full-width purple identity bar. If hand-rolling, its height is app *chrome*, not grid: fixed integer `h-[var(--bar-height)]` (20px), `px-1.5`, and **never `py-*`** (at ~20px, padding rounds unevenly and drifts the toggle/text off-center). Colors: `bg-purple-200 text-purple-900 border-b border-purple-300` (dark: `purple-950 / purple-200 / purple-900`), project name `font-mono uppercase tracking-wider text-xs`.
 
 ## 3. Add a component
 
@@ -72,7 +72,7 @@ npx shadcn-svelte@latest add https://raw.githubusercontent.com/vinhowe/sequence-
 If cross-item dependency resolution fails, fall back to A.
 
 **Catalog** — see `…/main/registry.json`, `…/main/README.md`, or list `static/r/`. Groups:
-- **primitives:** `panel`, `collapsible-section`, `pane`
+- **primitives:** `app-bar`, `panel`, `collapsible-section`, `pane`
 - **controls:** `slider`, `number-input`, `text-input`, `select-input`, `toggle-group`, `checkbox-input`, `radio-input`, `radio-group-input`, `form-label`, `reset-value-button`, `timecode-field`, `bit-field`, `base-field`, `tolerance-field`, `scrub-input`, `angle-field`, `threshold-marker`
 - **navigation:** `menu`, `breadcrumb`, `pagination`, `tree`
 - **data:** `capacity-bar`, `progress-bar`, `time-brush`
