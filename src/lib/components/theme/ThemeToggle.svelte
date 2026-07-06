@@ -38,7 +38,7 @@
 	function optionClasses(value: ThemeMode) {
 		return twMerge(
 			baseButtonClasses,
-			integrated ? '' : 'py-0.5',
+			integrated ? '' : 'h-control-sm',
 			themeContext.theme === value ? activeButtonClasses : inactiveButtonClasses
 		);
 	}

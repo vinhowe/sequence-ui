@@ -182,7 +182,7 @@
 				inputmode="decimal"
 				bind:value={inputValue}
 				class={twMerge(
-					'block w-full cursor-ew-resize touch-none border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value',
+					'block h-control w-full cursor-ew-resize touch-none border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value',
 					isScrubbing && 'bg-muted ring-1 ring-border-strong'
 				)}
 				onpointerdown={onPointerDown}

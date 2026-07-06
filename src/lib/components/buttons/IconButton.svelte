@@ -29,7 +29,7 @@
 	const baseClasses =
 		'inline-flex shrink-0 cursor-pointer items-center justify-center border border-border bg-panel text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 type-button';
 
-	const sizeClasses = $derived(size === 'sm' ? 'h-4.5 w-4.5' : 'h-5.5 w-5.5');
+	const sizeClasses = $derived(size === 'sm' ? 'h-control-sm w-control-sm' : 'h-control w-control');
 	const stateClasses = $derived(
 		highlighted
 			? 'border-primary bg-primary text-primary-foreground animate-pulse'

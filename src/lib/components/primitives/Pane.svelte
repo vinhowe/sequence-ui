@@ -50,7 +50,7 @@
 					aria-selected={isActive}
 					disabled={tab.disabled}
 					class={twMerge(
-						'flex items-center gap-1.5 border-r border-b border-border px-2 py-1 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+						'flex h-control items-center gap-1.5 border-r border-b border-border px-2 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
 						isActive
 							? 'border-b-transparent bg-background text-foreground'
 							: 'text-muted-foreground hover:text-foreground'

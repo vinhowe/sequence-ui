@@ -164,7 +164,7 @@
 		<FormLabel forInputId={`${id}-${segments[0]?.toLowerCase()}`} value={label} />
 	{/if}
 	<div class="flex items-center gap-1.5">
-		<div class="inline-flex items-stretch border border-border bg-card text-foreground">
+		<div class="inline-flex h-control items-stretch border border-border bg-card text-foreground">
 			{#each segments as segment, index}
 				{#if index > 0}
 					<span class="flex items-center border-l border-border bg-muted px-0.5 text-muted-foreground type-value">:</span>
@@ -176,7 +176,7 @@
 					inputmode="numeric"
 					aria-label={segment}
 					value={editValues[segment]}
-					class="w-6 border-0 bg-card px-0.5 py-0.5 text-center text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+					class="w-6 border-0 bg-card px-0.5 text-center text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 					onfocus={(event) => {
 						focusedIndex = index;
 						(event.currentTarget as HTMLInputElement).select();

@@ -173,6 +173,17 @@
 	   the rest of the grid. */
 	--pad-box: calc(var(--spacing) * 1);
 
+	/* THE control height. Every single-line bordered control — buttons, text/number
+	   inputs, select triggers, segmented clusters, field composites — is EXACTLY
+	   `h-control` (md, 22px) or `h-control-sm` (sm, 18px). Never size such a control
+	   with `py-*` (padding-derived heights drift by a pixel across components) and
+	   never invent a third height. Derived from --spacing so density scaling keeps
+	   the invariant; the optical audit asserts it. Exempt: inline glyph controls
+	   (checkbox/radio), the app bar (--bar-height domain), multi-line areas, data
+	   viz (bar tracks). */
+	--spacing-control: calc(var(--spacing) * 5.5); /* 22px */
+	--spacing-control-sm: calc(var(--spacing) * 4.5); /* 18px */
+
 	/* App-bar (top chrome) height. Deliberately an integer px OUTSIDE the 4px grid:
 	   the bar is thin chrome, and a fixed even height centers its ~18px ThemeToggle +
 	   11px brand text on whole pixels. `py-*` here rounds unevenly and drifts the

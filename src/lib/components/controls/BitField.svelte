@@ -91,7 +91,7 @@
 		<FormLabel value={label} />
 	{/if}
 	<div class="stack-field">
-		<div class="inline-flex w-fit items-stretch border border-border bg-card">
+		<div class="inline-flex h-control w-fit items-stretch border border-border bg-card">
 			{#each indices as bitIndex, index}
 				{#if index > 0}
 					<div class={index % 4 === 0 ? 'w-1 border-l border-r border-border bg-muted' : 'w-px bg-border'}></div>
@@ -101,7 +101,7 @@
 					bind:this={cellRefs[index]}
 					aria-label={`Bit ${bitIndex}`}
 					aria-pressed={bitOn(bitIndex)}
-					class={`w-5 border-0 py-1 text-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
+					class={`w-5 border-0 text-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
 						bitOn(bitIndex) ? 'bg-foreground text-background' : 'bg-card text-muted-foreground'
 					}`}
 					onclick={() => toggleBit(bitIndex)}
@@ -120,7 +120,7 @@
 					type="text"
 					inputmode="text"
 					value={hexText}
-					class="border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+					class="h-control border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 					onfocus={() => focusedReadout = 'hex'}
 					onblur={() => focusedReadout = null}
 					oninput={(event) => commitHex((event.currentTarget as HTMLInputElement).value)}
@@ -133,7 +133,7 @@
 					type="text"
 					inputmode="numeric"
 					value={decText}
-					class="border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+					class="h-control border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 					onfocus={() => focusedReadout = 'dec'}
 					onblur={() => focusedReadout = null}
 					oninput={(event) => commitDec((event.currentTarget as HTMLInputElement).value)}

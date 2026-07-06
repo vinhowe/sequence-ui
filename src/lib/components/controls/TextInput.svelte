@@ -35,7 +35,7 @@
 			{type}
 			{placeholder}
 			bind:value
-			class="block w-full border border-border bg-card py-0.5 px-1 text-foreground placeholder:text-subtle-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"		/>
+			class="block h-control w-full border border-border bg-card px-1 text-foreground placeholder:text-subtle-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body"		/>
 		{#if onReset}
 			<ResetValueButton {hasDefaultValue} {onReset} />
 		{/if}

@@ -185,7 +185,7 @@
 			bind:this={trackRef}
 			role="presentation"
 			class={twMerge(
-				'relative h-5 flex-1 cursor-pointer touch-none border border-border bg-muted',
+				'relative h-control flex-1 cursor-pointer touch-none border border-border bg-muted',
 				isDragging && 'ring-1 ring-border-strong'
 			)}
 			onpointerdown={(event) => startPointerDrag(event, true)}
@@ -222,7 +222,7 @@
 				type="text"
 				inputmode="decimal"
 				bind:value={inputValue}
-				class="w-16 border border-border bg-card px-1.5 py-0.5 text-right text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+				class="h-control w-16 border border-border bg-card px-1.5 text-right text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 				onfocus={() => {
 					isFocused = true;
 				}}

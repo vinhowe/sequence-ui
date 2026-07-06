@@ -201,7 +201,7 @@
 			type="text"
 			inputmode="decimal"
 			bind:value={inputValue}
-			class="w-32 border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+			class="h-control w-32 border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 			onfocus={() => {
 				isFocused = true;
 			}}

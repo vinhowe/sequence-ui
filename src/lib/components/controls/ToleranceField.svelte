@@ -55,14 +55,14 @@
 	{#if label}
 		<FormLabel forInputId={`${id}-value`} value={label} />
 	{/if}
-	<div class="inline-flex items-stretch border border-border bg-card">
+	<div class="inline-flex h-control items-stretch border border-border bg-card">
 		<input
 			id={`${id}-value`}
 			type="text"
 			inputmode="decimal"
 			value={valueText}
 			aria-label="Nominal value"
-			class="w-20 border-0 bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+			class="w-20 border-0 bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 			onfocus={() => focusedField = 'value'}
 			onblur={() => focusedField = null}
 			oninput={(event) => updateValue((event.currentTarget as HTMLInputElement).value)}
@@ -74,7 +74,7 @@
 			inputmode="decimal"
 			value={toleranceText}
 			aria-label="Tolerance"
-			class={`w-16 border-0 bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
+			class={`w-16 border-0 bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value ${
 				toleranceInvalid ? 'border border-destructive' : ''
 			}`}
 			onfocus={() => focusedField = 'tolerance'}

@@ -43,7 +43,7 @@
 					{step}
 					{min}
 					{max}
-					class="block w-full border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+					class="block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 				/>
 				<span
 					class="inline-flex items-center border border-l-0 border-border bg-muted px-3 text-subtle-foreground type-value"
@@ -59,7 +59,7 @@
 				{step}
 				{min}
 				{max}
-				class="block w-full border border-border bg-card px-1.5 py-0.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+				class="block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
 			/>
 		{/if}
 		{#if onReset}

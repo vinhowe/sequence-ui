@@ -295,7 +295,7 @@
 				aria-controls={`${id}-menu`}
 				onclick={toggleMenu}
 				onkeydown={onTriggerKeydown}
-				class="block w-full border border-border py-0.5 pl-1 pr-6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring px-2 text-left rounded-none appearance-none bg-card text-foreground type-body"			>
+				class="flex h-control w-full items-center border border-border pl-1 pr-6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-left rounded-none appearance-none bg-card text-foreground type-body"			>
 				{#if trigger}
 					{@render trigger(selectedOption)}
 				{:else}

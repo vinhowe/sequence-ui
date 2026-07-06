@@ -44,8 +44,8 @@
 	let buttonEls = $state<HTMLButtonElement[]>([]);
 
 	const SIZE = {
-		sm: 'h-4.5 px-1 text-xs font-[550] [&_svg]:h-[10px] [&_svg]:w-[10px]',
-		md: 'h-5.5 px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
+		sm: 'h-control-sm px-1 text-xs font-[550] [&_svg]:h-[10px] [&_svg]:w-[10px]',
+		md: 'h-control px-1.5 text-sm [&_svg]:h-[11px] [&_svg]:w-[11px]'
 	} as const;
 
 	// Match the bolder sm label: thicken sm icon strokes (they render at 10px).

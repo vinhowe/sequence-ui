@@ -572,7 +572,7 @@
 
 		<!-- Number Input -->
 		<div class="flex gap-1.5 items-center">
-			<div class="flex h-7">
+			<div class="flex h-control">
 				<input
 					type="text"
 					bind:value={inputValueString}

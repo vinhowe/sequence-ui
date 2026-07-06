@@ -28,6 +28,7 @@ Design constants:
 - Surfaces: flat, no shadows.
 - Surface tiers: containers (Panel/Pane/CollapsibleSection bodies) are flat on bg-background, read by their border; only fields/controls/chrome ride the raised tier (bg-card / bg-panel); bg-muted is hover/emphasis only, never a resting surface (except bar tracks). A resting bg-muted block glows on a flat panel.
 - Motion: no state-transition animations — state changes are instant (professional-software feel); only continuous feedback (spinners, indeterminate bars) animates via @keyframes.
+- Control height: every single-line boxed control is exactly h-control (22px) or h-control-sm (18px); never py-* sized. Composites put h-control on the bordered wrapper.
 - Icons: fixed-px glyphs (10/11/13), decoupled from --spacing so they don't scale with density.
 - Borders: thin border-border hairlines.
 - Fonts: Berkeley Mono Variable (mono, bundled woff2 + @font-face, licensed — consumers bring their own); Inter (sans, self-hosted v4.1 variable woff2, SIL OFL — ships with the system).

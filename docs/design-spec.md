@@ -201,6 +201,25 @@ Two levels: a tight 4px within/between related controls, and a real 16px break a
 | `stack-group` | `gap-1` | 0.25rem (4px) | heading + panels within a section |
 | `stack-section` | `gap-4` | 1rem (16px) | page sections (a real break above each heading) |
 
+### Control height
+
+Every single-line boxed control — buttons, text/number inputs, select triggers,
+segmented clusters, field composites, `Pane` tabs — is **exactly** `h-control`
+(md) or `h-control-sm` (sm):
+
+```css
+--spacing-control: calc(var(--spacing) * 5.5); /* 22px */
+--spacing-control-sm: calc(var(--spacing) * 4.5); /* 18px */
+```
+
+Never size a control with `py-*` (padding-derived heights drift by a pixel across
+components and break composed rows — an input next to a button used to sit 23px vs
+22px), and never invent a third height. Composites (`ToleranceField`,
+`TimecodeField`, `BitField`) put `h-control` on the bordered wrapper; borderless
+innards stretch to fill. Exempt: inline glyph controls (checkbox/radio, reset ↺),
+the app bar (`--bar-height` domain), multi-line areas, and data-viz tracks.
+`scripts/audit/control-heights.js` asserts the invariant on any rendered page.
+
 Panel defaults from `Panel.svelte`:
 
 ```ts
