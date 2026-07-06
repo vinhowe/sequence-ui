@@ -220,6 +220,18 @@ innards stretch to fill. Exempt: inline glyph controls (checkbox/radio, reset â†
 the app bar (`--bar-height` domain), multi-line areas, and data-viz tracks.
 `scripts/audit/control-heights.js` asserts the invariant on any rendered page.
 
+### Interaction feedback
+
+Press over hover, per desktop convention: every control carries an instant
+**pressed** (`active:`) state one step deeper than its hover â€” macOS push buttons
+don't light on hover at all, and Windows/pro tools hover only subtly, but *both*
+acknowledge the press. Hover in Sequence UI is one quiet step (`hover:bg-muted`
+on gray controls, a small alpha bump on tinted ones, `hover:brightness-105` on
+the ActionButton gradient; pressed = `active:bg-border/50`, a further alpha bump,
+or `active:brightness-90` respectively). List rows (menu items, tree rows,
+options) hover-highlight and act on click with no separate pressed step, like
+native lists. Everything is instant under the no-transition rule.
+
 ### Cursor policy
 
 Desktop convention, matching the north star: the **arrow** is the cursor for every

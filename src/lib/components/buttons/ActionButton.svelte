@@ -46,8 +46,11 @@
 		gray: 'text-gray-100 bg-gradient-to-t from-gray-700 to-gray-500 border-gray-800 animate-pulse dark:text-gray-950 dark:from-gray-400 dark:to-gray-300 dark:border-gray-200'
 	};
 
+	// Desktop-native interaction feedback: a whisper of hover lift, and a real
+	// pressed state that darkens the whole button (label included) like a native
+	// push button. Instant — the global no-transition rule keeps it mechanical.
 	const baseClasses =
-		'inline-flex h-control items-center justify-center border px-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 disabled:saturate-50 type-button';
+		'inline-flex h-control items-center justify-center border px-1.5 hover:brightness-105 active:brightness-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 disabled:saturate-50 disabled:hover:brightness-100 type-button';
 
 	const computedColorClass = $derived(
 		color

@@ -119,7 +119,9 @@
 					class={twMerge(
 						'relative inline-flex items-center justify-center gap-1.5 font-sans leading-none font-medium whitespace-nowrap select-none focus-visible:z-10 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset focus-visible:outline-none disabled:opacity-50 [&_svg]:shrink-0',
 						SIZE[size],
-						selected ? 'bg-primary-accent/15 text-primary-accent' : 'text-foreground hover:bg-muted',
+						selected
+							? 'bg-primary-accent/15 text-primary-accent active:bg-primary-accent/25'
+							: 'text-foreground hover:bg-muted active:bg-border/50',
 						opt.label ? '' : 'aspect-square px-0'
 					)}
 				>

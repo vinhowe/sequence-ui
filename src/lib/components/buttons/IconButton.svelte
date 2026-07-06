@@ -35,7 +35,7 @@
 			? 'border-primary bg-primary text-primary-foreground animate-pulse'
 			: active
 				? 'bg-card text-foreground'
-				: 'hover:bg-muted'
+				: 'hover:bg-muted active:bg-border/50'
 	);
 	const iconClasses = $derived(size === 'sm' ? 'h-[10px] w-[10px]' : 'h-[11px] w-[11px]');
 	const normalizedAdditionalClasses = $derived(
