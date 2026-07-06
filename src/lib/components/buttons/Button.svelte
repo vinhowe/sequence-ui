@@ -39,7 +39,7 @@
 	}: Props = $props();
 
 	const base =
-		'relative inline-flex shrink-0 cursor-pointer items-center justify-center whitespace-nowrap border select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:pointer-events-none font-sans font-medium [&_svg]:shrink-0';
+		'relative inline-flex shrink-0 items-center justify-center whitespace-nowrap border select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 aria-disabled:opacity-50 aria-disabled:pointer-events-none font-sans font-medium [&_svg]:shrink-0';
 
 	// Fixed height + the font's NATURAL line-height, so every button matches height
 	// (icon or not) and the caps sit optically centered. (leading-none clips the

@@ -12,7 +12,7 @@
 
 <button
 	type="button"
-	class="w-3.75 h-3.75 text-muted-foreground disabled:text-border enabled:cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+	class="w-3.75 h-3.75 text-muted-foreground disabled:text-border enabled:focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 	title="Reset to default"
 	disabled={hasDefaultValue}
 	onclick={() => {

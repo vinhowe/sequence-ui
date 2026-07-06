@@ -220,6 +220,19 @@ innards stretch to fill. Exempt: inline glyph controls (checkbox/radio, reset �
 the app bar (`--bar-height` domain), multi-line areas, and data-viz tracks.
 `scripts/audit/control-heights.js` asserts the invariant on any rendered page.
 
+### Cursor policy
+
+Desktop convention, matching the north star: the **arrow** is the cursor for every
+control — buttons, tabs, segments, checkboxes, selects, menu items, collapsible
+headers. `cursor: pointer` means **navigation** and appears only on real links
+(`<a href>`, which gets it natively). Mechanic cursors are required where a drag
+mechanic exists and communicate *how the control operates*, not that it is
+clickable: `ew-resize` (ScrubInput, TimeBrush edges, ThresholdMarker marker),
+`grab`/`grabbing` (Slider thumb, AngleField dial, TimeBrush body), and the text
+caret in text fields. Disabled controls do not use `cursor-not-allowed` — opacity
+communicates the state and the control sits inert, as native controls do. (Same
+stance as Apple HIG, Adobe Spectrum, and Tailwind v4 preflight.)
+
 Panel defaults from `Panel.svelte`:
 
 ```ts

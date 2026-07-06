@@ -185,7 +185,7 @@
 			bind:this={trackRef}
 			role="presentation"
 			class={twMerge(
-				'relative h-control flex-1 cursor-pointer touch-none border border-border bg-muted',
+				'relative h-control flex-1 touch-none border border-border bg-muted',
 				isDragging && 'ring-1 ring-border-strong'
 			)}
 			onpointerdown={(event) => startPointerDrag(event, true)}

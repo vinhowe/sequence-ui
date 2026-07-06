@@ -80,5 +80,37 @@ function auditControlHeights() {
 			});
 		}
 	}
-	return { checked: seen.size, failures };
+	return { checked: seen.size, failures, cursorFailures: auditCursorPolicy() };
+}
+
+/**
+ * Cursor-policy invariant (desktop convention): the pointing hand means
+ * NAVIGATION — only real links (`<a href>`) may show `cursor: pointer`.
+ * Controls (buttons, inputs, selects, role=button/tab/radio rows) show the
+ * arrow; drag mechanics show their mechanic cursor (ew-resize, grab), which
+ * this check permits. `not-allowed` is banned everywhere (disabled = opacity).
+ */
+function auditCursorPolicy() {
+	const failures = [];
+	const controls = document.querySelectorAll(
+		'button, input, select, [role="button"], [role="tab"], [role="radio"], [role="menuitem"], [role="option"], [role="treeitem"]'
+	);
+	for (const el of controls) {
+		const cur = getComputedStyle(el).cursor;
+		if (cur === 'pointer' || cur === 'not-allowed') {
+			failures.push({
+				cursor: cur,
+				tag: el.tagName.toLowerCase(),
+				cls: el.className.toString().slice(0, 60),
+				text: (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 25)
+			});
+		}
+	}
+	// Links must keep the pointer (don't let a reset strip it):
+	for (const a of document.querySelectorAll('a[href]')) {
+		if (getComputedStyle(a).cursor !== 'pointer') {
+			failures.push({ cursor: getComputedStyle(a).cursor, tag: 'a', text: (a.textContent || '').trim().slice(0, 25), expected: 'pointer' });
+		}
+	}
+	return failures;
 }

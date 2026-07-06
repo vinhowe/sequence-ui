@@ -525,7 +525,7 @@
 			<div class="relative flex-1 flex flex-col gap-0.5 px-0.5">
 				<div
 					bind:this={trackRef}
-					class="relative cursor-pointer py-1 px-0.5 touch-none"
+					class="relative py-1 px-0.5 touch-none"
 				>
 					<!-- Track (inactive/leftover) — border tone, not muted, so it reads as a
 					     groove against the panel body (muted ≈ card, near-invisible). -->

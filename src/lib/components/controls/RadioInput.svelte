@@ -34,7 +34,7 @@
 <label
   for={id}
   class={twMerge(
-    `cursor-pointer select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0`,
+    `select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0`,
     wrapperClass,
   )}
 >

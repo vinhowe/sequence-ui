@@ -351,8 +351,6 @@
 									<button
 										type="button"
 										class="block w-full text-left px-1 py-1 rounded-none type-body"
-										class:cursor-pointer={!isDisabled}
-										class:cursor-not-allowed={isDisabled}
 										class:opacity-60={isDisabled}
 										disabled={isDisabled}
 										onclick={() => selectByMenuIndex(i)}

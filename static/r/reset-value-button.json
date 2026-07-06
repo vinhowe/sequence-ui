@@ -11,7 +11,7 @@
 	"files": [
 		{
 			"path": "src/lib/components/controls/ResetValueButton.svelte",
-			"content": "<script lang=\"ts\">\n\timport { UndoIcon } from '@lucide/svelte/icons';\n\n\tlet {\n\t\thasDefaultValue = false,\n\t\tonReset\n\t}: {\n\t\thasDefaultValue: boolean;\n\t\tonReset: () => void;\n\t} = $props();\n</script>\n\n<button\n\ttype=\"button\"\n\tclass=\"w-3.75 h-3.75 text-muted-foreground disabled:text-border enabled:cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring\"\n\ttitle=\"Reset to default\"\n\tdisabled={hasDefaultValue}\n\tonclick={() => {\n\t\tonReset?.();\n\t}}\n>\n\t<UndoIcon class=\"w-3.5 h-3.5\" strokeWidth={2.75} />\n</button>\n",
+			"content": "<script lang=\"ts\">\n\timport { UndoIcon } from '@lucide/svelte/icons';\n\n\tlet {\n\t\thasDefaultValue = false,\n\t\tonReset\n\t}: {\n\t\thasDefaultValue: boolean;\n\t\tonReset: () => void;\n\t} = $props();\n</script>\n\n<button\n\ttype=\"button\"\n\tclass=\"w-3.75 h-3.75 text-muted-foreground disabled:text-border enabled:focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring\"\n\ttitle=\"Reset to default\"\n\tdisabled={hasDefaultValue}\n\tonclick={() => {\n\t\tonReset?.();\n\t}}\n>\n\t<UndoIcon class=\"w-3.5 h-3.5\" strokeWidth={2.75} />\n</button>\n",
 			"type": "registry:ui",
 			"target": "lib/components/controls/ResetValueButton.svelte"
 		}

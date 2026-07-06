@@ -230,7 +230,7 @@
 								disabled={item.disabled}
 								class={twMerge(
 									'grid w-full grid-cols-[auto_1fr_auto] items-center gap-1.5 px-1.5 py-1 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-body',
-									item.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
+									item.disabled ? 'opacity-60' : '',
 									item.destructive ? 'text-destructive' : 'text-popover-foreground'
 								)}
 								onclick={() => selectIndex(i)}
