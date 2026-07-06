@@ -35,7 +35,7 @@
 		: 'bg-primary text-primary-foreground';
 	const inactiveButtonClasses = integrated
 		? 'hover:bg-bar-accent/40 active:bg-bar-accent/70'
-		: 'hover:bg-primary/10 active:bg-primary/20';
+		: 'hover:bg-primary/10 active:bg-primary/20 dark:hover:bg-primary/20 dark:active:bg-primary/30';
 
 	function optionClasses(value: ThemeMode) {
 		return twMerge(

@@ -49,8 +49,11 @@
 	// Desktop-native interaction feedback: a whisper of hover lift, and a real
 	// pressed state that darkens the whole button (label included) like a native
 	// push button. Instant — the global no-transition rule keeps it mechanical.
+	// Dark hovers brighter (110): the dark gradients are pastels near the channel
+	// ceiling, so x1.05 partially clips into a no-op; and thin brightness lifts
+	// read weaker at low luminance anyway (perceptual parity, not numeric).
 	const baseClasses =
-		'inline-flex h-control items-center justify-center border px-1.5 hover:brightness-105 active:brightness-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 disabled:saturate-50 disabled:hover:brightness-100 type-button';
+		'inline-flex h-control items-center justify-center border px-1.5 hover:brightness-105 active:brightness-90 dark:hover:brightness-110 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 disabled:saturate-50 disabled:hover:brightness-100 type-button';
 
 	const computedColorClass = $derived(
 		color

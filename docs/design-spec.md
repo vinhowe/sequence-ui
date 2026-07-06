@@ -232,6 +232,13 @@ or `active:brightness-90` respectively). List rows (menu items, tree rows,
 options) hover-highlight and act on click with no separate pressed step, like
 native lists. Everything is instant under the no-transition rule.
 
+Hover/press parity is **perceptual, not numeric**: thin accent washes lose
+perceived colorfulness at low luminance (the Hunt effect), and the dark
+ActionButton gradients are pastels near the sRGB channel ceiling where a small
+`brightness()` lift partially clips into a no-op. Dark mode therefore uses
+nominally larger steps (~1.6–2× the alpha delta on tinted fills;
+`brightness-110` vs `105` on the gradient) so both themes *feel* the same.
+
 ### Cursor policy
 
 Desktop convention, matching the north star: the **arrow** is the cursor for every
