@@ -62,13 +62,25 @@ Dark surface spread:
 
 | Token | Value | Role |
 | --- | --- | --- |
-| `--background` | `oklch(0.15 0 0)` | canvas |
-| `--card` | `oklch(0.2 0 0)` | component surface |
+| `--background` | `oklch(0.15 0 0)` | canvas — also the flat container body |
+| `--card` | `oklch(0.2 0 0)` | raised tier: fields, controls, code blocks |
 | `--popover` | `oklch(0.205 0 0)` | overlay surface |
-| `--muted` | `oklch(0.235 0 0)` | recessed/quiet surface |
-| `--panel` | `oklch(0.255 0 0)` | panel header/body contrast |
+| `--panel` | `oklch(0.2 0 0)` | raised chrome: headers, tab strips, IconButton/Menu/Pagination (== `--card`) |
+| `--muted` | `oklch(0.235 0 0)` | hover / emphasis step above the raised tier |
 | `--border` | `oklch(0.34 0 0)` | hairline border |
 | `--border-strong` | `oklch(0.48 0 0)` | stronger divider |
+
+**Surface model (both themes).** Containers are *flat* — `Panel` / `Pane` /
+`CollapsibleSection` bodies use `bg-background` and are read by their hairline
+border, not a fill. Only **fields, controls, and chrome** are lifted onto the
+raised tier (`--card` / `--panel`, which coincide in dark). `--muted` is the
+**hover / emphasis** step *above* the raised tier — use it for `hover:` / active
+states, **never as a resting surface** (a resting `bg-muted` block becomes the
+brightest thing on a flat panel and glows). The one deliberate exception is bar
+**tracks** (`ProgressBar` / `CapacityBar` / `TimeBrush`), which stay on `bg-muted`
+so the unfilled groove reads clearly. In light mode `--card` and `--background`
+are both white, so containers were always flat there; the model just makes dark
+match rather than raising container bodies.
 
 Accent tokens operate within the **Tailwind palette rungs**, behind the semantic
 names (set as e.g. `--primary: var(--color-purple-700)`). Components keep using
