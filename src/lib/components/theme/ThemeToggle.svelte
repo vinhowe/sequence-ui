@@ -28,11 +28,11 @@
 	const containerClasses = integrated
 		? 'flex items-stretch -mt-px divide-x divide-bar-border border-l border-bar-border'
 		: 'inline-flex divide-x divide-primary/20 border border-primary/30';
-	// Optical sizing: the label sits a rung smaller than body (text-2xs, 10px) but heavier
-	// (font-[540]), so its stems land at roughly body's stem width — smaller footprint, same
-	// perceived weight. Stem ≈ size × weight, matched to body (12.5px × 430) → ~540 at 10px.
+	// Sans, sentence-case — reads as a control, not a command. The label is set bolder
+	// (semibold) than its text-xs size would default to, so the small text carries
+	// body-like presence in the bar. Icons are thickened to match (strokeWidth 2.5).
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 px-1 font-sans text-2xs leading-none font-[540] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
+		'inline-flex items-center gap-1 px-1 font-sans text-xs leading-none font-semibold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
 	const activeButtonClasses = integrated
 		? 'bg-bar-accent text-bar-accent-foreground'
 		: 'bg-primary text-primary-foreground';
@@ -57,7 +57,7 @@
 			class={optionClasses(option.value)}
 			onclick={() => themeContext.setTheme(option.value)}
 		>
-			<Icon size={10} strokeWidth={2.5} aria-hidden="true" />
+			<Icon size={11} strokeWidth={2.5} aria-hidden="true" />
 			<span>{option.label}</span>
 		</button>
 	{/each}
