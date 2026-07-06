@@ -1067,7 +1067,7 @@
 									ThemeProvider resolves localStorage, system preference, and default theme, then
 									applies the html.dark class that powers Tailwind's custom dark variant.
 								</p>
-								<div class="border border-border bg-muted p-1 text-muted-foreground type-caption">
+								<div class="border border-border bg-muted p-1 text-muted-foreground type-body">
 									Storage key: sequence-ui-theme / class target: document.documentElement
 								</div>
 								<pre class="overflow-x-auto border border-border bg-muted pad-box text-foreground type-code"><code>{snippets.themeProvider}</code></pre>

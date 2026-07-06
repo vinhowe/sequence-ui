@@ -119,7 +119,7 @@
 					style:background={segment.color}
 					aria-hidden="true"
 				></span>
-				<span class="text-muted-foreground type-caption">{segment.label}</span>
+				<span class="text-muted-foreground type-body">{segment.label}</span>
 				<span class="type-value">{formatValue(segment.value)}</span>
 			</div>
 		{/each}

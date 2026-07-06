@@ -39,13 +39,15 @@ DO:
 
 ## Typography Roles
 
-All UI typography must use one of the nine semantic type utilities from `src/app.css`. Do not choose raw `text-*` sizes in product UI.
+All UI typography must use one of the ten semantic type utilities from `src/app.css`. Do not choose raw `text-*` sizes in product UI.
+
+**Emphasis is color + weight at a stable size; small size is a density decision, not de-emphasis.** The base is 12.5px (`type-body`, the workhorse). To make text *secondary*, drop its color — `type-body` + `text-muted-foreground` (or `text-subtle-foreground`) — same size, lighter. Do NOT shrink to de-emphasize. The 11px role (`type-fine`) is a **density escape hatch** for genuine fine print only (footnotes, source/paper references, dense annotations), where fitting more matters more than legibility.
 
 - `type-display`: understated large sans display, medium weight.
 - `type-heading`: sans section heading, medium weight.
 - `type-title`: compact sans panel/card title.
 - `type-body`: sans prose and normal readable text.
-- `type-caption`: sans secondary explanatory text.
+- `type-fine`: sans **fine print** (11px) — footnotes, source references, dense annotations. NOT general secondary text; for that use `type-body` + `text-muted-foreground`.
 - `type-label`: sans, 12px, medium — the prominent title style for every field/metric/alert label (FormLabel, Statistic, ProgressBar, Note). This is the one label style; route new labels through it so they never drift.
 - `type-tag`: mono, uppercase, small — code-like tags and value annotations (token names, radix tags, units), NOT human-readable field labels.
 - `type-button`: mono, uppercase command text.

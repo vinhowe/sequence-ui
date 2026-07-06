@@ -29,7 +29,7 @@
 
 <section class="mt-6" aria-labelledby="footnote-label" role="doc-endnotes">
 	<h2 id="footnote-label" class="sr-only">Footnotes</h2>
-	<ol class="text-muted-foreground space-y-1 list-none type-caption">
+	<ol class="text-muted-foreground space-y-1 list-none type-fine">
 		{#each entries as e (e.key)}
 			<li id={`fn-${e.key}`} role="doc-endnote" class="grid grid-cols-[auto_1fr] gap-x-3">
 				<span class="text-subtle-foreground type-value">{e.label + '.'}</span>

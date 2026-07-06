@@ -35,7 +35,7 @@ Type roles:
 - type-heading
 - type-title
 - type-body
-- type-caption
+- type-fine
 - type-label
 - type-tag
 - type-button

@@ -140,7 +140,7 @@ Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 
 | Heading | `type-heading` | sans | section headings, 15px |
 | Title | `type-title` | sans | panel titles, 12.5px |
 | Body | `type-body` | sans | prose and normal UI text, 12.5px |
-| Caption | `type-caption` | sans | secondary text, 11px |
+| Fine | `type-fine` | sans | fine print — footnotes, references, dense annotations, 11px |
 | Label | `type-label` | sans | field / metric / readout labels, 12px |
 | Tag | `type-tag` | mono uppercase | terse code-like tags — units, HEX/DEC, token names, 10px |
 | Button | `type-button` | mono uppercase | command labels, 11px |
@@ -148,6 +148,8 @@ Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 
 | Code | `type-code` | mono | code and radix/base editing, 12.5px |
 
 Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, terse instrument tags (`type-tag`), and the brand label. Sans is used for headings, navigation, prose, and labels (`type-label`).
+
+**Emphasis is color + weight, not size.** The base is 12.5px (`type-body`). De-emphasize by dropping color — `type-body` + `text-muted-foreground`/`text-subtle-foreground`, same size, lighter — never by shrinking. `type-fine` (11px) is a density escape hatch for genuine fine print (footnotes, references, dense annotations), not a "secondary text" style. In short: size = information density; color/weight = emphasis.
 
 Headings are understated: sans, medium weight, tight tracking, and followed by space from the parent stack. They are not big/bold display treatments.
 

@@ -9,7 +9,7 @@
 	let { citations }: { citations: CitationEntries } = $props();
 </script>
 
-<span class="text-subtle-foreground type-caption">
+<span class="text-subtle-foreground type-fine">
 	{#each citations?.entries ?? [] as e, i (e.name)}
 		{#if i > 0},
 		{/if}

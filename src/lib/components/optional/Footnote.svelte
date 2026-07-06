@@ -34,7 +34,7 @@
 	});
 </script>
 
-<sup class="ml-0.5 align-super type-caption">
+<sup class="ml-0.5 align-super type-fine">
 	<!-- eslint-disable svelte/no-navigation-without-resolve -->
 	<a
 		href={key ? `#fn-${key}` : undefined}

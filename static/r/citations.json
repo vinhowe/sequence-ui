@@ -9,7 +9,7 @@
 	"files": [
 		{
 			"path": "src/lib/components/feedback/Citations.svelte",
-			"content": "<script lang=\"ts\">\n\ttype CitationEntry = { name: string; url?: string };\n\n\texport type CitationEntries = {\n\t\tentries?: readonly CitationEntry[];\n\t\textra?: string;\n\t};\n\n\tlet { citations }: { citations: CitationEntries } = $props();\n</script>\n\n<span class=\"text-subtle-foreground type-caption\">\n\t{#each citations?.entries ?? [] as e, i (e.name)}\n\t\t{#if i > 0},\n\t\t{/if}\n\t\t{#if e.url}\n\t\t\t<!-- eslint-disable svelte/no-navigation-without-resolve -->\n\t\t\t<a\n\t\t\t\thref={e.url}\n\t\t\t\ttarget=\"_blank\"\n\t\t\t\trel=\"noopener noreferrer\"\n\t\t\t\tclass=\"underline underline-offset-2 decoration-dotted\">{e.name}</a\n\t\t\t>\n\t\t{:else}\n\t\t\t{e.name}\n\t\t{/if}\n\t{/each}{#if citations?.extra}{citations.extra}{/if}\n</span>\n",
+			"content": "<script lang=\"ts\">\n\ttype CitationEntry = { name: string; url?: string };\n\n\texport type CitationEntries = {\n\t\tentries?: readonly CitationEntry[];\n\t\textra?: string;\n\t};\n\n\tlet { citations }: { citations: CitationEntries } = $props();\n</script>\n\n<span class=\"text-subtle-foreground type-fine\">\n\t{#each citations?.entries ?? [] as e, i (e.name)}\n\t\t{#if i > 0},\n\t\t{/if}\n\t\t{#if e.url}\n\t\t\t<!-- eslint-disable svelte/no-navigation-without-resolve -->\n\t\t\t<a\n\t\t\t\thref={e.url}\n\t\t\t\ttarget=\"_blank\"\n\t\t\t\trel=\"noopener noreferrer\"\n\t\t\t\tclass=\"underline underline-offset-2 decoration-dotted\">{e.name}</a\n\t\t\t>\n\t\t{:else}\n\t\t\t{e.name}\n\t\t{/if}\n\t{/each}{#if citations?.extra}{citations.extra}{/if}\n</span>\n",
 			"type": "registry:ui",
 			"target": "lib/components/feedback/Citations.svelte"
 		}

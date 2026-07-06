@@ -23,7 +23,7 @@
 			{@render children?.()}
 		</span>
 		{#if funFact}
-			<span class="text-right w-full text-muted-foreground type-caption">
+			<span class="text-right w-full text-muted-foreground type-body">
 				{@render funFact?.()}
 			</span>
 		{/if}

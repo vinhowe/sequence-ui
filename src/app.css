@@ -268,7 +268,11 @@ body {
 	font-weight: 430; /* a hair thicker than 400 for body legibility; Inter is variable */
 	line-height: 1.45;
 }
-@utility type-caption {
+/* Fine print (11px). A DENSITY escape hatch — footnotes, source/paper references,
+   dense annotations — where fitting more matters more than legibility. NOT for general
+   "secondary" text: de-emphasize with color (text-muted-foreground) on type-body, not
+   by shrinking. Size = density; color/weight = emphasis. */
+@utility type-fine {
 	@apply font-sans text-xs font-normal;
 	line-height: 1.4;
 }
