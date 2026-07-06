@@ -13,7 +13,7 @@ Use these rules before inventing any component styling:
 - **Surface tiers.** Containers are flat — `Panel`/`Pane`/`CollapsibleSection` bodies use `bg-background` and are read by their hairline border, not a fill. Only **fields, controls, and chrome** ride the raised tier `bg-card` (headers/tab strips also use `bg-panel`, which equals `--card` in dark). `--muted` is the **hover/emphasis** step *above* the raised tier: use it for `hover:`/active states, **never as a resting surface** — a resting `bg-muted` block becomes the brightest thing on a flat panel and glows (put code samples, info boxes, stat tiles on `bg-card`). Deliberate exception: bar **tracks** (`ProgressBar`/`CapacityBar`/`TimeBrush`) keep `bg-muted` so the unfilled groove stays visible.
 - **No state-transition animations.** State changes are INSTANT (professional-software / DAW / AE feel) — a global rule kills every CSS `transition`. Never add `transition-*`. Continuous feedback (loading spinners, indeterminate bars) uses `animation`/@keyframes, which is fine.
 - Accent colors operate within the **Tailwind palette rungs**, behind semantic tokens (`--primary: var(--color-purple-700)`, `--destructive` = red, `--success` = green, `--warning` = amber, `--ring` = blue). Use the semantic utilities (`bg-primary`, `text-destructive`) — never raw palette classes in product UI. The surface gray ladder and the chart palette stay bespoke OKLCH (deliberate). Colored buttons use `--primary-accent`/`--destructive-accent` (paler rung in dark).
-- **Purple is Sequence UI's OWN brand default, not a requirement — and the brand color is the USER's decision.** A consuming app uses its own primary/brand hue; **if the user hasn't specified one, ASK them to pick from the Tailwind palette (https://tailwindcss.com/docs/colors) — do not silently keep purple or choose a color for them.** Once you have their hue, since accents are already rungs, switching = find/replace `purple` in the token block: `--primary` (light `<hue>-700` / dark `<hue>-500`), `--primary-accent` (dark → a lighter rung), and the `AppBar` purple classes. Keep the surface grays, the status colors (destructive/success/warning), and `--ring` — those are semantic, not brand.
+- **Purple is Sequence UI's OWN brand default, not a requirement — and the brand color is the USER's decision.** A consuming app uses its own primary/brand hue; **if the user hasn't specified one, ASK them to pick from the Tailwind palette (https://tailwindcss.com/docs/colors) — do not silently keep purple or choose a color for them.** Once you have their hue, since accents are already rungs, switching = find/replace `purple` in the token block: `--primary` (light `<hue>-700` / dark `<hue>-500`), `--primary-accent` (dark → a lighter rung), and the `--bar-*` tokens (AppBar chrome: bg / foreground / border / accent(+foreground) — the integrated `ThemeToggle` reads these too, so the bar rebrands from one place, and no component hardcodes a hue). Keep the surface grays, the status colors (destructive/success/warning), and `--ring` — those are semantic, not brand.
 - Borders are thin `border border-border` hairlines; use `border-border-strong` only when hierarchy needs it.
 - Primary commands use `ActionButton` gradients, not generic pill buttons.
 - Icons come from Lucide. Size icon glyphs in **fixed px** (10 / 11 / 13), never `--spacing`-multiples (`h-3.5`), so icon size is decoupled from layout density and doesn't scale when `--spacing` changes.
@@ -165,6 +165,7 @@ Core shadcn-compatible tokens:
 Sequence extensions:
 
 - `--panel`, `--panel-foreground`
+- `--bar`, `--bar-foreground`, `--bar-border`, `--bar-accent`, `--bar-accent-foreground` (AppBar + integrated ThemeToggle chrome; brand-hued rungs — the one override point for the bar)
 - `--highlight`
 - `--border-strong`
 - `--subtle-foreground`
@@ -215,9 +216,9 @@ The reusable project header is a full-width top bar with a purple identity strip
 If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (20px), and NEVER `py-*`.** At ~20px it must center a ~18px `ThemeToggle` + 11px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `px-1.5`.
 
 ```svelte
-<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
+<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
 	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
-	<ThemeToggle />
+	<ThemeToggle integrated />
 </header>
 ```
 

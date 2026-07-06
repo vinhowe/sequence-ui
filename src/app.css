@@ -42,6 +42,15 @@
 	/* primary/destructive as an accent-on-surface (button text/border/tint). Same as
 	   the base in light; goes paler in dark so colored buttons soften on the dark ground. */
 	--primary-accent: var(--primary);
+	/* App-bar chrome: brand-hued surface for AppBar + the integrated ThemeToggle.
+	   Its OWN tokens (not --primary) because the bar is a lighter/darker spread of the
+	   brand than the primary rung. To rebrand, point these at your hue's rungs — this
+	   is the single override point for the bar, so components never hardcode purple. */
+	--bar: var(--color-purple-200);
+	--bar-foreground: var(--color-purple-900);
+	--bar-border: var(--color-purple-300);
+	--bar-accent: var(--color-purple-300);
+	--bar-accent-foreground: var(--color-purple-950);
 	--secondary: oklch(0.96 0 0);
 	--secondary-foreground: oklch(0.27 0 0);
 	--accent: oklch(0.96 0 0);
@@ -86,6 +95,11 @@
 	--primary: var(--color-purple-500);
 	--primary-foreground: oklch(0.99 0 0);
 	--primary-accent: var(--color-purple-400);
+	--bar: var(--color-purple-950);
+	--bar-foreground: var(--color-purple-200);
+	--bar-border: var(--color-purple-900);
+	--bar-accent: var(--color-purple-800);
+	--bar-accent-foreground: var(--color-purple-50);
 	--secondary: oklch(0.25 0 0);
 	--secondary-foreground: oklch(0.96 0 0);
 	--accent: oklch(0.25 0 0);
@@ -124,6 +138,11 @@
 	--color-primary: var(--primary);
 	--color-primary-foreground: var(--primary-foreground);
 	--color-primary-accent: var(--primary-accent);
+	--color-bar: var(--bar);
+	--color-bar-foreground: var(--bar-foreground);
+	--color-bar-border: var(--bar-border);
+	--color-bar-accent: var(--bar-accent);
+	--color-bar-accent-foreground: var(--bar-accent-foreground);
 	--color-secondary: var(--secondary);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-accent: var(--accent);

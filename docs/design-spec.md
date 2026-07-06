@@ -114,9 +114,21 @@ purple or choosing for them. Once you have their hue, since the accents are alre
 rungs, switching is a
 find/replace of `purple` in the token block: `--primary` (light `<hue>-700` / dark
 `<hue>-500`), `--primary-accent` (dark → a lighter rung such as `<hue>-400`), and the
-`AppBar`'s `bg-purple-*` / `text-purple-*` / `border-purple-*` classes. Leave the
+`--bar-*` tokens (the AppBar chrome — see below). Leave the
 surface grays, the status colors (`--destructive`/`--success`/`--warning`), and
 `--ring` (blue) — those are semantic, not brand.
+
+App-bar chrome tokens — a brand-hued spread used by `AppBar` and the integrated
+`ThemeToggle`, so the bar rebrands from one place and neither component hardcodes a
+hue. Point these at your hue's rungs to rebrand the bar:
+
+| Token | Light | Dark | Role |
+| --- | --- | --- | --- |
+| `--bar` | `purple-200` | `purple-950` | bar surface |
+| `--bar-foreground` | `purple-900` | `purple-200` | bar text |
+| `--bar-border` | `purple-300` | `purple-900` | bar border + toggle dividers |
+| `--bar-accent` | `purple-300` | `purple-800` | integrated toggle active chip |
+| `--bar-accent-foreground` | `purple-950` | `purple-50` | active chip text |
 
 Categorical chart palette:
 
@@ -252,9 +264,9 @@ Use token utilities such as `bg-card`, `text-card-foreground`, `border-border`, 
 Project header — use the `AppBar` component (`<AppBar title="…"><ThemeToggle /></AppBar>`). It's app chrome, so its height is a **fixed integer px** via `--bar-height` (20px), **not `py-*`** and not the 4px grid — at ~20px, padding-based sizing rounds unevenly and drifts the ~18px toggle + 11px text off-center. The raw recipe the component encapsulates:
 
 ```svelte
-<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
+<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
 	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
-	<ThemeToggle />
+	<ThemeToggle integrated />
 </header>
 ```
 

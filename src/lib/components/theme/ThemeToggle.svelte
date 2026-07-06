@@ -20,19 +20,20 @@
 	] satisfies Array<{ label: string; value: ThemeMode; icon: typeof Sun }>;
 
 	// A small segmented switch. Sans + sentence-case — reads as a control, not a
-	// mono/uppercase command. Active segment is a solid primary chip.
-	// `integrated` docks it into the app bar: full height, the bar's own border color,
-	// no floating pill outline — vs. the standalone pill (primary-tinted border) used
-	// on normal surfaces (e.g. the gallery demo).
+	// mono/uppercase command.
+	// `integrated` docks it into the app bar: full height, no floating pill outline, and
+	// every color (dividers, active chip, hover) reads the AppBar's `--bar-*` tokens, so
+	// it rebrands together with the bar and never hardcodes a hue. The standalone pill
+	// (primary-tinted border, solid-primary chip) is used on normal surfaces (gallery demo).
 	const containerClasses = integrated
-		? 'flex items-stretch -mt-px divide-x divide-purple-300 border-l border-purple-300 dark:divide-purple-900 dark:border-purple-900'
+		? 'flex items-stretch -mt-px divide-x divide-bar-border border-l border-bar-border'
 		: 'inline-flex divide-x divide-primary/20 border border-primary/30';
 	const baseButtonClasses =
 		'inline-flex items-center gap-1 px-1 font-sans text-xs leading-none font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
 	const activeButtonClasses = integrated
-		? 'bg-purple-300 text-purple-950 dark:bg-purple-800 dark:text-purple-50'
+		? 'bg-bar-accent text-bar-accent-foreground'
 		: 'bg-primary text-primary-foreground';
-	const inactiveButtonClasses = 'hover:bg-primary/10';
+	const inactiveButtonClasses = integrated ? 'hover:bg-bar-accent/40' : 'hover:bg-primary/10';
 
 	function optionClasses(value: ThemeMode) {
 		return twMerge(

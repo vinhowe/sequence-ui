@@ -19,12 +19,14 @@
   App chrome: a thin, full-width sticky top bar. Height is a fixed integer px
   (`--bar-height`, default 20px) — deliberately OUTSIDE the 4px grid and NOT `py-*` —
   so the ~18px ThemeToggle and 11px brand text center on whole pixels. Padding-based
-  sizing rounds unevenly at this height and drifts the contents up/down. Purple is the
-  on-brand default; override colors via `class` if your app's chrome differs.
+  sizing rounds unevenly at this height and drifts the contents up/down. The bar chrome
+  is driven by the `--bar-*` tokens (brand-hued purple defaults) — rebrand by pointing
+  those at your hue, or override per-instance via `class`. The integrated ThemeToggle
+  reads the same tokens, so the bar stays a single source of truth.
 -->
 <header
 	class={twMerge(
-		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-purple-300 bg-purple-200 pl-1.5 text-purple-900 dark:border-b-purple-900 dark:bg-purple-950 dark:text-purple-200',
+		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground',
 		wrapperClass
 	)}
 >
