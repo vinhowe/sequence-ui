@@ -24,7 +24,7 @@
 -->
 <header
 	class={twMerge(
-		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-b border-purple-300 bg-purple-200 px-1.5 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200',
+		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-purple-300 bg-purple-200 pl-1.5 text-purple-900 dark:border-b-purple-900 dark:bg-purple-950 dark:text-purple-200',
 		wrapperClass
 	)}
 >
@@ -36,6 +36,6 @@
 		<span></span>
 	{/if}
 	{#if children}
-		<div class="flex items-center gap-2">{@render children()}</div>
+		<div class="flex self-stretch gap-2">{@render children()}</div>
 	{/if}
 </header>

@@ -331,7 +331,7 @@
 <ThemeProvider>
 	<div class="fixed inset-0 flex flex-col overflow-hidden bg-background text-foreground">
 		<AppBar title="Sequence UI">
-			<ThemeToggle />
+			<ThemeToggle integrated />
 		</AppBar>
 
 		<div class="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[10rem_1fr]">
