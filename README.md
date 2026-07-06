@@ -37,6 +37,16 @@ cp -r /path/to/cloned/sequence-ui/.claude/skills/sequence-ui .claude/skills/
 
 Then in Claude Code, run `/sequence-ui`, or just ask for the Sequence UI look — the skill auto-triggers on mentions of Sequence UI, sequence.toys, or the Sequence Toy aesthetic. The only requirement in the target app is Tailwind v4 (`@tailwindcss/vite`) + Svelte 5.
 
+## Updating
+
+Copy-in means there are no version numbers — the registry and rules are always served from `main`, so your "version" is the `main` commit SHA you last pulled from. There is **no SHA baked into the files** (it can't be stamped correctly at build time); read it live:
+
+```sh
+git ls-remote https://github.com/vinhowe/sequence-ui.git main | cut -f1
+```
+
+Record it (e.g. `.sequence-ui.json`: `{ "sha": "…", "components": [...] }`). To update, compare `github.com/vinhowe/sequence-ui/compare/<your-sha>...main`, re-pull the components you use, and reconcile via your app's git diff. See [`CHANGELOG.md`](CHANGELOG.md) for breaking changes, and the skill's "Staying up to date" for the full loop.
+
 ## Minimal Usage
 
 Import `src/app.css` once in the app shell, then wrap the application in `ThemeProvider`. Import copied components from wherever the registry installed them.

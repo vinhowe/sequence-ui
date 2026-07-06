@@ -83,6 +83,8 @@ If cross-item dependency resolution fails, fall back to A.
 - **theme:** `theme-provider`, `theme-toggle`
 - **buttons:** `action-button`, `button`, `icon-button`, `segmented-control`
 
+After installing, record what you pulled in `.sequence-ui.json` so the app can be updated later — see §6.
+
 ## 4. Compose by the rules
 
 - Group controls inside `Panel` (title + bordered body, defaults to `pad-box stack-field`). Stack sections with `stack-section`; panel grids `gap-1`.
@@ -97,3 +99,28 @@ Keep the full DO/DON'T set from AGENTS.md open while composing.
 ## 5. Verify
 
 Run the project's checks (`pnpm check`, `pnpm build`) and view in **both** light and dark (toggle `.dark` on `<html>`, or use `ThemeToggle`). Confirm: no raw `text-*` sizes, no hardcoded colors, no left-border active cues, no shadows/rounded corners, tight spacing.
+
+## 6. Staying up to date
+
+Copy-in means there's no package to bump — the registry and rules are always served from `main`, so "your version" is just the `main` SHA you last pulled from. No SHA is baked into the files; read it live from GitHub.
+
+**Record what you pulled.** After installing or updating components, write `.sequence-ui.json` at the project root:
+
+```json
+{ "sha": "<main sha>", "components": ["panel", "slider", "action-button"] }
+```
+
+Get the current SHA (public repo, no auth needed):
+
+```sh
+git ls-remote https://github.com/vinhowe/sequence-ui.git main | cut -f1
+```
+
+**Update.** Read `main`'s SHA again; if it differs from your recorded one:
+
+1. Skim what changed — `…/main/CHANGELOG.md` (breaking items + the action to take) and, for the exact diff, `github.com/vinhowe/sequence-ui/compare/<recorded-sha>...main`.
+2. Re-fetch `AGENTS.md` / `llms.txt` (always current) if tokens or roles moved.
+3. Re-pull the components you use (fetch each `static/r/<name>.json` again, overwrite) and reconcile local edits via your app's own git diff.
+4. Bump `sha` in `.sequence-ui.json`.
+
+Your app's git diff is the real changelog for the copied files; the compare URL + `CHANGELOG.md` tell you *why* they changed.
