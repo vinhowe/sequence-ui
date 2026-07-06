@@ -21,7 +21,7 @@
 			? 'border-warning/60 bg-warning/15'
 			: type === 'error'
 				? 'border-destructive/60 bg-destructive/15'
-				: 'border-border-strong/60 bg-muted/50'
+				: 'border-border-strong/60 bg-card/50'
 	);
 
 	const labelColorClass = $derived(

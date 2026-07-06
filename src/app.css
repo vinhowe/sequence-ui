@@ -64,10 +64,13 @@
 }
 
 .dark {
-	/* Surface ladder spread for clearer layering: canvas -> card -> muted -> panel */
+	/* Surface ladder. Containers (Panel/Pane/CollapsibleSection bodies) sit flat on
+	   the canvas and are read by their hairline border; raised chrome (headers/tab
+	   strips, IconButton/Menu/Pagination) and fields share one lifted tier; muted is
+	   the hover/emphasis step above it: canvas -> raised(card/panel) -> muted */
 	--background: oklch(0.15 0 0);
 	--foreground: oklch(0.96 0 0);
-	--panel: oklch(0.255 0 0);
+	--panel: oklch(0.2 0 0);
 	--panel-foreground: oklch(0.96 0 0);
 	--card: oklch(0.2 0 0);
 	--card-foreground: oklch(0.96 0 0);

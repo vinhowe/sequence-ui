@@ -33,8 +33,8 @@
 	}: Props = $props();
 </script>
 
-<div class={twMerge('flex min-h-0 flex-col border border-border bg-card', rootClass)}>
-	<!-- Tab strip. The active tab uses the body's bg-card + a transparent bottom border,
+<div class={twMerge('flex min-h-0 flex-col border border-border bg-background', rootClass)}>
+	<!-- Tab strip. The active tab uses the body's bg-background + a transparent bottom border,
 	     and the row is pulled down 1px (-mb-px) so it merges into the pane below (VS Code look). -->
 	<div
 		class={twMerge('flex shrink-0 items-stretch bg-panel', tabsClass)}
@@ -52,7 +52,7 @@
 					class={twMerge(
 						'flex items-center gap-1.5 border-r border-b border-border px-2 py-1 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
 						isActive
-							? 'border-b-transparent bg-card text-foreground'
+							? 'border-b-transparent bg-background text-foreground'
 							: 'text-muted-foreground hover:text-foreground'
 					)}
 					onclick={() => (active = tab.id)}

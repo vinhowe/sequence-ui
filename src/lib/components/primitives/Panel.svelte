@@ -35,7 +35,7 @@
 	}
 </script>
 
-<div {id} class={twMerge(`border border-border overflow-hidden bg-card`, rootClass)}>
+<div {id} class={twMerge(`border border-border overflow-hidden bg-background`, rootClass)}>
 	<div class={headerClass}>
 		{#if title}
 			<div class="flex flex-col">
