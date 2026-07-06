@@ -336,7 +336,7 @@
 
 		<div class="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[10rem_1fr]">
 			<aside
-				class="hidden min-h-0 overflow-y-auto overscroll-contain border-r border-border bg-panel md:block"
+				class="hidden min-h-0 overflow-y-auto overscroll-contain border-r border-border bg-background md:block"
 				aria-label="Gallery sections"
 			>
 				<nav class="flex flex-col">
@@ -349,8 +349,8 @@
 								i < navItems.length - 1 ? 'border-b border-b-border/60' : ''
 							} ${
 								active
-									? 'bg-card text-foreground'
-									: 'text-muted-foreground hover:bg-card/50 hover:text-foreground'
+									? 'bg-primary/12 text-foreground'
+									: 'text-muted-foreground hover:bg-muted hover:text-foreground'
 							}`}
 						>
 							{item.label}
@@ -361,9 +361,9 @@
 
 			<main class="min-h-0 overflow-y-auto overscroll-contain scroll-smooth bg-background">
 				<!-- Spacing is container-owned, two levels only: sections are spaced by
-				     `stack-section` (6.4px); everything inside a section — heading to
+				     `stack-section` (16px); everything inside a section — heading to
 				     panels, panel to panel, both axes — is `stack-group` / `gap-1`
-				     (3.2px). No panel or heading sets its own external margin. -->
+				     (4px). No panel or heading sets its own external margin. -->
 				<div class="mx-auto max-w-7xl stack-section p-2 sm:p-4">
 					<section id="foundations" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Foundations</h2>

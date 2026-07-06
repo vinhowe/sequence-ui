@@ -18,12 +18,12 @@
 	<span class="text-foreground type-label"
 		><KatexBlock text={label} /></span
 	>
-	<span class="flex items-baseline gap-x-1">
-		<span class="type-value">
+	<span class="flex flex-wrap items-baseline gap-x-1">
+		<span class="whitespace-nowrap type-value">
 			{@render children?.()}
 		</span>
 		{#if funFact}
-			<span class="text-right w-full text-muted-foreground type-body">
+			<span class="text-muted-foreground type-body">
 				{@render funFact?.()}
 			</span>
 		{/if}
