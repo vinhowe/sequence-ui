@@ -2,6 +2,8 @@
 
 This file is the implementation contract for coding agents recreating the Sequence UI look. Sequence UI is a Svelte 5 runes, Tailwind v4 CSS-first, TypeScript design system extracted from the Sequence Toy app. The visual target is an instrument panel: dense, flat, sharp, technical, and calm.
 
+**North star: high-density professional desktop software** — think DAWs, node editors, pro color/photo tools — **NOT a terminal, and not "hacker" cosplay.** Compact but *easy to use*. The most common failure mode is over-monospacing: sans is the voice of the UI (headings, labels, navigation, prose, button-adjacent text roles that are sans); mono is an instrumentation accent reserved for values, code, and terse tags. If a screen reads like a TUI, it's wrong.
+
 ## Core DNA
 
 Use these rules before inventing any component styling:
@@ -114,6 +116,8 @@ Instrument-dense, matching Sequence Toy's Control Panel: one tight 4px step insi
 - **Within** a panel / cluster — **4px, `gap-1`**: controls in a panel body, buttons or radios in a row, panels within a section. Both axes: a panel grid's horizontal `gap-1` is the same 4px as the section's `stack-group` vertical stacking (this is what keeps vertical == horizontal). Horizontal button/control clusters use `gap-1` too — never wider than panels.
 - **Between** distinct groups in a row — **8px, `gap-2`** (e.g. two separate control clusters side by side).
 - **Between page sections** — **16px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
+
+**Decision procedure — does your page have sections at all?** A "section" means an **`h2`-led page region** (the pattern the specimen/gallery page uses to document many components at once). Most product pages don't have those: a settings page, an inspector, a control surface is just a **stack of titled panels**, and the `Panel` title IS the group heading. In that case there are no `h2`s and no `stack-section` — the panels stack at `gap-1` (4px, or contiguous border-separated). **Never** pair an `h2` with a single `Panel` repeating the same word ("General" twice), and never use `stack-section` between plain panels — 16px gaps between panels is the classic "agent prior" that makes the page read as SaaS instead of an instrument.
 
 Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 4px; the page column is `stack-section` (16px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead. The **one exception is `prose`** (running-text blocks), which owns its own rhythm on purpose — see Typography. That's the ONLY margin a child may carry, and it comes from the utility, not a hand-added `mt-*`.
 
@@ -389,6 +393,20 @@ DO use the tight stack scale and Panel defaults.
 </Panel>
 ```
 
+DON'T let short-content fields fill the column. Size fields to their expected content (GOV.UK-style): numeric and unit fields are content-sized; only free text, paths, and URLs may fill the column width.
+
+```svelte
+<NumberInput id="streams" label="Max concurrent streams" bind:value={streams} />
+<!-- renders a ~600px-wide box holding the number 4 -->
+```
+
+DO give short fields a content-appropriate width via `class`.
+
+```svelte
+<NumberInput id="streams" label="Max concurrent streams" bind:value={streams} class="w-24" />
+<TextInput id="cache" label="Local cache directory" bind:value={dir} />  <!-- paths fill: fine -->
+```
+
 DON'T add rounded corners, drop shadows, glass effects, or skeuomorphic styling.
 
 ```svelte
@@ -410,6 +428,13 @@ Authoritative component names from `src/lib/index.ts`:
 - Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed 24px height, natural line-height — Inter's tall x-height self-centers the label, no nudge needed. The default `outline` variant is the **Flat Hairline** look: 1px border, accent in border+text, only a faint fill that deepens on hover. `solid` primary/destructive are soft low-alpha tints, not saturated fills), `SegmentedControl` (single-select joined cluster with shared hairline dividers — a mode/tool switch, DAW/AE-style; text or icon-only segments, arrow-key + Home/End nav, `bind:value`), `IconButton`
 - Primitives: `Panel`, `BorderedGroup`, `CollapsibleSection`, `Pane`
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
+
+Control conventions (apply across the catalog):
+
+- **Picking a numeric control:** `Slider` for bounded continuous values where seeing the position in range informs (the hero control); `ScrubInput` for any fine-tunable numeric — drag-to-set + typed entry, `step` (Shift=×10, Alt=÷10), `precision`, optional `unit` — including arbitrary-precision floats; `NumberInput` for plain discrete counts with no drag affordance. When in doubt between ScrubInput and NumberInput, prefer ScrubInput.
+- **Option shapes:** `SelectInput` options are `{ value, label, disabled? }` (`label` is the visible text); `RadioGroupInput` options are `{ value, label }`.
+- **`hasDefaultValue` means "the value currently EQUALS its default"** — it disables the `ResetValueButton` (nothing to reset). It does NOT mean "a default exists." Wire it as `value === defaultValue`.
+- **Destructive confirmation is inline, not modal:** there is no dialog component, and that's intentional for now. Use the two-step arm→confirm swap on the button itself — first activation arms it (label becomes `Confirm — <consequence>`, with a plain Cancel beside it), second performs. Pair with an amber `Note` explaining the consequence. Do not hand-roll modal overlays.
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`
 - Navigation: `Menu`, `Breadcrumb`, `Pagination`, `Tree`
 - Data: `CapacityBar`, `TimeBrush`, `ProgressBar`

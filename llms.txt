@@ -1,5 +1,7 @@
 Sequence UI: Svelte 5 runes + Tailwind v4 CSS-first + TypeScript design system for dense, flat, sharp, light/dark instrument-panel interfaces extracted from Sequence Toy.
 
+North star: high-density professional desktop software (DAWs, node editors, pro color tools) — NOT a terminal or hacker aesthetic. Compact but easy to use. Sans is the voice of the UI; mono is an instrumentation accent for values/code/tags only. Product pages are stacks of titled panels at 4px gaps (Panel title = the heading); h2-led sections + 16px stack-section are for specimen/doc pages.
+
 Key paths:
 - README.md: human-facing overview, install, usage, commands, component catalog.
 - AGENTS.md: prescriptive coding-agent visual spec and anti-patterns.

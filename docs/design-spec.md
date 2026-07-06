@@ -2,6 +2,8 @@
 
 Sequence UI is a Svelte 5 runes, Tailwind v4 CSS-first, TypeScript design system. Its visual language is dense instrument-panel UI: compact, flat, sharp, and precise. It was extracted from the Sequence Toy app and adds first-class light/dark theming.
 
+The north star is **high-density professional desktop software** — DAWs, node editors, pro color/photo tools — **not a terminal**. Compact but easy to use: sans carries the interface (headings, labels, navigation, prose); mono is an instrumentation accent reserved for values, code, and terse tags. Density derives from a small set of scalable units (`--spacing`, `--text-base`, `--pad-box`) so the proportions survive scaling (e.g. the coarse-pointer bump); less-dense presets are a future goal once this density is fully dialed in.
+
 ## Fonts
 
 Sequence UI uses two font families:
