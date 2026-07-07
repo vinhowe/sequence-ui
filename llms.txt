@@ -31,6 +31,7 @@ Design constants:
 - Control height: every single-line boxed control is exactly h-control (22px) or h-control-sm (18px); never py-* sized. Composites put h-control on the bordered wrapper.
 - Cursor: desktop convention — arrow on all controls (never cursor-pointer on buttons/tabs/checkboxes); pointer is for links only; mechanic cursors (ew-resize, grab) where drag exists; no cursor-not-allowed.
 - Selected state: primary tint (bg-primary/12 rows, bg-primary-accent/15 controls) or inversion — never surface-pair contrast (panel vs card coincide in dark).
+- Disabled: grayed in place (opacity-50, inert), never hidden for enable-gates; ToggleGroup/fieldset:disabled gate groups natively; hide only for contextual irrelevance (mode switches).
 - Feedback: press > hover — every control has an instant active: pressed state one step deeper than its subtle hover; never hover-without-press; list rows hover-highlight only.
 - Tinted feedback via theme-scoped tokens: hover:bg-<accent>/(--tint-hover), active:bg-<accent>/(--tint-active) (solids: --tint-solid-*; gradients: hover:brightness-(--lift-hover)) — tokens run larger in dark for perceptual parity; never hand-pick hover alphas.
 - Icons: fixed-px glyphs (10/11/13), decoupled from --spacing so they don't scale with density.

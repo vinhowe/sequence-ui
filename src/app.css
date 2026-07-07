@@ -297,6 +297,15 @@ body {
 	::after {
 		transition-property: none !important;
 	}
+
+	/* Disabled gating: `<fieldset disabled>` natively inerts every form control
+	   inside it (ToggleGroup gates children this way — grayed in place, never
+	   hidden). Div-based drag surfaces (Slider track, brush bodies) aren't form
+	   controls, so extend the inerting to everything in the subtree. Disabled
+	   reads via opacity; per the cursor policy there is no not-allowed cursor. */
+	fieldset:disabled {
+		pointer-events: none;
+	}
 }
 
 /* Semantic type roles — the only sanctioned way to set typography.

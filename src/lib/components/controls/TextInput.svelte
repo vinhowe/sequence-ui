@@ -15,6 +15,7 @@
 		fieldClass?: string;
 		placeholder?: string;
 		type?: string;
+		disabled?: boolean;
 		/** Leading affix cell inside the border (a tag, an icon, "https://"). */
 		prefix?: Snippet;
 		/** Trailing affix cell inside the border. A bare `<button>` here is styled
@@ -32,6 +33,7 @@
 		fieldClass = '',
 		placeholder = '',
 		type = 'text',
+		disabled = false,
 		prefix,
 		suffix,
 		hasDefaultValue = false,
@@ -47,7 +49,7 @@
 		'flex shrink-0 items-stretch [&>button]:flex [&>button]:items-center [&>button]:px-1.5 [&>button]:font-sans [&>button]:text-sm [&>button]:font-medium [&>button]:text-muted-foreground [&>button]:hover:bg-muted [&>button]:hover:text-foreground [&>button]:active:bg-border/50 [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-1 [&>button]:focus-visible:ring-ring [&>button]:focus-visible:ring-inset [&>span]:flex [&>span]:items-center [&>span]:px-1.5 [&>span]:text-muted-foreground';
 </script>
 
-<div class="relative stack-tight {wrapperClass}">
+<div class={`relative stack-tight ${disabled ? 'pointer-events-none opacity-50' : ''} ${wrapperClass}`.trim()}>
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
@@ -67,6 +69,7 @@
 				{id}
 				{type}
 				{placeholder}
+				{disabled}
 				bind:value
 				class="block h-full w-full min-w-0 flex-1 border-0 bg-transparent px-1 text-foreground placeholder:text-subtle-foreground focus-visible:outline-none type-body"
 			/>

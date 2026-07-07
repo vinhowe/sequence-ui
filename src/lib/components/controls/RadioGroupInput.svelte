@@ -17,6 +17,7 @@
     hasDefaultValue?: boolean;
     onReset?: () => void;
     direction?: "row" | "col";
+    disabled?: boolean;
   };
 
   let {
@@ -30,10 +31,11 @@
     hasDefaultValue = false,
     onReset = undefined,
     direction = "row",
+    disabled = false,
   }: $$Props = $props();
 </script>
 
-<div class={twMerge("relative stack-tight", wrapperClass)}>
+<div class={twMerge("relative stack-tight", disabled && "pointer-events-none opacity-50", wrapperClass)}>
   {#if label}
     <FormLabel forInputId={id} value={label} />
   {/if}
@@ -50,7 +52,7 @@
             bind:group={value}
             value={String(opt.value)}
             id={`${id}-${String(opt.value)}`}
-            disabled={opt.disabled}
+            disabled={disabled || opt.disabled}
             label={opt.label ?? String(opt.value)}
           />
         </div>

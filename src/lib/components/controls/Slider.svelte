@@ -20,6 +20,7 @@
 		tickFormatter,
 		hasDefaultValue = false,
 		onReset = undefined,
+		disabled = false,
 		class: className,
 	}: {
 		min: number;
@@ -37,6 +38,7 @@
 		tickFormatter?: (value: number) => string;
 		hasDefaultValue?: boolean;
 		onReset?: () => void;
+		disabled?: boolean;
 		class?: string;
 	} = $props();
 
@@ -516,7 +518,7 @@
 	});
 </script>
 
-<div class="w-full stack-tight {className}">
+<div class="w-full stack-tight {disabled ? 'pointer-events-none opacity-50' : ''} {className}">
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
@@ -557,7 +559,7 @@
 						aria-valuemin={min}
 						aria-valuemax={max}
 						aria-valuenow={displayValue}
-						tabindex="0"
+						tabindex={disabled ? -1 : 0}
 						onkeydown={handleThumbKeyDown}
 					></div>
 				</div>
@@ -575,6 +577,7 @@
 			<div class="flex h-control">
 				<input
 					type="text"
+					{disabled}
 					bind:value={inputValueString}
 					oninput={handleInputChange}
 					onfocus={() => (isInputFocused = true)}

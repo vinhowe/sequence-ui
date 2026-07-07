@@ -35,6 +35,7 @@
   for={id}
   class={twMerge(
     `select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0`,
+    disabled && "pointer-events-none opacity-50",
     wrapperClass,
   )}
 >

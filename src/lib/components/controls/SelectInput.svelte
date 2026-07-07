@@ -21,6 +21,7 @@
 		options?: SelectOption[];
 		groups?: Group[];
 		id: string;
+		disabled?: boolean;
 		class?: string;
 		hasDefaultValue?: boolean;
 		onReset?: () => void;
@@ -34,6 +35,7 @@
 		options = [],
 		groups = undefined,
 		id,
+		disabled = false,
 		class: wrapperClass = '',
 		hasDefaultValue = false,
 		onReset = undefined,
@@ -280,7 +282,7 @@
 	});
 </script>
 
-<div class={twMerge('relative stack-tight', wrapperClass)} bind:this={wrapperEl}>
+<div class={twMerge('relative stack-tight', disabled && 'pointer-events-none opacity-50', wrapperClass)} bind:this={wrapperEl}>
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
@@ -293,6 +295,7 @@
 				aria-haspopup="listbox"
 				aria-expanded={isOpen}
 				aria-controls={`${id}-menu`}
+				{disabled}
 				onclick={toggleMenu}
 				onkeydown={onTriggerKeydown}
 				class="flex h-control w-full items-center border border-border pl-1 pr-6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-left rounded-none appearance-none bg-card text-foreground type-body"			>

@@ -163,7 +163,12 @@
 							label="Capture enabled"
 							bind:checked={s.captureEnabled}
 						/>
-						{#if s.captureEnabled}
+						<!-- Gated controls DISABLE in place (desktop convention) — never hide.
+						     Native fieldset cascades disabled to every control inside. -->
+						<fieldset
+							disabled={!s.captureEnabled}
+							class={`min-w-0 border-0 stack-field ${s.captureEnabled ? '' : 'opacity-50'}`.trim()}
+						>
 							<SelectInput
 								id="sample-rate"
 								label="Sample rate"
@@ -227,7 +232,7 @@
 								bind:value={s.maxStreams}
 								fieldClass="w-24"
 							/>
-						{/if}
+						</fieldset>
 					</CollapsibleSection>
 
 					<CollapsibleSection

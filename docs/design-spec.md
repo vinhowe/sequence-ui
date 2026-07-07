@@ -272,6 +272,20 @@ state by pairing two gray-ladder surfaces (rest `bg-panel` vs selected
 `bg-card`): the ladder is a *layering* system and its rungs coincide in dark
 (`--panel` == `--card`), so surface-pair states silently disappear there.
 
+### Disabled states
+
+Disabled controls are **grayed in place, never hidden**: `opacity-50` on the
+control (label included), natively inert — and per the cursor policy, no
+`not-allowed` cursor; the control simply doesn't respond, like a native one.
+Every core control takes `disabled`. Groups gate via `ToggleGroup`, which wraps
+children in a native `<fieldset disabled>` — every form control inside goes
+inert with zero per-child wiring, and a base rule (`fieldset:disabled {
+pointer-events: none }`) extends that to div-based drag surfaces (Slider track).
+The rule of thumb (per Apple HIG): **disable when the user can act nearby to
+enable it** (the gate checkbox is adjacent; layout stays stable and users see
+what enabling unlocks); **hide only for contextual irrelevance** (a mode switch
+showing different properties, Blender-inspector-style).
+
 ### Cursor policy
 
 Desktop convention, matching the north star: the **arrow** is the cursor for every

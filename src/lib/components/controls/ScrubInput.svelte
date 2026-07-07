@@ -14,6 +14,7 @@
 		label?: string;
 		unit?: string;
 		id: string;
+		disabled?: boolean;
 		class?: string;
 		/** Classes for the bordered field itself — the right place for a content
 		    width (`fieldClass="w-24"`). Widths on `class` squeeze the LABEL too. */
@@ -31,6 +32,7 @@
 		label,
 		unit,
 		id,
+		disabled = false,
 		class: wrapperClass = '',
 		fieldClass = '',
 		hasDefaultValue = false,
@@ -178,7 +180,7 @@
 	});
 </script>
 
-<div class={twMerge('stack-tight', wrapperClass)}>
+<div class={twMerge('stack-tight', disabled && 'pointer-events-none opacity-50', wrapperClass)}>
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
@@ -187,6 +189,7 @@
 			<input
 				bind:this={inputRef}
 				{id}
+				{disabled}
 				type="text"
 				inputmode="decimal"
 				bind:value={inputValue}

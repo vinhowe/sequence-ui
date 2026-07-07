@@ -9,6 +9,7 @@
 		checked: boolean;
 		citations?: CitationsType;
 		id: string;
+		disabled?: boolean;
 		class?: string;
 		labelClass?: string;
 		hasDefaultValue?: boolean;
@@ -20,6 +21,7 @@
 		citations,
 		checked = $bindable(),
 		id,
+		disabled = false,
 		class: wrapperClass = '',
 		labelClass = 'type-body',
 		hasDefaultValue = false,
@@ -29,10 +31,10 @@
 
 <label
 	for={id}
-	class={`select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0 ${wrapperClass}`.trim()}
+	class={`select-none text-foreground grid grid-cols-[min-content_1fr] gap-x-1.25 shrink-0 ${disabled ? 'pointer-events-none opacity-50' : ''} ${wrapperClass}`.trim()}
 >
 	<div class="relative inline-flex items-center self-center justify-self-start">
-		<input {id} type="checkbox" bind:checked class="sr-only peer" />
+		<input {id} type="checkbox" {disabled} bind:checked class="sr-only peer" />
 		<CheckboxIcon {checked} />
 	</div>
 

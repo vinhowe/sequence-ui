@@ -12,6 +12,7 @@
 		min?: number;
 		max?: number;
 		unit?: string;
+		disabled?: boolean;
 		class?: string;
 		/** Classes for the bordered field itself — the right place for a content
 		    width (`fieldClass="w-24"`). Widths on `class` squeeze the LABEL too. */
@@ -28,6 +29,7 @@
 		min,
 		max,
 		unit,
+		disabled = false,
 		class: wrapperClass = '',
 		fieldClass = '',
 		hasDefaultValue = false,
@@ -35,7 +37,7 @@
 	}: $$Props = $props();
 </script>
 
-<div class={`stack-tight ${wrapperClass}`.trim()}>
+<div class={`stack-tight ${disabled ? 'pointer-events-none opacity-50' : ''} ${wrapperClass}`.trim()}>
 	{#if label}
 		<FormLabel forInputId={id} value={label} />
 	{/if}
@@ -45,6 +47,7 @@
 				<input
 					type="number"
 					{id}
+					{disabled}
 					bind:value
 					{step}
 					{min}
@@ -61,6 +64,7 @@
 			<input
 				type="number"
 				{id}
+				{disabled}
 				bind:value
 				{step}
 				{min}

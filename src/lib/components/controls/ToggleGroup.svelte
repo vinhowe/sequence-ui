@@ -47,9 +47,15 @@
 			/>
 		{/if}
 	{/snippet}
-	{#if !showEnableToggle || (showEnableToggle && enabled)}
-		<div class={contentClass}>
-			{@render children?.()}
-		</div>
-	{/if}
+	<!-- Gated children are DISABLED in place (grayed), not hidden — the desktop
+	     convention for enable-gates (the user can act on the adjacent checkbox, and
+	     the layout stays stable). Native <fieldset disabled> cascades the disabled
+	     state to every form control inside with zero per-child wiring; hiding is
+	     reserved for contextual irrelevance (mode switches), not gates. -->
+	<fieldset
+		disabled={showEnableToggle && !enabled}
+		class={`min-w-0 border-0 ${contentClass} ${showEnableToggle && !enabled ? 'opacity-50' : ''}`.trim()}
+	>
+		{@render children?.()}
+	</fieldset>
 </Panel>
