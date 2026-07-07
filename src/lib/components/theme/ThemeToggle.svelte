@@ -28,8 +28,11 @@
 	const containerClasses = integrated
 		? 'flex items-stretch -mt-px divide-x divide-bar-border border-l border-bar-border'
 		: 'inline-flex divide-x divide-primary/20 border border-primary/30';
+	// Label is stem-matched to body text: stem ≈ size × weight, body = 12.5px × 430
+	// → ~450 at 12px (text-sm). Icons ride the same scale (stroke-2 at size 12 ≈ 1px
+	// actual, tracking the label's stems).
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 px-1 font-sans text-xs leading-none font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
+		'inline-flex items-center gap-1 px-1 font-sans text-sm leading-none font-[450] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
 	const activeButtonClasses = integrated
 		? 'bg-bar-accent text-bar-accent-foreground'
 		: 'bg-primary text-primary-foreground';
@@ -56,7 +59,7 @@
 			class={optionClasses(option.value)}
 			onclick={() => themeContext.setTheme(option.value)}
 		>
-			<Icon size={11} strokeWidth={2} aria-hidden="true" />
+			<Icon size={12} strokeWidth={2} aria-hidden="true" />
 			<span>{option.label}</span>
 		</button>
 	{/each}
