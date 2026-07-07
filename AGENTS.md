@@ -229,7 +229,7 @@ If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not g
 ```svelte
 <header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
 	<span class="flex items-center gap-1.5 font-sans text-[13px] leading-none">
-		<span class="font-semibold">Relay</span>
+		<span class="font-[560]">Relay</span>
 		<span class="h-3 w-px bg-bar-border"></span>
 		<span class="font-medium opacity-75">Settings</span>
 	</span>
