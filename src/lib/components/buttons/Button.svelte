@@ -53,32 +53,32 @@
 	// Interaction feedback is desktop-native: subtle hover, and a PRESSED state one
 	// step deeper (mandatory — native buttons acknowledge the press, not the hover).
 	const STYLES: Record<Variant, Record<Tone, string>> = {
-		// Tinted hover/press steps are nominally LARGER in dark: thin accent washes
-		// lose perceived colorfulness at low luminance (Hunt effect), so numeric
-		// parity reads as a weaker hover. Dark uses ~1.6-2x the alpha delta.
+		// Tinted hover/press feedback uses the theme-scoped step tokens
+		// (--tint-hover/--tint-active, --tint-solid-*), which run larger in dark for
+		// perceptual parity — never hand-pick hover alphas (see app.css docstring).
 		solid: {
 			default:
 				'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/70 active:bg-secondary/55',
 			primary:
-				'border-transparent bg-primary-accent/15 text-primary-accent hover:bg-primary-accent/25 active:bg-primary-accent/35 dark:hover:bg-primary-accent/35 dark:active:bg-primary-accent/45',
+				'border-transparent bg-primary-accent/15 text-primary-accent hover:bg-primary-accent/(--tint-solid-hover) active:bg-primary-accent/(--tint-solid-active)',
 			destructive:
-				'border-transparent bg-destructive-accent/15 text-destructive-accent hover:bg-destructive-accent/25 active:bg-destructive-accent/35 dark:hover:bg-destructive-accent/35 dark:active:bg-destructive-accent/45'
+				'border-transparent bg-destructive-accent/15 text-destructive-accent hover:bg-destructive-accent/(--tint-solid-hover) active:bg-destructive-accent/(--tint-solid-active)'
 		},
 		// Flat Hairline (the default look): 1px hairline everywhere; the accent lives
 		// in the border + text, with only a faint wash of fill that deepens on hover.
 		outline: {
 			default: 'border-border bg-card text-foreground hover:bg-muted active:bg-border/50',
 			primary:
-				'border-primary-accent/55 bg-primary-accent/5 text-primary-accent hover:bg-primary-accent/12 active:bg-primary-accent/20 dark:hover:bg-primary-accent/20 dark:active:bg-primary-accent/30',
+				'border-primary-accent/55 bg-primary-accent/5 text-primary-accent hover:bg-primary-accent/(--tint-hover) active:bg-primary-accent/(--tint-active)',
 			destructive:
-				'border-destructive-accent/55 bg-destructive-accent/5 text-destructive-accent hover:bg-destructive-accent/12 active:bg-destructive-accent/20 dark:hover:bg-destructive-accent/20 dark:active:bg-destructive-accent/30'
+				'border-destructive-accent/55 bg-destructive-accent/5 text-destructive-accent hover:bg-destructive-accent/(--tint-hover) active:bg-destructive-accent/(--tint-active)'
 		},
 		ghost: {
 			default: 'border-transparent text-foreground hover:bg-muted active:bg-border/50',
 			primary:
-				'border-transparent text-primary-accent hover:bg-primary-accent/10 active:bg-primary-accent/20 dark:hover:bg-primary-accent/20 dark:active:bg-primary-accent/30',
+				'border-transparent text-primary-accent hover:bg-primary-accent/(--tint-hover) active:bg-primary-accent/(--tint-active)',
 			destructive:
-				'border-transparent text-destructive-accent hover:bg-destructive-accent/10 active:bg-destructive-accent/20 dark:hover:bg-destructive-accent/20 dark:active:bg-destructive-accent/30'
+				'border-transparent text-destructive-accent hover:bg-destructive-accent/(--tint-hover) active:bg-destructive-accent/(--tint-active)'
 		},
 		link: {
 			default: 'border-transparent px-0 text-foreground underline-offset-2 hover:underline',

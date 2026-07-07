@@ -68,6 +68,21 @@
 	--chart-3: oklch(0.398 0.07 227.392);
 	--chart-4: oklch(0.828 0.189 84.429);
 	--chart-5: oklch(0.769 0.188 70.08);
+	/* Interaction step tokens — hover/press feedback on ACCENT-tinted fills.
+	   Use these instead of hand-picked alphas: `hover:bg-primary-accent/(--tint-hover)
+	   active:bg-primary-accent/(--tint-active)` (thin washes: outline/ghost) and
+	   `--tint-solid-*` for solid tinted fills; `hover:brightness-(--lift-hover)` for
+	   gradient/filled buttons. Dark mode overrides these with LARGER steps: thin
+	   accent washes lose perceived colorfulness at low luminance (Hunt effect) and
+	   dark pastels clip under brightness(), so numeric parity reads as a weaker
+	   hover. The parity correction lives HERE, once — never per-component. Gray-
+	   ladder feedback (hover:bg-muted / active:bg-border/50) needs no tokens: the
+	   surface tokens already flip per theme. */
+	--tint-hover: 12%;
+	--tint-active: 20%;
+	--tint-solid-hover: 25%;
+	--tint-solid-active: 35%;
+	--lift-hover: 1.05;
 	--radius: 0rem;
 	interpolate-size: allow-keywords;
 }
@@ -117,6 +132,12 @@
 	--chart-3: oklch(0.62 0.15 227.392);
 	--chart-4: oklch(0.83 0.19 84.429);
 	--chart-5: oklch(0.77 0.19 70.08);
+	/* ~2x interaction steps for perceptual parity (see :root docstring). */
+	--tint-hover: 20%;
+	--tint-active: 30%;
+	--tint-solid-hover: 35%;
+	--tint-solid-active: 45%;
+	--lift-hover: 1.1;
 }
 
 @theme inline {

@@ -236,8 +236,22 @@ Hover/press parity is **perceptual, not numeric**: thin accent washes lose
 perceived colorfulness at low luminance (the Hunt effect), and the dark
 ActionButton gradients are pastels near the sRGB channel ceiling where a small
 `brightness()` lift partially clips into a no-op. Dark mode therefore uses
-nominally larger steps (~1.6–2× the alpha delta on tinted fills;
-`brightness-110` vs `105` on the gradient) so both themes *feel* the same.
+nominally larger steps so both themes *feel* the same — and that correction is
+**encoded once as theme-scoped step tokens**, not per-component:
+
+| Token | Light | Dark | Used by |
+| --- | --- | --- | --- |
+| `--tint-hover` | 12% | 20% | thin accent washes (outline/ghost hover) |
+| `--tint-active` | 20% | 30% | their pressed step |
+| `--tint-solid-hover` | 25% | 35% | solid tinted fills (hover) |
+| `--tint-solid-active` | 35% | 45% | their pressed step |
+| `--lift-hover` | 1.05 | 1.1 | gradient/filled buttons (`hover:brightness-(--lift-hover)`) |
+
+Write `hover:bg-primary-accent/(--tint-hover) active:bg-primary-accent/(--tint-active)`
+(Tailwind v4 var-opacity) and dark parity comes free. Never hand-pick a hover
+alpha — a numeric value silently ships a too-weak dark hover. Gray-ladder
+feedback (`hover:bg-muted` / `active:bg-border/50`) needs no tokens; the surface
+tokens already flip per theme.
 
 ### Cursor policy
 
