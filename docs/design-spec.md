@@ -253,6 +253,16 @@ alpha — a numeric value silently ships a too-weak dark hover. Gray-ladder
 feedback (`hover:bg-muted` / `active:bg-border/50`) needs no tokens; the surface
 tokens already flip per theme.
 
+### Selected state
+
+Selection is expressed with the **primary tint** — `bg-primary/12` on rows
+(Tree, sidebar nav), `bg-primary-accent/15 text-primary-accent` on controls
+(SegmentedControl segments, IconButton `active`) — or by **inversion**
+(`bg-foreground text-background`, Pagination's current page). Never signal
+state by pairing two gray-ladder surfaces (rest `bg-panel` vs selected
+`bg-card`): the ladder is a *layering* system and its rungs coincide in dark
+(`--panel` == `--card`), so surface-pair states silently disappear there.
+
 ### Cursor policy
 
 Desktop convention, matching the north star: the **arrow** is the cursor for every
