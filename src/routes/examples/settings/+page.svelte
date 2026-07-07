@@ -225,6 +225,7 @@
 								max={32}
 								step={1}
 								bind:value={s.maxStreams}
+								fieldClass="w-24"
 							/>
 						{/if}
 					</CollapsibleSection>
@@ -265,6 +266,7 @@
 							max={365}
 							step={1}
 							bind:value={s.retentionDays}
+							fieldClass="w-32"
 						/>
 						<CheckboxInput
 							id="auto-purge"
@@ -282,6 +284,7 @@
 							max={1440}
 							step={1}
 							bind:value={s.syncInterval}
+							fieldClass="w-32"
 						/>
 						<TextInput
 							id="endpoint-url"
@@ -290,18 +293,18 @@
 							bind:value={s.endpointUrl}
 							placeholder="https://ingest.example.com/v1"
 						/>
-						<div class="flex items-end gap-1">
-							<TextInput
-								id="api-token"
-								label="API token"
-								type={tokenVisible ? 'text' : 'password'}
-								bind:value={s.apiToken}
-								class="min-w-0 flex-1"
-							/>
-							<Button onclick={() => (tokenVisible = !tokenVisible)}>
-								{tokenVisible ? 'Hide' : 'Reveal'}
-							</Button>
-						</div>
+						<TextInput
+							id="api-token"
+							label="API token"
+							type={tokenVisible ? 'text' : 'password'}
+							bind:value={s.apiToken}
+						>
+							{#snippet suffix()}
+								<button type="button" onclick={() => (tokenVisible = !tokenVisible)}>
+									{tokenVisible ? 'Hide' : 'Reveal'}
+								</button>
+							{/snippet}
+						</TextInput>
 						<CheckboxInput
 							id="pause-on-metered"
 							label="Pause sync on metered connections"

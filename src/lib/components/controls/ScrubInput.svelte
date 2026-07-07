@@ -15,6 +15,9 @@
 		unit?: string;
 		id: string;
 		class?: string;
+		/** Classes for the bordered field itself — the right place for a content
+		    width (`fieldClass="w-24"`). Widths on `class` squeeze the LABEL too. */
+		fieldClass?: string;
 		hasDefaultValue?: boolean;
 		onReset?: () => void;
 	};
@@ -29,6 +32,7 @@
 		unit,
 		id,
 		class: wrapperClass = '',
+		fieldClass = '',
 		hasDefaultValue = false,
 		onReset = undefined
 	}: $$Props = $props();
@@ -179,7 +183,7 @@
 		<FormLabel forInputId={id} value={label} />
 	{/if}
 	<div class="flex items-center gap-1.5">
-		<div class="flex">
+		<div class={`flex ${fieldClass}`.trim()}>
 			<input
 				bind:this={inputRef}
 				{id}

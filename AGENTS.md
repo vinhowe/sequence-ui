@@ -411,10 +411,10 @@ DON'T let short-content fields fill the column. Size fields to their expected co
 <!-- renders a ~600px-wide box holding the number 4 -->
 ```
 
-DO give short fields a content-appropriate width via `class`.
+DO give short fields a content-appropriate width via `fieldClass` (it targets the bordered field; a width on `class` squeezes the LABEL too).
 
 ```svelte
-<NumberInput id="streams" label="Max concurrent streams" bind:value={streams} class="w-24" />
+<NumberInput id="streams" label="Max concurrent streams" bind:value={streams} fieldClass="w-24" />
 <TextInput id="cache" label="Local cache directory" bind:value={dir} />  <!-- paths fill: fine -->
 ```
 
@@ -445,6 +445,7 @@ Control conventions (apply across the catalog):
 - **Picking a numeric control:** `Slider` for bounded continuous values where seeing the position in range informs (the hero control); `ScrubInput` for any fine-tunable numeric — drag-to-set + typed entry, `step` (Shift=×10, Alt=÷10), `precision`, optional `unit` — including arbitrary-precision floats; `NumberInput` for plain discrete counts with no drag affordance. When in doubt between ScrubInput and NumberInput, prefer ScrubInput.
 - **Option shapes:** `SelectInput` options are `{ value, label, disabled? }` (`label` is the visible text); `RadioGroupInput` options are `{ value, label }`.
 - **`hasDefaultValue` means "the value currently EQUALS its default"** — it disables the `ResetValueButton` (nothing to reset). It does NOT mean "a default exists." Wire it as `value === defaultValue`.
+- **Input affixes (trailing actions / adornments):** `TextInput` takes `prefix` / `suffix` snippets rendered as collapsed-border cells INSIDE the field (same model as NumberInput's unit box). A bare `<button>` in an affix snippet is styled automatically as a flush full-height ghost command cell — use it for Reveal (password toggle via the `type` prop), Browse, clear. Never compose a separate `Button` beside an input in a flex row to fake this — the affix keeps one border and perfect height alignment.
 - **Destructive confirmation is inline, not modal:** there is no dialog component, and that's intentional for now. Use the two-step arm→confirm swap on the button itself — first activation arms it (label becomes `Confirm — <consequence>`, with a plain Cancel beside it), second performs. Pair with an amber `Note` explaining the consequence. Do not hand-roll modal overlays.
 - Feedback: `Statistic`, `ControlsStatistic`, `Note`, `ControlsNote`, `Citations`, `Tooltip`, `UserGuideTooltip`
 - Navigation: `Menu`, `Breadcrumb`, `Pagination`, `Tree`

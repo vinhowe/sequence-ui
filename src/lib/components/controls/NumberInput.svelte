@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { twMerge } from 'tailwind-merge';
+
 	import FormLabel from './FormLabel.svelte';
 	import ResetValueButton from './ResetValueButton.svelte';
 
@@ -11,6 +13,9 @@
 		max?: number;
 		unit?: string;
 		class?: string;
+		/** Classes for the bordered field itself — the right place for a content
+		    width (`fieldClass="w-24"`). Widths on `class` squeeze the LABEL too. */
+		fieldClass?: string;
 		hasDefaultValue?: boolean;
 		onReset?: () => void;
 	};
@@ -24,6 +29,7 @@
 		max,
 		unit,
 		class: wrapperClass = '',
+		fieldClass = '',
 		hasDefaultValue = false,
 		onReset = undefined
 	}: $$Props = $props();
@@ -35,7 +41,7 @@
 	{/if}
 	<div class="flex gap-1.5 items-center">
 		{#if unit}
-			<div class="flex">
+			<div class={`flex ${fieldClass}`.trim()}>
 				<input
 					type="number"
 					{id}
@@ -59,7 +65,7 @@
 				{step}
 				{min}
 				{max}
-				class="block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
+				class={twMerge('block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value', fieldClass)}
 			/>
 		{/if}
 		{#if onReset}

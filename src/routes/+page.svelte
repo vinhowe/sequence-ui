@@ -221,6 +221,8 @@
 	let swing = $state(14);
 	let steps = $state(16);
 	let sequenceName = $state('Pattern 03');
+	let apiSecret = $state('sq_sk_9f2e7c1a4b8d');
+	let secretVisible = $state(false);
 	let cueFrames = $state(109845);
 	let velocity = $state(96);
 	let phase = $state(405);
@@ -671,6 +673,18 @@
 									hasDefaultValue={nameIsDefault}
 									onReset={resetName}
 								/>
+								<TextInput
+									id="api-secret"
+									label="API secret"
+									type={secretVisible ? 'text' : 'password'}
+									bind:value={apiSecret}
+								>
+									{#snippet suffix()}
+										<button type="button" onclick={() => (secretVisible = !secretVisible)}>
+											{secretVisible ? 'Hide' : 'Reveal'}
+										</button>
+									{/snippet}
+								</TextInput>
 								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.textInput}</code></pre>
 							</Panel>
 
