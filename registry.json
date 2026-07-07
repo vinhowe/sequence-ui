@@ -186,8 +186,7 @@
       ],
       "dependencies": [],
       "registryDependencies": [
-        "form-label",
-        "reset-value-button"
+        "scrub-input"
       ]
     },
     {
@@ -768,6 +767,25 @@
         "tailwind-merge"
       ],
       "registryDependencies": []
+    },
+    {
+      "name": "rail",
+      "type": "registry:ui",
+      "title": "Rail",
+      "description": "Rail component for Sequence UI — the canonical settings/inspector surface: one continuous bordered stack of CollapsibleSection rows.",
+      "files": [
+        {
+          "path": "src/lib/components/primitives/Rail.svelte",
+          "type": "registry:ui",
+          "target": "lib/components/primitives/Rail.svelte"
+        }
+      ],
+      "dependencies": [
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "collapsible-section"
+      ]
     },
     {
       "name": "panel",

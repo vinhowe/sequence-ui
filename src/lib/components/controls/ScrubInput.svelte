@@ -192,6 +192,10 @@
 				{disabled}
 				type="text"
 				inputmode="decimal"
+				role="spinbutton"
+				aria-valuenow={value}
+				aria-valuemin={min}
+				aria-valuemax={max}
 				bind:value={inputValue}
 				class={twMerge(
 					'block h-control w-full cursor-ew-resize touch-none border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value',

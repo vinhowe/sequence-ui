@@ -107,10 +107,11 @@ Buttons:
 
 Primitives:
 
-- `AppBar` — full-width top chrome bar (fixed `--bar-height`, brand + actions slots)
+- `AppBar` — full-width top chrome bar (fixed `--bar-height`, brand + context + actions slots)
 - `Panel`
 - `BorderedGroup` alias for `Panel`
-- `CollapsibleSection`
+- `CollapsibleSection` — collapsible header-row section; depth-aware (nested = twirl-down)
+- `Rail` — the canonical settings/inspector surface: bordered zero-gap stack of CollapsibleSections
 - `Pane`
 
 Controls:

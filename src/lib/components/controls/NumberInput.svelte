@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { twMerge } from 'tailwind-merge';
-
-	import FormLabel from './FormLabel.svelte';
-	import ResetValueButton from './ResetValueButton.svelte';
+	import ScrubInput from './ScrubInput.svelte';
 
 	type $$Props = {
 		label?: string;
@@ -25,7 +22,7 @@
 		label,
 		value = $bindable(),
 		id,
-		step,
+		step = 1,
 		min,
 		max,
 		unit,
@@ -37,45 +34,22 @@
 	}: $$Props = $props();
 </script>
 
-<div class={`stack-tight ${disabled ? 'pointer-events-none opacity-50' : ''} ${wrapperClass}`.trim()}>
-	{#if label}
-		<FormLabel forInputId={id} value={label} />
-	{/if}
-	<div class="flex gap-1.5 items-center">
-		{#if unit}
-			<div class={`flex ${fieldClass}`.trim()}>
-				<input
-					type="number"
-					{id}
-					{disabled}
-					bind:value
-					{step}
-					{min}
-					{max}
-					class="block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value"
-				/>
-				<span
-					class="inline-flex items-center border border-l-0 border-border bg-muted px-3 text-subtle-foreground type-value"
-				>
-					{unit}
-				</span>
-			</div>
-		{:else}
-			<input
-				type="number"
-				{id}
-				{disabled}
-				bind:value
-				{step}
-				{min}
-				{max}
-				class={twMerge('block h-control w-full border border-border bg-card px-1.5 text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring type-value', fieldClass)}
-			/>
-		{/if}
-		{#if onReset}
-			<div class="translate-y-0.5">
-				<ResetValueButton {hasDefaultValue} {onReset} />
-			</div>
-		{/if}
-	</div>
-</div>
+<!-- NumberInput is the COUNT-flavored preset of ScrubInput — one numeric-field
+     implementation for the whole system (typed entry, drag-to-set, Shift=×10 /
+     Alt=÷10, clamping, unit affix, spinbutton a11y). Defaults to integer steps;
+     the old bare <input type="number"> (browser spinners, no formatting, no drag)
+     is retired. Prefer ScrubInput directly for fine-tune/float values. -->
+<ScrubInput
+	{label}
+	bind:value
+	{id}
+	{step}
+	{min}
+	{max}
+	{unit}
+	{disabled}
+	class={wrapperClass}
+	{fieldClass}
+	{hasDefaultValue}
+	{onReset}
+/>

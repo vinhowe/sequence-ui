@@ -8,6 +8,7 @@
 		NumberInput,
 		Note,
 		RadioGroupInput,
+		Rail,
 		ScrubInput,
 		SelectInput,
 		Slider,
@@ -115,13 +116,12 @@
 		</AppBar>
 
 		<main class="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-background">
-			<!-- SUPERPANEL / RAIL variant: the page is ONE continuous bordered surface;
-			     each settings group is a CollapsibleSection header row sharing hairlines
-			     (Lightroom / Blender properties-rail pattern). The outer wrapper owns the
-			     outer border; sections separate with their own border-b (suppressed on
-			     the last so it doesn't double with the wrapper). -->
+			<!-- The RAIL: the canonical settings surface — ONE continuous bordered
+			     surface of CollapsibleSection header rows sharing hairlines (Lightroom /
+			     Blender properties-rail). The Rail component owns the outer border and
+			     last-row border suppression. -->
 			<div class="mx-auto w-full max-w-2xl p-2 sm:p-4">
-				<div class="border border-border">
+				<Rail>
 					<CollapsibleSection
 						title="General"
 						isOpen={open.general}
@@ -321,7 +321,6 @@
 						title="Danger zone"
 						isOpen={open.danger}
 						ontoggle={toggle('danger')}
-						class="border-b-0"
 					>
 						<Note label="Irreversible" type="warning">
 							Clearing captured data deletes every capture and index entry in the local cache
@@ -353,7 +352,7 @@
 							</span>
 						</div>
 					</CollapsibleSection>
-				</div>
+				</Rail>
 			</div>
 		</main>
 	</div>

@@ -1,6 +1,6 @@
 Sequence UI: Svelte 5 runes + Tailwind v4 CSS-first + TypeScript design system for dense, flat, sharp, light/dark instrument-panel interfaces extracted from Sequence Toy.
 
-North star: high-density professional desktop software (DAWs, node editors, pro color tools) — NOT a terminal or hacker aesthetic. Compact but easy to use. Sans is the voice of the UI; mono is an instrumentation accent for values/code/tags only. The canonical settings/inspector page is the RAIL: one continuous bordered surface of CollapsibleSection header rows (0 gap, shared hairlines; see src/routes/examples/settings). Nested CollapsibleSections auto-render as twirl-downs. h2-led sections + 16px stack-section are for specimen/doc pages only.
+North star: high-density professional desktop software (DAWs, node editors, pro color tools) — NOT a terminal or hacker aesthetic. Compact but easy to use. Sans is the voice of the UI; mono is an instrumentation accent for values/code/tags only. The canonical settings/inspector page is the RAIL — the Rail component: a bordered zero-gap stack of CollapsibleSection header rows (see src/routes/examples/settings). Nested CollapsibleSections auto-render as twirl-downs. h2-led sections + 16px stack-section are for specimen/doc pages only.
 
 Key paths:
 - README.md: human-facing overview, install, usage, commands, component catalog.
@@ -61,7 +61,7 @@ Stack utilities:
 
 Component exports:
 - Buttons: ActionButton, Button, IconButton, SegmentedControl.
-- Primitives: AppBar, Panel, BorderedGroup, CollapsibleSection, Pane.
+- Primitives: AppBar, Panel, BorderedGroup, CollapsibleSection, Rail, Pane.
 - Controls: Slider, NumberInput, ScrubInput, AngleField, ThresholdMarker, TextInput, TimecodeField, BitField, BaseField, ToleranceField, SelectInput, ToggleGroup, CheckboxInput, RadioGroupInput, RadioInput, FormLabel, ResetValueButton.
 - Feedback: Statistic, ControlsStatistic, Note, ControlsNote, Citations, Tooltip, UserGuideTooltip.
 - Navigation: Menu, Breadcrumb, Pagination, Tree.

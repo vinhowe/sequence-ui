@@ -11,6 +11,7 @@ export { default as Panel } from './components/primitives/Panel.svelte';
 export { default as BorderedGroup } from './components/primitives/Panel.svelte';
 export { default as CollapsibleSection } from './components/primitives/CollapsibleSection.svelte';
 export { default as Pane, type PaneTab } from './components/primitives/Pane.svelte';
+export { default as Rail } from './components/primitives/Rail.svelte';
 
 export { default as Slider } from './components/controls/Slider.svelte';
 export { default as NumberInput } from './components/controls/NumberInput.svelte';

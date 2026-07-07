@@ -374,6 +374,12 @@ Project header — use the `AppBar` component (`<AppBar title="Relay" context="S
 </header>
 ```
 
+Settings/inspector surface — the **`Rail`** component: one continuous bordered
+stack of `CollapsibleSection` header rows (zero gap, shared hairlines; the Rail
+owns the outer border and last-row `border-b` suppression). Nested
+`CollapsibleSection`s render as twirl-downs automatically. See
+`src/routes/examples/settings`.
+
 Segmented collapsed-border controls:
 
 ```svelte

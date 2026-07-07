@@ -1,0 +1,21 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "rail",
+	"type": "registry:ui",
+	"title": "Rail",
+	"description": "Rail component for Sequence UI — the canonical settings/inspector surface: one continuous bordered stack of CollapsibleSection rows.",
+	"dependencies": [
+		"tailwind-merge"
+	],
+	"registryDependencies": [
+		"collapsible-section"
+	],
+	"files": [
+		{
+			"path": "src/lib/components/primitives/Rail.svelte",
+			"content": "<script lang=\"ts\">\n\timport { twMerge } from 'tailwind-merge';\n\timport type { Snippet } from 'svelte';\n\n\ttype Props = {\n\t\tchildren?: Snippet;\n\t\tclass?: string;\n\t};\n\n\tlet { children, class: wrapperClass = '' }: Props = $props();\n</script>\n\n<!--\n  The RAIL — the canonical settings/inspector surface (Lightroom/Blender\n  properties-rail): ONE continuous bordered surface whose children are\n  CollapsibleSection header rows sharing hairlines at zero gap. The Rail owns\n  the outer border and suppresses the last row's border-b so it doesn't double\n  with the wrapper. Titles live in the section header rows; a Rail page has no\n  h2s and no stack-section. Nest CollapsibleSections for twirl-down subgroups.\n-->\n<div class={twMerge('border border-border [&>:last-child]:border-b-0', wrapperClass)}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "lib/components/primitives/Rail.svelte"
+		}
+	]
+}
