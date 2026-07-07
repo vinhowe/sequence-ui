@@ -122,6 +122,11 @@
 
 		const nextStep = effectiveStep(event);
 		value = normalize(pointerStartValue + deltaX * nextStep, nextStep);
+		// Live feedback is the whole point of scrubbing: mirror the value into the
+		// text while dragging. (The sync $effect skips during scrub/focus, and blur
+		// commits whatever text is showing — leaving this stale both froze the
+		// display mid-drag AND could clobber the dragged value on blur.)
+		inputValue = formatValue(value);
 	}
 
 	function onDocumentPointerUp(event: PointerEvent) {
