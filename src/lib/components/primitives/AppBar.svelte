@@ -33,7 +33,7 @@
 -->
 <header
 	class={twMerge(
-		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground',
+		'sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-2 text-bar-foreground',
 		wrapperClass
 	)}
 >

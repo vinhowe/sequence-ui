@@ -364,7 +364,7 @@ Use token utilities such as `bg-card`, `text-card-foreground`, `border-border`, 
 Project header — use the `AppBar` component (`<AppBar title="Relay" context="Settings"><ThemeToggle integrated /></AppBar>`). The brand is **sans, semibold, sentence case** (13px) — mono-uppercase branding was deliberately retired as a terminal tell; the optional `context` prop renders the page/location dimmed behind a hairline divider (`Relay │ Settings`). It's app chrome, so its height is a **fixed integer px** via `--bar-height` (24px), **not `py-*`** and not the 4px grid — at this height, padding-based sizing rounds unevenly and drifts the toggle + 13px text off-center. The raw recipe the component encapsulates:
 
 ```svelte
-<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
+<header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-2 text-bar-foreground">
 	<span class="flex items-center gap-1.5 font-sans text-[13px] leading-none">
 		<span class="font-[560]">Relay</span>
 		<span class="h-3 w-px bg-bar-border"></span>
