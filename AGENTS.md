@@ -214,7 +214,7 @@ DO:
 
 ## Project Header Motif
 
-The reusable project header is a full-width top bar with a brand-hued identity strip and the project name in **sans, semibold, sentence case** (12.5px) — NOT mono-uppercase (that's a terminal tell; the brand was de-mono'd deliberately). Optional page context renders after a hairline divider, dimmed: `Relay │ Settings` — brand and location get separate visual registers instead of one long title string.
+The reusable project header is a full-width top bar with a brand-hued identity strip and the project name in **sans, semibold, sentence case** (13px) — NOT mono-uppercase (that's a terminal tell; the brand was de-mono'd deliberately). Optional page context renders after a hairline divider, dimmed: `Relay │ Settings` — brand and location get separate visual registers instead of one long title string.
 
 **Use the `AppBar` component** — it bakes in the height/padding that are otherwise easy to get wrong:
 
@@ -224,7 +224,7 @@ The reusable project header is a full-width top bar with a brand-hued identity s
 </AppBar>
 ```
 
-If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (22px), and NEVER `py-*`.** At ~22px it must center the full-height integrated `ThemeToggle` + 13px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `pl-1.5` (flush right for the integrated toggle).
+If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (24px — the macOS menu/title-bar proportion), and NEVER `py-*`.** At this height it must center the full-height integrated `ThemeToggle` + 13px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `pl-1.5` (flush right for the integrated toggle).
 
 ```svelte
 <header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
