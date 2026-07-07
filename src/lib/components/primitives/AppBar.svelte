@@ -3,8 +3,12 @@
 	import type { Snippet } from 'svelte';
 
 	type Props = {
-		/** Brand / project name, rendered at the left as a small mono uppercase label. */
+		/** Brand / project name, rendered at the left in sans (semibold, sentence case). */
 		title?: string;
+		/** Optional page/location context after the brand — dimmed, behind a hairline
+		    divider (`Relay │ Settings`). Gives brand and location separate visual
+		    registers instead of one long title string. */
+		context?: string;
 		/** Override the left/brand area entirely (takes precedence over `title`). */
 		brand?: Snippet;
 		/** Right-side content — actions, a ThemeToggle, etc. */
@@ -12,17 +16,19 @@
 		class?: string;
 	};
 
-	let { title, brand, children, class: wrapperClass = '' }: Props = $props();
+	let { title, context, brand, children, class: wrapperClass = '' }: Props = $props();
 </script>
 
 <!--
   App chrome: a thin, full-width sticky top bar. Height is a fixed integer px
   (`--bar-height`, default 20px) — deliberately OUTSIDE the 4px grid and NOT `py-*` —
-  so the ~18px ThemeToggle and 11px brand text center on whole pixels. Padding-based
+  so the ~18px ThemeToggle and 12.5px brand text center on whole pixels. Padding-based
   sizing rounds unevenly at this height and drifts the contents up/down. The bar chrome
   is driven by the `--bar-*` tokens (brand-hued purple defaults) — rebrand by pointing
   those at your hue, or override per-instance via `class`. The integrated ThemeToggle
   reads the same tokens, so the bar stays a single source of truth.
+  The brand is SANS, sentence case — mono-uppercase branding is a terminal tell; mono
+  stays reserved for values/code/tags.
 -->
 <header
 	class={twMerge(
@@ -33,7 +39,13 @@
 	{#if brand}
 		{@render brand()}
 	{:else if title}
-		<span class="font-mono text-xs font-semibold uppercase tracking-wider">{title}</span>
+		<span class="flex items-center gap-1.5 font-sans text-base">
+			<span class="font-semibold">{title}</span>
+			{#if context}
+				<span class="h-3 w-px bg-bar-border"></span>
+				<span class="font-medium opacity-75">{context}</span>
+			{/if}
+		</span>
 	{:else}
 		<span></span>
 	{/if}

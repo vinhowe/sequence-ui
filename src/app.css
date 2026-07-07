@@ -359,13 +359,17 @@ body {
    tight 3.2px step (its `space-y-1`), and panels butt together border-to-border.
    All gaps are multiples of the 0.25rem base grid. Retune here, everywhere updates. */
 @utility stack-tight {
-	@apply flex flex-col gap-1; /* 3.2px — parts of one control (label→field) */
+	@apply flex flex-col gap-1; /* 4px — parts of one control (label→field) */
 }
+/* Deliberately WIDER than stack-tight: a label must sit closer to its own field
+   (4px) than the previous control sits above it (6px), or the stack reads as one
+   crammed undifferentiated column (proximity grouping). 1.5U — half-steps are
+   part of the system (h-control is 5.5U). */
 @utility stack-field {
-	@apply flex flex-col gap-1; /* 3.2px — controls inside a panel body (toy space-y-1) */
+	@apply flex flex-col gap-1.5; /* 6px — controls inside a panel body */
 }
 @utility stack-group {
-	@apply flex flex-col gap-1; /* 3.2px — panels within a section (prefer contiguous border-b) */
+	@apply flex flex-col gap-1; /* 4px — panels within a section (prefer contiguous border-b) */
 }
 @utility stack-section {
 	@apply flex flex-col gap-4; /* 12.8px — page sections; a real break, a healthy gap above each heading */

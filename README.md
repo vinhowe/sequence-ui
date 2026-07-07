@@ -68,6 +68,7 @@ Import `src/app.css` once in the app shell, then wrap the application in `ThemeP
 ```svelte
 <!-- Example page -->
 <script lang="ts">
+	import AppBar from '$lib/components/primitives/AppBar.svelte';
 	import Panel from '$lib/components/primitives/Panel.svelte';
 	import Slider from '$lib/components/controls/Slider.svelte';
 	import ThemeToggle from '$lib/components/theme/ThemeToggle.svelte';
@@ -76,10 +77,9 @@ Import `src/app.css` once in the app shell, then wrap the application in `ThemeP
 </script>
 
 <div class="stack-section p-4">
-	<header class="flex items-center justify-between border-b border-purple-300 bg-purple-200 px-2 py-1 text-purple-900 dark:border-purple-900 dark:bg-purple-950 dark:text-purple-200">
-		<div class="font-mono text-xs uppercase tracking-wider">Sequence Toy</div>
-		<ThemeToggle />
-	</header>
+	<AppBar title="Sequence Toy">
+		<ThemeToggle integrated />
+	</AppBar>
 
 	<Panel title="Transport">
 		<Slider id="gain" label="Gain" min={0} max={100} bind:value={gain} unit="%" />

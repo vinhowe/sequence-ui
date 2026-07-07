@@ -173,7 +173,7 @@ Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 
 | Value | `type-value` | mono tabular | numeric readouts and value inputs, 12.5px |
 | Code | `type-code` | mono | code and radix/base editing, 12.5px |
 
-Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, terse instrument tags (`type-tag`), and the brand label. Sans is used for headings, navigation, prose, and labels (`type-label`).
+Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, and terse instrument tags (`type-tag`). Sans carries branding too — the AppBar title is sans semibold sentence-case. Sans is used for headings, navigation, prose, and labels (`type-label`).
 
 **Emphasis is color + weight, not size.** The base is 12.5px (`type-body`). De-emphasize by dropping color — `type-body` + `text-muted-foreground`/`text-subtle-foreground`, same size, lighter — never by shrinking. `type-fine` (11px) is a density escape hatch for genuine fine print (footnotes, references, dense annotations), not a "secondary text" style. In short: size = information density; color/weight = emphasis.
 
@@ -197,9 +197,18 @@ Two levels: a tight 4px within/between related controls, and a real 16px break a
 | Utility | Tailwind gap | Rem | Use |
 | --- | --- | --- | --- |
 | `stack-tight` | `gap-1` | 0.25rem (4px) | parts of one control, label to field |
-| `stack-field` | `gap-1` | 0.25rem (4px) | controls inside a panel body |
+| `stack-field` | `gap-1.5` | 0.375rem (6px) | sibling controls inside a panel body |
 | `stack-group` | `gap-1` | 0.25rem (4px) | heading + panels within a section |
 | `stack-section` | `gap-4` | 1rem (16px) | page sections (a real break above each heading) |
+
+**Proximity invariant.** Whitespace encodes grouping, so inner binding must be
+strictly tighter than sibling separation: label→field (4px) < control→control
+(6px). Equal gaps fuse a panel body into one undifferentiated column — this was
+a real regression, not a hypothetical. The invariant governs *unbordered*
+siblings only; bordered containers (panels in a group, rail rows) are separated
+by their hairlines, so their gap is a seam and stays at 4px (or 0, contiguous).
+6px (1.5U) is the minimal sanctioned step above 4px — half-units are already
+part of the system where a full unit overshoots (`h-control` = 5.5U).
 
 ### Control height
 
@@ -338,11 +347,15 @@ Use token utilities such as `bg-card`, `text-card-foreground`, `border-border`, 
 
 ## Structural Motifs
 
-Project header — use the `AppBar` component (`<AppBar title="…"><ThemeToggle /></AppBar>`). It's app chrome, so its height is a **fixed integer px** via `--bar-height` (20px), **not `py-*`** and not the 4px grid — at ~20px, padding-based sizing rounds unevenly and drifts the ~18px toggle + 11px text off-center. The raw recipe the component encapsulates:
+Project header — use the `AppBar` component (`<AppBar title="Relay" context="Settings"><ThemeToggle integrated /></AppBar>`). The brand is **sans, semibold, sentence case** (12.5px) — mono-uppercase branding was deliberately retired as a terminal tell; the optional `context` prop renders the page/location dimmed behind a hairline divider (`Relay │ Settings`). It's app chrome, so its height is a **fixed integer px** via `--bar-height` (20px), **not `py-*`** and not the 4px grid — at ~20px, padding-based sizing rounds unevenly and drifts the ~18px toggle + 12.5px text off-center. The raw recipe the component encapsulates:
 
 ```svelte
 <header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
-	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
+	<span class="flex items-center gap-1.5 font-sans text-base">
+		<span class="font-semibold">Relay</span>
+		<span class="h-3 w-px bg-bar-border"></span>
+		<span class="font-medium opacity-75">Settings</span>
+	</span>
 	<ThemeToggle integrated />
 </header>
 ```

@@ -61,11 +61,11 @@ All UI typography must use one of the ten semantic type utilities from `src/app.
 - `type-value`: mono, tabular numeric readouts and input values.
 - `type-code`: mono code or base/radix editing.
 
-Mono is only for `type-button`, `type-value`, `type-code`, `type-tag`, and the small brand/project label. Use sans for headings, navigation, prose, and most labels that are not instrument labels.
+Mono is only for `type-button`, `type-value`, `type-code`, and `type-tag`. Use sans for headings, navigation, prose, the brand/project label (AppBar renders it sans semibold), and most labels that are not instrument labels.
 
-**Uppercase is a mono-only signal, and sans is always sentence-case.** The only uppercase text is mono: `type-tag` (tags), `type-button` (commands), and the brand label. Never set `uppercase` on sans text — uppercase-sans reads as neither a technical tag nor natural prose. So a sans section heading (e.g. a `Menu` group heading) is sentence-case sans, not a sans eyebrow.
+**Uppercase is a mono-only signal, and sans is always sentence-case.** The only uppercase text is mono: `type-tag` (tags) and `type-button` (commands). The brand label is sans sentence-case (mono-uppercase branding is a terminal tell). Never set `uppercase` on sans text — uppercase-sans reads as neither a technical tag nor natural prose. So a sans section heading (e.g. a `Menu` group heading) is sentence-case sans, not a sans eyebrow.
 
-**Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-tag`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), the brand label, and those small tags — never for labels or prose.
+**Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-tag`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), and those small tags — never for labels, prose, or branding.
 
 **Running text uses `prose`, not bare `type-body`.** A paragraph of running text — panel/section descriptions, help copy — gets the `prose` utility. `prose` applies the body font *and* owns its vertical rhythm: it separates from an adjacent control/grid/code block by 8px and sits flush at a stack's edges (modeled on `@tailwindcss/typography`'s `prose`). This is the ONE sanctioned exception to "components ship margin-free" — prose rhythm belongs to prose, not the container. It's an explicit marker, so the many control usages of `type-body` (inputs, menu items, option labels) are untouched. Rule: real running text → `prose`; UI text → the appropriate `type-*` role.
 
@@ -111,17 +111,20 @@ Spacing belongs to containers, not leaf components. Components ship margin-free:
 Instrument-dense, matching Sequence Toy's Control Panel: one tight 4px step inside panels, and panels that butt together (border-separated), not floated apart.
 
 - `stack-tight`: `gap-1`, 0.25rem (4px), label to field or parts of one control.
-- `stack-field`: `gap-1`, 0.25rem (4px), controls inside a panel body (the toy's `space-y-1`).
+- `stack-field`: `gap-1.5`, 0.375rem (6px), controls inside a panel body.
 - `stack-group`: `gap-1`, 0.25rem (4px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
 - `stack-section`: `gap-4`, 1rem (16px), page sections — a real break, a healthy gap above each heading.
 
-**Three spacing values — a clean ×2 progression.** Every gap resolves to one of `gap-1` / `gap-2` / `gap-4`; nothing in between (no `gap-1.5`, no `mt-2` on a panel).
+**The proximity invariant (the rule behind the numbers): whitespace encodes grouping, so inner binding must be strictly tighter than sibling separation.** A label must sit closer to its own field (`stack-tight`, 4px) than the previous control sits above it (`stack-field`, 6px) — equal gaps (4/4) fuse the whole panel into one undifferentiated column. This only governs **unbordered** siblings, where whitespace is the sole grouping signal; bordered containers (panels in a `stack-group`, rail rows) are separated by their hairlines, so their gap is a seam, not a grouping signal, and stays at 4px (or 0, contiguous). 6px is the minimal sanctioned step above 4px — half-units (1.5U) are part of the system where a full unit overshoots (`h-control` = 5.5U, icon gaps 1.25U).
 
-- **Within** a panel / cluster — **4px, `gap-1`**: controls in a panel body, buttons or radios in a row, panels within a section. Both axes: a panel grid's horizontal `gap-1` is the same 4px as the section's `stack-group` vertical stacking (this is what keeps vertical == horizontal). Horizontal button/control clusters use `gap-1` too — never wider than panels.
+- **Binding** (parts of one thing) — **4px, `gap-1`**: label→field, buttons or radios in a cluster row, panel grids. Horizontal clusters use `gap-1` too — never wider than panels.
+- **Sibling separation** (unbordered controls in a body) — **6px, `gap-1.5` / `stack-field`** — the one place 1.5U appears in spacing.
 - **Between** distinct groups in a row — **8px, `gap-2`** (e.g. two separate control clusters side by side).
 - **Between page sections** — **16px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
 
-**Decision procedure — does your page have sections at all?** A "section" means an **`h2`-led page region** (the pattern the specimen/gallery page uses to document many components at once). Most product pages don't have those: a settings page, an inspector, a control surface is just a **stack of titled panels**, and the `Panel` title IS the group heading. In that case there are no `h2`s and no `stack-section` — the panels stack at `gap-1` (4px, or contiguous border-separated). **Never** pair an `h2` with a single `Panel` repeating the same word ("General" twice), and never use `stack-section` between plain panels — 16px gaps between panels is the classic "agent prior" that makes the page read as SaaS instead of an instrument.
+**Decision procedure — does your page have sections at all?** A "section" means an **`h2`-led page region** (the pattern the specimen/gallery page uses to document many components at once). Most product pages don't have those. **The canonical settings/inspector idiom is the RAIL** (see `/examples/settings`): ONE continuous bordered surface where every group is a `CollapsibleSection` header row — shared hairlines, zero gaps, Lightroom/Blender properties-rail style. The wrapper owns the outer border (`<div class="border border-border">`); the last section suppresses its `border-b` (`class="border-b-0"`). Titles live in the header rows; the page has no `h2`s and no `stack-section`. A 4px-gapped stack of titled `Panel`s is an acceptable lighter alternative for a page with 1–2 groups. **Never** pair an `h2` with a single `Panel` repeating the same word ("General" twice), and never use `stack-section` between plain panels — 16px gaps between panels is the classic "agent prior" that makes the page read as SaaS instead of an instrument.
+
+**Nesting (sub-settings).** `CollapsibleSection` is depth-aware: nest one inside another and the inner one automatically renders as a quiet **twirl-down** (left chevron, sans `type-label` header, content indented behind an indent-guide rule) instead of a second filled header row — the pro-inspector convention (Blender sub-panels, AE twirl-downs). Zero API; just nest. Use it for advanced/secondary groups, collapsed by default.
 
 Structural rule (do not regress): a **container owns the gap; children never set external margins.** A `<section>` is `scroll-mt-* stack-group` and stacks its heading + panel-groups at 4px; the page column is `stack-section` (16px between sections). If you catch yourself adding `mt-*`/`mb-*` to a panel or heading to fix spacing, that's the bug — move the gap to the container instead. The **one exception is `prose`** (running-text blocks), which owns its own rhythm on purpose — see Typography. That's the ONLY margin a child may carry, and it comes from the utility, not a hand-added `mt-*`.
 
@@ -129,7 +132,7 @@ Structural rule (do not regress): a **container owns the gap; children never set
 
 Container defaults:
 
-- Panel / CollapsibleSection / Pane / ToggleGroup body: `pad-box stack-field` (one inset + 4px gaps).
+- Panel / CollapsibleSection / Pane / ToggleGroup body: `pad-box stack-field` (one inset + 6px sibling gaps).
 - Panel grids: `gap-1`. Button/control clusters: `flex ... gap-1`.
 - Sections: `scroll-mt-* stack-group` inside a `stack-section` page column.
 - Do NOT loosen these; the system is meant to read as a dense instrument panel.
@@ -211,21 +214,25 @@ DO:
 
 ## Project Header Motif
 
-The reusable project header is a full-width top bar with a purple identity strip and the project name in small mono uppercase.
+The reusable project header is a full-width top bar with a brand-hued identity strip and the project name in **sans, semibold, sentence case** (12.5px) — NOT mono-uppercase (that's a terminal tell; the brand was de-mono'd deliberately). Optional page context renders after a hairline divider, dimmed: `Relay │ Settings` — brand and location get separate visual registers instead of one long title string.
 
 **Use the `AppBar` component** — it bakes in the height/padding that are otherwise easy to get wrong:
 
 ```svelte
-<AppBar title="Sequence Toy">
-	<ThemeToggle />
+<AppBar title="Relay" context="Settings">
+	<ThemeToggle integrated />
 </AppBar>
 ```
 
-If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (20px), and NEVER `py-*`.** At ~20px it must center a ~18px `ThemeToggle` + 11px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `px-1.5`.
+If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (20px), and NEVER `py-*`.** At ~20px it must center a ~18px `ThemeToggle` + 12.5px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `pl-1.5` (flush right for the integrated toggle).
 
 ```svelte
 <header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
-	<span class="font-mono text-xs font-semibold uppercase tracking-wider">Sequence Toy</span>
+	<span class="flex items-center gap-1.5 font-sans text-base">
+		<span class="font-semibold">Relay</span>
+		<span class="h-3 w-px bg-bar-border"></span>
+		<span class="font-medium opacity-75">Settings</span>
+	</span>
 	<ThemeToggle integrated />
 </header>
 ```
@@ -368,7 +375,7 @@ DON'T make monospace the liberal default for navigation, prose, or whole panels.
 </div>
 ```
 
-DO reserve mono for buttons, values, code, small instrument labels, and the brand label.
+DO reserve mono for buttons, values, code, and small instrument tags — never branding.
 
 ```svelte
 <div class="stack-field type-body">

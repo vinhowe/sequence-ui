@@ -4,9 +4,9 @@
 		Button,
 		CapacityBar,
 		CheckboxInput,
+		CollapsibleSection,
 		NumberInput,
 		Note,
-		Panel,
 		RadioGroupInput,
 		ScrubInput,
 		SelectInput,
@@ -14,8 +14,7 @@
 		Statistic,
 		TextInput,
 		ThemeProvider,
-		ThemeToggle,
-		ToggleGroup
+		ThemeToggle
 	} from '$lib';
 	import type { SelectOption } from '$lib';
 
@@ -42,25 +41,22 @@
 	];
 
 	// ── Settings state ──────────────────────────────────────────────────────
-	// One deep-reactive object so "Reset to defaults" is a single assign-back.
 
 	const defaults = {
-		// General
 		deviceName: 'relay-workstation-07',
 		region: 'us-west-2',
 		launchAtLogin: true,
 		updateChannel: 'stable',
-		// Capture
 		captureEnabled: true,
 		sampleRate: 100,
 		triggerThreshold: -42.5,
+		preTriggerMs: 250,
+		hysteresisDb: 3,
 		bufferWindow: 30,
 		maxStreams: 4,
-		// Storage
 		cacheDir: '~/Library/Application Support/Relay/cache',
 		retentionDays: 14,
 		autoPurge: true,
-		// Sync
 		syncInterval: 15,
 		endpointUrl: 'https://ingest.relay.example.com/v1',
 		apiToken: 'rly_sk_2f8a1c9d4e7b3a6f5091',
@@ -74,7 +70,20 @@
 		confirmingClear = false;
 	}
 
-	// ── Disk usage (readout only; "Clear all captured data" zeroes it) ──────
+	// ── The rail: one continuous surface of collapsible sections ────────────
+
+	let open = $state({
+		general: true,
+		capture: true,
+		advancedTrigger: false,
+		storage: true,
+		sync: true,
+		danger: true
+	});
+	type SectionKey = keyof typeof open;
+	const toggle = (key: SectionKey) => () => (open[key] = !open[key]);
+
+	// ── Disk usage ──────────────────────────────────────────────────────────
 
 	const diskQuotaGb = 128;
 	let usedCapturesGb = $state(34.2);
@@ -82,7 +91,7 @@
 	const usedTotalGb = $derived(usedCapturesGb + usedIndexGb);
 	const usedPercent = $derived(Math.round((usedTotalGb / diskQuotaGb) * 100));
 
-	// ── Danger zone: two-step confirm for the destructive action ────────────
+	// ── Danger zone ─────────────────────────────────────────────────────────
 
 	let confirmingClear = $state(false);
 
@@ -92,7 +101,6 @@
 		confirmingClear = false;
 	}
 
-	// API token: no reveal component exists, so gate the input's type locally.
 	let tokenVisible = $state(false);
 </script>
 
@@ -102,18 +110,23 @@
 
 <ThemeProvider>
 	<div class="fixed inset-0 flex flex-col overflow-hidden bg-background text-foreground">
-		<AppBar title="Relay — Settings">
+		<AppBar title="Relay" context="Settings">
 			<ThemeToggle integrated />
 		</AppBar>
 
 		<main class="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-background">
-			<!-- A settings page is a stack of titled panels, NOT heading-led page sections:
-			     panels convey their own grouping via their title bars, so they stack tight
-			     (stack-group, 4px) — `stack-section` is only for h2-led page regions. -->
-			<div class="mx-auto w-full max-w-2xl stack-group p-2 sm:p-4">
-				<!-- General -->
-				<section class="stack-group">
-					<Panel title="General">
+			<!-- SUPERPANEL / RAIL variant: the page is ONE continuous bordered surface;
+			     each settings group is a CollapsibleSection header row sharing hairlines
+			     (Lightroom / Blender properties-rail pattern). The outer wrapper owns the
+			     outer border; sections separate with their own border-b (suppressed on
+			     the last so it doesn't double with the wrapper). -->
+			<div class="mx-auto w-full max-w-2xl p-2 sm:p-4">
+				<div class="border border-border">
+					<CollapsibleSection
+						title="General"
+						isOpen={open.general}
+						ontoggle={toggle('general')}
+					>
 						<TextInput
 							id="device-name"
 							label="Device name"
@@ -138,58 +151,89 @@
 							options={channelOptions}
 							bind:value={s.updateChannel}
 						/>
-					</Panel>
-				</section>
+					</CollapsibleSection>
 
-				<!-- Capture — the header checkbox gates every child control -->
-				<section class="stack-group">
-					<ToggleGroup
-						id="capture"
+					<CollapsibleSection
 						title="Capture"
-						showEnableToggle
-						bind:enabled={s.captureEnabled}
+						isOpen={open.capture}
+						ontoggle={toggle('capture')}
 					>
-						<SelectInput
-							id="sample-rate"
-							label="Sample rate"
-							options={sampleRateOptions}
-							bind:value={s.sampleRate}
+						<CheckboxInput
+							id="capture-enabled"
+							label="Capture enabled"
+							bind:checked={s.captureEnabled}
 						/>
-						<ScrubInput
-							id="trigger-threshold"
-							label="Trigger threshold"
-							unit="dB"
-							min={-90}
-							max={0}
-							step={0.5}
-							precision={1}
-							bind:value={s.triggerThreshold}
-							hasDefaultValue={s.triggerThreshold === defaults.triggerThreshold}
-							onReset={() => (s.triggerThreshold = defaults.triggerThreshold)}
-						/>
-						<Slider
-							id="buffer-window"
-							label="Buffer window"
-							unit="s"
-							min={1}
-							max={120}
-							step={1}
-							bind:value={s.bufferWindow}
-						/>
-						<NumberInput
-							id="max-streams"
-							label="Max concurrent streams"
-							min={1}
-							max={32}
-							step={1}
-							bind:value={s.maxStreams}
-						/>
-					</ToggleGroup>
-				</section>
+						{#if s.captureEnabled}
+							<SelectInput
+								id="sample-rate"
+								label="Sample rate"
+								options={sampleRateOptions}
+								bind:value={s.sampleRate}
+							/>
+							<ScrubInput
+								id="trigger-threshold"
+								label="Trigger threshold"
+								unit="dB"
+								min={-90}
+								max={0}
+								step={0.5}
+								precision={1}
+								bind:value={s.triggerThreshold}
+								hasDefaultValue={s.triggerThreshold === defaults.triggerThreshold}
+								onReset={() => (s.triggerThreshold = defaults.triggerThreshold)}
+							/>
+							<!-- NESTED section: renders as a quiet twirl-down (left chevron,
+							     indent-guide rule) — depth is detected automatically. -->
+							<CollapsibleSection
+								title="Advanced trigger"
+								isOpen={open.advancedTrigger}
+								ontoggle={toggle('advancedTrigger')}
+							>
+								<ScrubInput
+									id="pre-trigger"
+									label="Pre-trigger window"
+									unit="ms"
+									min={0}
+									max={2000}
+									step={10}
+									bind:value={s.preTriggerMs}
+								/>
+								<ScrubInput
+									id="hysteresis"
+									label="Hysteresis"
+									unit="dB"
+									min={0}
+									max={12}
+									step={0.5}
+									precision={1}
+									bind:value={s.hysteresisDb}
+								/>
+							</CollapsibleSection>
+							<Slider
+								id="buffer-window"
+								label="Buffer window"
+								unit="s"
+								min={1}
+								max={120}
+								step={1}
+								bind:value={s.bufferWindow}
+							/>
+							<NumberInput
+								id="max-streams"
+								label="Max concurrent streams"
+								min={1}
+								max={32}
+								step={1}
+								bind:value={s.maxStreams}
+							/>
+						{/if}
+					</CollapsibleSection>
 
-				<!-- Storage -->
-				<section class="stack-group">
-					<Panel title="Storage">
+					<CollapsibleSection
+						title="Storage"
+						isOpen={open.storage}
+						ontoggle={toggle('storage')}
+					>
 						<TextInput
 							id="cache-dir"
 							label="Local cache directory"
@@ -227,12 +271,9 @@
 							label="Auto-purge oldest captures on low disk (90% of quota)"
 							bind:checked={s.autoPurge}
 						/>
-					</Panel>
-				</section>
+					</CollapsibleSection>
 
-				<!-- Sync -->
-				<section class="stack-group">
-					<Panel title="Sync">
+					<CollapsibleSection title="Sync" isOpen={open.sync} ontoggle={toggle('sync')}>
 						<NumberInput
 							id="sync-interval"
 							label="Sync interval"
@@ -249,8 +290,6 @@
 							bind:value={s.endpointUrl}
 							placeholder="https://ingest.example.com/v1"
 						/>
-						<!-- No password/reveal field component exists; compose TextInput's
-						     `type` prop with a small toggle button instead. -->
 						<div class="flex items-end gap-1">
 							<TextInput
 								id="api-token"
@@ -268,12 +307,14 @@
 							label="Pause sync on metered connections"
 							bind:checked={s.pauseOnMetered}
 						/>
-					</Panel>
-				</section>
+					</CollapsibleSection>
 
-				<!-- Danger zone -->
-				<section class="stack-group">
-					<Panel title="Danger zone">
+					<CollapsibleSection
+						title="Danger zone"
+						isOpen={open.danger}
+						ontoggle={toggle('danger')}
+						class="border-b-0"
+					>
 						<Note label="Irreversible" type="warning">
 							Clearing captured data deletes every capture and index entry in the local cache
 							({usedTotalGb.toLocaleString(undefined, { maximumFractionDigits: 1 })} GB). Data
@@ -281,11 +322,7 @@
 						</Note>
 						<div class="flex flex-wrap items-center gap-1">
 							{#if confirmingClear}
-								<Button
-									variant="solid"
-									tone="destructive"
-									onclick={clearCapturedData}
-								>
+								<Button variant="solid" tone="destructive" onclick={clearCapturedData}>
 									Confirm — delete {usedTotalGb.toLocaleString(undefined, {
 										maximumFractionDigits: 1
 									})} GB
@@ -307,8 +344,8 @@
 								Restores every setting above; captured data is kept.
 							</span>
 						</div>
-					</Panel>
-				</section>
+					</CollapsibleSection>
+				</div>
 			</div>
 		</main>
 	</div>
