@@ -207,7 +207,7 @@
 
 	/* App-bar (top chrome) height. Deliberately an integer px (happens to equal
 	   h-control): the bar is thin chrome, and a fixed even height centers the
-	   full-height integrated ThemeToggle + 12.5px brand text on whole pixels.
+	   full-height integrated ThemeToggle + 13px brand text on whole pixels.
 	   `py-*` here rounds unevenly and drifts the contents up/down — use
 	   `h-[var(--bar-height)]` (the AppBar component does). */
 	--bar-height: 22px;

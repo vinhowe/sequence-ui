@@ -224,11 +224,11 @@ The reusable project header is a full-width top bar with a brand-hued identity s
 </AppBar>
 ```
 
-If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (22px), and NEVER `py-*`.** At ~22px it must center the full-height integrated `ThemeToggle` + 12.5px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `pl-1.5` (flush right for the integrated toggle).
+If you hand-roll it, the **height is the trap**. This bar is app *chrome*, not grid content: give it a **fixed integer height, `h-[var(--bar-height)]` (22px), and NEVER `py-*`.** At ~22px it must center the full-height integrated `ThemeToggle` + 13px brand text on whole pixels; `py-*` there resolves to a fractional value that rounds unevenly and drifts the contents up/down ("sits lower on top"). Horizontal is `pl-1.5` (flush right for the integrated toggle).
 
 ```svelte
 <header class="sticky top-0 z-30 flex h-[var(--bar-height)] shrink-0 items-center justify-between gap-8 border-t border-t-transparent border-b border-b-bar-border bg-bar pl-1.5 text-bar-foreground">
-	<span class="flex items-center gap-1.5 font-sans text-base">
+	<span class="flex items-center gap-1.5 font-sans text-[13px] leading-none">
 		<span class="font-semibold">Relay</span>
 		<span class="h-3 w-px bg-bar-border"></span>
 		<span class="font-medium opacity-75">Settings</span>

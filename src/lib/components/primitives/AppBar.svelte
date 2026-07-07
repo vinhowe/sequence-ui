@@ -22,8 +22,9 @@
 <!--
   App chrome: a thin, full-width sticky top bar. Height is a fixed integer px
   (`--bar-height`, default 22px) — deliberately OUTSIDE the 4px grid and NOT `py-*` —
-  so the full-height integrated ThemeToggle and 12.5px brand text center on whole pixels. Padding-based
-  sizing rounds unevenly at this height and drifts the contents up/down. The bar chrome
+  so the full-height integrated ThemeToggle and 13px brand text center on whole
+  pixels. Padding-based sizing rounds unevenly at this height and drifts the
+  contents up/down. The bar chrome
   is driven by the `--bar-*` tokens (brand-hued purple defaults) — rebrand by pointing
   those at your hue, or override per-instance via `class`. The integrated ThemeToggle
   reads the same tokens, so the bar stays a single source of truth.
@@ -39,7 +40,7 @@
 	{#if brand}
 		{@render brand()}
 	{:else if title}
-		<span class="flex items-center gap-1.5 font-sans text-base">
+		<span class="flex items-center gap-1.5 font-sans text-[13px] leading-none">
 			<span class="font-semibold">{title}</span>
 			{#if context}
 				<span class="h-3 w-px bg-bar-border"></span>
