@@ -32,7 +32,7 @@
 	// title, so the bar reads as title + control, not two titles. Light weight (450,
 	// stem-matched to body). Icons at 12px track the label stems.
 	const baseButtonClasses =
-		'inline-flex items-center gap-1 px-1 font-sans text-base leading-none font-[450] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
+		'inline-flex items-center gap-1 px-1.25 font-sans text-base leading-none font-[450] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0';
 	const activeButtonClasses = integrated
 		? 'bg-bar-accent text-bar-accent-foreground'
 		: 'bg-primary text-primary-foreground';
