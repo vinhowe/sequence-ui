@@ -158,7 +158,7 @@ body {
 }
 ```
 
-Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12, 12.5, 15, and 17px. UI must use semantic type roles, not raw `text-*` sizing.
+Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 11, 12.5, 15, and 17px — the primary text tier is a single 12.5px (body, title, label, value, code); 11px is fine-print + small controls; 10px is tags. UI must use semantic type roles, not raw `text-*` sizing.
 
 | Role | Utility | Font | Use |
 | --- | --- | --- | --- |
@@ -167,10 +167,10 @@ Tailwind text sizes are retuned in `@theme inline`. Distinct role sizes are 10, 
 | Title | `type-title` | sans | panel titles, 12.5px |
 | Body | `type-body` | sans | prose and normal UI text, 12.5px |
 | Fine | `type-fine` | sans | fine print — footnotes, references, dense annotations, 11px |
-| Label | `type-label` | sans | field / metric / readout labels, 12px |
+| Label | `type-label` | sans | field / metric / readout labels, 12.5px |
 | Tag | `type-tag` | mono uppercase | terse code-like tags — units, HEX/DEC, token names, 10px |
 | Button | `type-button` | mono uppercase | command labels, 11px |
-| Value | `type-value` | mono tabular | numeric readouts and value inputs, 12.5px |
+| Value | `type-value` | mono tabular (440) | numeric readouts and value inputs, 12.5px |
 | Code | `type-code` | mono | code and radix/base editing, 12.5px |
 
 Mono is reserved for punchy semantic uses only: buttons, numeric values/readouts, code, and terse instrument tags (`type-tag`). Sans carries branding too — the AppBar title is sans semibold sentence-case. Sans is used for headings, navigation, prose, and labels (`type-label`).

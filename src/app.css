@@ -342,7 +342,10 @@ body {
 	line-height: 1.4;
 }
 @utility type-label {
-	@apply font-sans text-sm font-medium;
+	/* 12.5px — the primary text tier (matches body/title/value/code). Labels get
+	   their quietness from weight + color, not a smaller size (see "emphasis is
+	   color/weight, not size"). Was 12px, the lone body-adjacent odd size. */
+	@apply font-sans text-base font-medium;
 	line-height: 1.25;
 }
 @utility type-tag {
@@ -356,7 +359,13 @@ body {
 	letter-spacing: 0.04em;
 }
 @utility type-value {
-	@apply font-mono text-controls-numeric font-medium tabular-nums;
+	/* Weight 440 (≈ body's 430), NOT 500: mono strokes read heavier than sans at
+	   equal weight, and a monospace value is already wider — at 500 the number
+	   looked bolder/bigger than the sans text around it. 440 matches body weight so
+	   values sit calm next to labels/units. (Size already matches body; the "bigger"
+	   was width + weight, never height.) */
+	@apply font-mono text-controls-numeric tabular-nums;
+	font-weight: 440;
 	line-height: 1;
 }
 @utility type-code {

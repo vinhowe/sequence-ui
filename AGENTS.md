@@ -55,7 +55,7 @@ All UI typography must use one of the ten semantic type utilities from `src/app.
 - `type-title`: compact sans panel/card title.
 - `type-body`: sans prose and normal readable text.
 - `type-fine`: sans **fine print** (11px) — footnotes, source references, dense annotations. NOT general secondary text; for that use `type-body` + `text-muted-foreground`.
-- `type-label`: sans, 12px, medium — the prominent title style for every field/metric/alert label (FormLabel, Statistic, ProgressBar, Note). This is the one label style; route new labels through it so they never drift.
+- `type-label`: sans, 12.5px, medium — the prominent title style for every field/metric/alert label (FormLabel, Statistic, ProgressBar, Note). This is the one label style; route new labels through it so they never drift.
 - `type-tag`: mono, uppercase, small — code-like tags and value annotations (token names, radix tags, units), NOT human-readable field labels.
 - `type-button`: mono, uppercase command text.
 - `type-value`: mono, tabular numeric readouts and input values.
@@ -65,7 +65,7 @@ Mono is only for `type-button`, `type-value`, `type-code`, and `type-tag`. Use s
 
 **Uppercase is a mono-only signal, and sans is always sentence-case.** The only uppercase text is mono: `type-tag` (tags) and `type-button` (commands). The brand label is sans sentence-case (mono-uppercase branding is a terminal tell). Never set `uppercase` on sans text — uppercase-sans reads as neither a technical tag nor natural prose. So a sans section heading (e.g. a `Menu` group heading) is sentence-case sans, not a sans eyebrow.
 
-**Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-tag`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), and those small tags — never for labels, prose, or branding.
+**Labels are sans, not mono.** Every human-readable label is sans: field labels via `FormLabel` (sans, 12.5px, medium weight, foreground — a prominent title, matching the Sequence Toy control-title weight), checkbox/radio option labels (`type-body`), radio-group labels, and boolean/state descriptors ("Open", "Checked", "Selected"). Mono (`type-tag`, uppercase) is NOT for naming things — reserve it for terse code-like tags and value annotations (token names, radix tags like HEX/DEC, unit suffixes). Overall, mono is for values (`type-value`), buttons (`type-button`), code (`type-code`), and those small tags — never for labels, prose, or branding.
 
 **Running text uses `prose`, not bare `type-body`.** A paragraph of running text — panel/section descriptions, help copy — gets the `prose` utility. `prose` applies the body font *and* owns its vertical rhythm: it separates from an adjacent control/grid/code block by 8px and sits flush at a stack's edges (modeled on `@tailwindcss/typography`'s `prose`). This is the ONE sanctioned exception to "components ship margin-free" — prose rhythm belongs to prose, not the container. It's an explicit marker, so the many control usages of `type-body` (inputs, menu items, option labels) are untouched. Rule: real running text → `prose`; UI text → the appropriate `type-*` role.
 
