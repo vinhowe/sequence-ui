@@ -34,13 +34,15 @@
 </script>
 
 <div class={twMerge('flex min-h-0 flex-col border border-border bg-background', rootClass)}>
-	<!-- Tab strip. The active tab uses the body's bg-background + a transparent bottom border,
-	     and the row is pulled down 1px (-mb-px) so it merges into the pane below (VS Code look). -->
+	<!-- Tab strip. The strip carries ONE continuous bottom border across its full width
+	     (like Sequence Toy — a border wherever there is NOT an active tab); only the
+	     active tab cuts through it, dropping 1px (-mb-px) with the body's bg-background so
+	     it merges into the pane below (VS Code look). -->
 	<div
-		class={twMerge('flex shrink-0 items-stretch bg-panel', tabsClass)}
+		class={twMerge('flex shrink-0 items-stretch border-b border-border bg-panel', tabsClass)}
 		role="tablist"
 	>
-		<div class="-mb-px flex">
+		<div class="flex">
 			{#each tabs as tab (tab.id)}
 				{@const isActive = tab.id === active}
 				{@const Icon = tab.icon}
@@ -50,9 +52,9 @@
 					aria-selected={isActive}
 					disabled={tab.disabled}
 					class={twMerge(
-						'flex h-control items-center gap-1.5 border-r border-b border-border px-2 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+						'flex h-control items-center gap-1.5 border-r border-border px-2 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
 						isActive
-							? 'border-b-transparent bg-background text-foreground'
+							? '-mb-px border-b border-b-background bg-background text-foreground'
 							: 'text-muted-foreground hover:text-foreground'
 					)}
 					onclick={() => (active = tab.id)}
@@ -65,7 +67,7 @@
 			{/each}
 		</div>
 		{#if actions}
-			<div class="ml-auto flex items-center gap-1 border-b border-border px-1">
+			<div class="ml-auto flex items-center gap-1 px-1">
 				{@render actions()}
 			</div>
 		{/if}
