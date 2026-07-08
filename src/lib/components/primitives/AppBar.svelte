@@ -41,7 +41,7 @@
 		{@render brand()}
 	{:else if title}
 		<span class="flex items-center gap-1.5 font-sans text-[13px] leading-none">
-			<span class="font-[600]">{title}</span>
+			<span class="font-[520]">{title}</span>
 			{#if context}
 				<span class="h-3 w-px bg-bar-border"></span>
 				<span class="font-medium opacity-75">{context}</span>

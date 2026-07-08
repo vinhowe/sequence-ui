@@ -347,7 +347,7 @@
 						<a
 							href={item.href}
 							aria-current={active ? 'page' : undefined}
-							class={`flex items-center px-2 py-1 type-title ${
+							class={`flex items-center px-2 py-1 font-sans text-xs font-medium leading-none ${
 								i < navItems.length - 1 ? 'border-b border-b-border/60' : ''
 							} ${
 								active
