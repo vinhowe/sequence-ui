@@ -42,30 +42,28 @@
 		class={twMerge('flex shrink-0 items-stretch border-b border-border bg-panel', tabsClass)}
 		role="tablist"
 	>
-		<div class="flex">
-			{#each tabs as tab (tab.id)}
-				{@const isActive = tab.id === active}
-				{@const Icon = tab.icon}
-				<button
-					type="button"
-					role="tab"
-					aria-selected={isActive}
-					disabled={tab.disabled}
-					class={twMerge(
-						'flex h-control items-center gap-1.5 border-r border-border px-2 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-						isActive
-							? '-mb-px border-b border-b-background bg-background text-foreground'
-							: 'text-muted-foreground hover:text-foreground'
-					)}
-					onclick={() => (active = tab.id)}
-				>
-					{#if Icon}
-						<Icon size={13} strokeWidth={2} aria-hidden="true" />
-					{/if}
-					{tab.label}
-				</button>
-			{/each}
-		</div>
+		{#each tabs as tab (tab.id)}
+			{@const isActive = tab.id === active}
+			{@const Icon = tab.icon}
+			<button
+				type="button"
+				role="tab"
+				aria-selected={isActive}
+				disabled={tab.disabled}
+				class={twMerge(
+					'flex h-control items-center gap-1.5 border-r border-border px-2 type-body disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+					isActive
+						? 'bg-background text-foreground shadow-[0_1px_0_0_var(--color-background)]'
+						: 'text-muted-foreground hover:text-foreground'
+				)}
+				onclick={() => (active = tab.id)}
+			>
+				{#if Icon}
+					<Icon size={13} strokeWidth={2} aria-hidden="true" />
+				{/if}
+				{tab.label}
+			</button>
+		{/each}
 		{#if actions}
 			<div class="ml-auto flex items-center gap-1 px-1">
 				{@render actions()}
