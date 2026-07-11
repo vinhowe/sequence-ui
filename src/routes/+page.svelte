@@ -72,7 +72,8 @@
 		{ href: '#data', label: 'Data' },
 		{ href: '#feedback', label: 'Feedback' },
 		{ href: '#icons', label: 'Icons' },
-		{ href: '#theme', label: 'Theme' }
+		{ href: '#theme', label: 'Theme' },
+		{ href: '#special-use', label: 'Special use' }
 	] as const;
 
 	let activeSection = $state('foundations');
@@ -153,7 +154,7 @@
 		segmentedControl: `<SegmentedControl id="view" label="View" bind:value={view}
   options={[{ value: 'arrange', label: 'Arrange' }, { value: 'mix', label: 'Mix' }, { value: 'edit', label: 'Edit' }]} />`,
 		panel: `<Panel title="Transport" citations={citations} contentClass="p-1">
-  <ActionButton color="green">Start</ActionButton>
+  <Button tone="primary" icon={Play}>Start</Button>
 </Panel>`,
 		collapsible: `<CollapsibleSection title="Advanced" isOpen={advancedOpen} ontoggle={() => (advancedOpen = !advancedOpen)}>
   <Slider id="gain" bind:value={gain} min={0} max={1} />
@@ -434,19 +435,32 @@
 					<section id="buttons" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Buttons</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
-							<Panel title="ActionButton" contentClass="pad-box stack-field">
+							<Panel title="Button" class="lg:col-span-2" contentClass="pad-box stack-field">
 								<p class="text-foreground prose">
-									Gradient command button with six semantic colors and a highlighted pulse state.
+									The everyday flat button and <strong>the default — reach for this first</strong>. A thin
+									hairline (1px border, accent in border + text) × tone (default / primary /
+									destructive) × size, with icon, loading, and disabled states. Nearly every button in
+									a Sequence UI surface is a <code class="type-code">Button</code>.
 								</p>
-								<div class="flex flex-wrap gap-1">
-									{#each actionColors as color}
-										<ActionButton {color} onclick={() => actionCount += 1}>{color}</ActionButton>
-									{/each}
-									<ActionButton color="purple" highlighted onclick={() => actionCount += 1}>
-										Armed {actionCount}
-									</ActionButton>
+								<div class="flex flex-wrap items-center gap-1">
+									<Button tone="primary" icon={Play}>Start</Button>
+									<Button tone="destructive" icon={Trash2}>Delete</Button>
+									<Button>Cancel</Button>
 								</div>
-								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.actionButton}</code></pre>
+								<div class="flex flex-wrap items-center gap-1">
+									<Button variant="ghost">Ghost</Button>
+									<Button variant="ghost" tone="destructive">Ghost danger</Button>
+									<Button variant="link" tone="primary">Link</Button>
+									<Button iconRight={ChevronDown}>Menu</Button>
+									<Button tone="primary" loading>Saving</Button>
+									<Button disabled>Disabled</Button>
+								</div>
+								<div class="flex flex-wrap items-center gap-1">
+									<Button size="sm" variant="outline">Small</Button>
+									<Button size="sm" tone="primary" icon={Play}>Small primary</Button>
+									<Button size="sm" variant="ghost">Small ghost</Button>
+								</div>
+								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.button}</code></pre>
 							</Panel>
 
 							<Panel title="IconButton" contentClass="pad-box stack-field">
@@ -477,33 +491,6 @@
 									</span>
 								</div>
 								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.iconButton}</code></pre>
-							</Panel>
-
-							<Panel title="Button" class="lg:col-span-2" contentClass="pad-box stack-field">
-								<p class="text-foreground prose">
-									The everyday flat button — a thin hairline by default (1px border, accent in border + text) × tone
-									(default / primary / destructive) × size, with icon, loading, and disabled
-									states. The calm complement to ActionButton.
-								</p>
-								<div class="flex flex-wrap items-center gap-1">
-									<Button tone="primary" icon={Play}>Start</Button>
-									<Button tone="destructive" icon={Trash2}>Delete</Button>
-									<Button>Cancel</Button>
-								</div>
-								<div class="flex flex-wrap items-center gap-1">
-									<Button variant="ghost">Ghost</Button>
-									<Button variant="ghost" tone="destructive">Ghost danger</Button>
-									<Button variant="link" tone="primary">Link</Button>
-									<Button iconRight={ChevronDown}>Menu</Button>
-									<Button tone="primary" loading>Saving</Button>
-									<Button disabled>Disabled</Button>
-								</div>
-								<div class="flex flex-wrap items-center gap-1">
-									<Button size="sm" variant="outline">Small</Button>
-									<Button size="sm" tone="primary" icon={Play}>Small primary</Button>
-									<Button size="sm" variant="ghost">Small ghost</Button>
-								</div>
-								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.button}</code></pre>
 							</Panel>
 
 							<Panel title="SegmentedControl" class="lg:col-span-2" contentClass="pad-box stack-field">
@@ -1073,7 +1060,7 @@
 						</div>
 					</section>
 
-					<section id="theme" class="scroll-mt-14 stack-group pb-4">
+					<section id="theme" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Theme</h2>
 						<div class="grid gap-1 lg:grid-cols-2">
 							<Panel title="ThemeProvider" contentClass="pad-box stack-field">
@@ -1093,6 +1080,34 @@
 								</p>
 								<div><ThemeToggle /></div>
 								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.themeToggle}</code></pre>
+							</Panel>
+						</div>
+					</section>
+
+					<section id="special-use" class="scroll-mt-14 stack-group pb-4">
+						<h2 class="border-b border-border pb-2 type-heading">Special use</h2>
+						<p class="prose text-muted-foreground">
+							Intentionally de-emphasized. Reach for these only in the specific case each
+							describes — never as a default.
+						</p>
+						<div class="grid gap-1 lg:grid-cols-2">
+							<Panel title="ActionButton" contentClass="pad-box stack-field">
+								<p class="text-foreground prose">
+									The loud gradient <strong>hero</strong> command — mono-uppercase, six semantic colors,
+									optional pulse. <strong>Discouraged for general use.</strong> It is a spotlight: use at
+									most one primary action per surface (a transport / commit / run button); every other
+									button is a <code class="type-code">Button</code>. A wall of ActionButtons is the classic
+									AI-generated tell.
+								</p>
+								<div class="flex flex-wrap gap-1">
+									{#each actionColors as color}
+										<ActionButton {color} onclick={() => actionCount += 1}>{color}</ActionButton>
+									{/each}
+									<ActionButton color="purple" highlighted onclick={() => actionCount += 1}>
+										Armed {actionCount}
+									</ActionButton>
+								</div>
+								<pre class="overflow-x-auto border border-border bg-card pad-box text-foreground type-code"><code>{snippets.actionButton}</code></pre>
 							</Panel>
 						</div>
 					</section>

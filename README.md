@@ -100,10 +100,10 @@ pnpm registry:build
 
 Buttons:
 
-- `ActionButton`
-- `Button`
+- `Button` — the default, everyday flat button (reach for this first)
 - `IconButton`
 - `SegmentedControl`
+- `ActionButton` — special-use / discouraged (loud gradient hero; one primary command per surface, never a default)
 
 Primitives:
 

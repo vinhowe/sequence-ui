@@ -95,7 +95,7 @@ After installing, record what you pulled in `.sequence-ui.json` so the app can b
 
 - Group controls inside `Panel` (title + bordered body, defaults to `pad-box stack-field`). Stack sections with `stack-section`; panel grids `gap-1`.
 - Labeled inputs pair `<FormLabel>` + the control in a `stack-tight` root (the shipped control components already do this).
-- Numeric readouts → `type-value` (mono, tabular). Commands → `ActionButton` or `type-button`. Small instrument labels → `type-tag`.
+- Numeric readouts → `type-value` (mono, tabular). Commands → `Button` (the flat default). `ActionButton` (loud gradient) is special-use only — one hero command per surface, never a default; a wall of them is the classic AI tell. Small instrument labels → `type-tag`.
 - Active/selected states → background fill (`bg-primary/12`) or text color, **never** a left border.
 - Multi-field inputs (timecode, base, tolerance, IP-style) → **collapsed-border** model: the outer wrapper owns the single border; inner fields are borderless with 1px dividers and tabular widths so digits never shift layout.
 - App shell → `position: fixed; inset: 0` so only `main` scrolls (keeps a sticky header pinned + makes fragment nav behave); `sr-only` inputs must sit in a `position: relative` wrapper. (See AGENTS.md → Gotchas.)

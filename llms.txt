@@ -60,7 +60,7 @@ Stack utilities:
 - prose: running-text blocks (panel/section descriptions). @apply's type-body + owns its rhythm (1U margin-block, zeroed at stack edges) so prose sits 8px off adjacent controls. The one sanctioned child margin; explicit marker so control text on type-body is unaffected.
 
 Component exports:
-- Buttons: ActionButton, Button, IconButton, SegmentedControl.
+- Buttons: Button (the DEFAULT flat hairline), IconButton, SegmentedControl. ActionButton (loud gradient) is special-use/discouraged — one hero command per surface, never a default.
 - Primitives: AppBar, Panel, BorderedGroup, CollapsibleSection, Rail, Pane.
 - Controls: Slider, NumberInput, ScrubInput, AngleField, ThresholdMarker, TextInput, TimecodeField, BitField, BaseField, ToleranceField, SelectInput, ToggleGroup, CheckboxInput, RadioGroupInput, RadioInput, FormLabel, ResetValueButton.
 - Feedback: Statistic, ControlsStatistic, Note, ControlsNote, Citations, Tooltip, UserGuideTooltip.

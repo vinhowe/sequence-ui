@@ -21,7 +21,7 @@ Use these rules before inventing any component styling:
 - **Selected/active = a primary tint, never surface-pair contrast.** Selection is expressed with the accent wash — `bg-primary/12` on rows (Tree, nav), `bg-primary-accent/15 text-primary-accent` on controls (SegmentedControl, IconButton `active`) — or `bg-foreground text-background` where selection is inversion (Pagination's current page). **Never** signal state by pairing two surface tokens (e.g. rest `bg-panel` vs selected `bg-card`): the gray ladder is a layering system, its rungs coincide in dark mode (`--panel` == `--card`), and any state built on their difference silently vanishes there.
 - **Cursor policy (desktop convention).** The arrow is the cursor for ALL controls — buttons, tabs, segments, checkboxes, selects, menu items, collapsible headers. Never add `cursor-pointer` to a control: the pointing hand means one thing, **navigation** (real `<a href>` links get it natively). Mechanic cursors communicate *mechanics*, not clickability, and are required where they apply: `cursor-ew-resize` (scrub / drag-to-set), `cursor-grab`/`grabbing` (thumbs, brushes), the text caret in text fields. No `cursor-not-allowed` on disabled — disabled is communicated by opacity; the control just sits inert (native behavior). This follows Apple HIG / Adobe Spectrum / Tailwind v4 preflight; pointer-on-buttons is a consumer-web tell.
 - Borders are thin `border border-border` hairlines; use `border-border-strong` only when hierarchy needs it.
-- Primary commands use `ActionButton` gradients, not generic pill buttons.
+- **Default to `Button` (the flat hairline outline variant).** Nearly every button is a `Button`. `ActionButton` (the loud gradient) is a **special-use spotlight, NOT a default** — at most one primary command per surface (a transport / commit / run button). If two would sit near each other, at least one is a `Button`. A wall of gradient ActionButtons is the single most common AI-generated tell.
 - Icons come from Lucide. Size icon glyphs in **fixed px** (10 / 11 / 13), never `--spacing`-multiples (`h-3.5`), so icon size is decoupled from layout density and doesn't scale when `--spacing` changes.
 - Berkeley Mono is reserved. `Inter` (self-hosted v4.1 variable, SIL OFL) is the sans face.
 
@@ -354,6 +354,22 @@ DO use one normal sans section heading with the parent stack creating the follow
 </section>
 ```
 
+DON'T make every button an `ActionButton`. The loud gradient is a spotlight for ONE primary command; a row of them is the classic AI tell.
+
+```svelte
+<ActionButton color="blue">Save</ActionButton>
+<ActionButton color="gray">Cancel</ActionButton>
+<ActionButton color="red">Delete</ActionButton>
+```
+
+DO use one `ActionButton` (if any) for the hero action; everything else is a `Button`.
+
+```svelte
+<ActionButton color="green">Render</ActionButton>
+<Button variant="outline">Cancel</Button>
+<Button variant="ghost" tone="destructive">Delete</Button>
+```
+
 DON'T mark active nav/list/tree rows with left-border cues.
 
 ```svelte
@@ -426,17 +442,17 @@ DON'T add rounded corners, drop shadows, glass effects, or skeuomorphic styling.
 </button>
 ```
 
-DO keep controls flat, sharp, bordered, and role-typed.
+DO keep controls flat, sharp, bordered, and role-typed — and default to `Button`, not `ActionButton`.
 
 ```svelte
-<ActionButton color="blue">Apply</ActionButton>
+<Button variant="outline">Apply</Button>
 ```
 
 ## Component Catalog
 
 Authoritative component names from `src/lib/index.ts`:
 
-- Buttons: `ActionButton` (loud gradient hero), `Button` (the everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed control height (`h-control`, 22px; sm `h-control-sm`, 18px), natural line-height — Inter's tall x-height self-centers the label, no nudge needed. The default `outline` variant is the **Flat Hairline** look: 1px border, accent in border+text, only a faint fill that deepens on hover. `solid` primary/destructive are soft low-alpha tints, not saturated fills), `SegmentedControl` (single-select joined cluster with shared hairline dividers — a mode/tool switch, DAW/AE-style; text or icon-only segments, arrow-key + Home/End nav, `bind:value`), `IconButton`
+- Buttons: `Button` (the DEFAULT, everyday flat button, **sans label** — vs ActionButton's mono — `variant` solid/outline/ghost/link × `tone` default/primary/destructive × `size`, with icon/loading/disabled + `href`; fixed control height (`h-control`, 22px; sm `h-control-sm`, 18px), natural line-height — Inter's tall x-height self-centers the label, no nudge needed. The default `outline` variant is the **Flat Hairline** look: 1px border, accent in border+text, only a faint fill that deepens on hover. `solid` primary/destructive are soft low-alpha tints, not saturated fills), `SegmentedControl` (single-select joined cluster with shared hairline dividers — a mode/tool switch, DAW/AE-style; text or icon-only segments, arrow-key + Home/End nav, `bind:value`), `IconButton`. **`ActionButton`** — the loud gradient hero — is **special-use / discouraged** (see Special use); it is NOT part of the default button set.
 - Primitives: `Panel`, `BorderedGroup`, `CollapsibleSection` (depth-aware: nested renders as a twirl-down), `Rail` (the canonical settings surface: bordered zero-gap stack of CollapsibleSections), `Pane`
 - Controls: `Slider`, `NumberInput`, `ScrubInput`, `AngleField`, `ThresholdMarker`, `TextInput`, `TimecodeField`, `BitField`, `BaseField`, `ToleranceField`, `SelectInput`, `ToggleGroup`, `CheckboxInput`, `RadioGroupInput`, `RadioInput`, `FormLabel`, `ResetValueButton`
 
