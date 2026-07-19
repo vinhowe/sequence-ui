@@ -47,10 +47,11 @@
 
 		<main class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4">
 			<p class="prose mb-4 max-w-2xl text-muted-foreground">
-				The exact same components and styling at three densities — set only by
-				<code class="type-code">--density</code> on each column. Gaps, padding, control
-				heights, and type scale together (so text stays proportional in controls); borders and
-				icon glyphs stay fixed. Flip the theme too.
+				The exact same components at three densities — set only by
+				<code class="type-code">--density</code> on each column. Density is an <em>air</em> knob:
+				it scales the whitespace (gaps between controls, section breaks, box padding) and nothing
+				else. The controls, type, and icons stay pixel-identical across all three columns — same
+				crisp instrument, more room to breathe. Not a zoom. Flip the theme too.
 			</p>
 			<div class="grid items-start gap-4 lg:grid-cols-3">
 				{#each columns as col, i}

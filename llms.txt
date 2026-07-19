@@ -22,8 +22,8 @@ Dev commands:
 
 Design constants:
 - Base type: 12.5px.
-- Tailwind spacing: --spacing: 0.25rem (density-scaled).
-- Density: --density knob (default 1) scales --spacing + all derived (gaps, pad-box, control heights) AND the type scale (so text stays proportional in controls); only borders + icon glyphs fixed. Global on :root or scoped (.density-compact/-cozy/-comfortable, or style="--density:N"). ~1 instrument (22px controls), 1.3 comfortable (~29px, ~16px text). Always use --spacing multiples + h-control, never raw px.
+- Tailwind spacing: --spacing: 0.25rem (fixed grid unit; NOT density-scaled).
+- Density: --density knob (default 1) is an AIR knob, not a zoom. Scales ONLY whitespace — the stack-* gaps (field/group/section) + pad-box. Does NOT scale --spacing, control heights, control-internal padding, type, icons, or borders (all fixed) — controls stay the same crisp instrument size at any density; only the room around them changes. Global on :root or scoped (.density-compact/-cozy/-comfortable, or style="--density:N"). 1 instrument, 1.5 cozy, 2 comfortable (roomy). Use stack-*/pad-box for what breathes; h-control + --spacing multiples (never raw px) for controls. stack-tight (label→field) fixed on purpose so proximity sharpens as things spread.
 - Radius: --radius: 0rem.
 - Corners: sharp.
 - Surfaces: flat, no shadows.
@@ -35,7 +35,7 @@ Design constants:
 - Disabled: grayed in place (opacity-50, inert), never hidden for enable-gates; ToggleGroup/fieldset:disabled gate groups natively; hide only for contextual irrelevance (mode switches).
 - Feedback: press > hover — every control has an instant active: pressed state one step deeper than its subtle hover; never hover-without-press; list rows hover-highlight only.
 - Tinted feedback via theme-scoped tokens: hover:bg-<accent>/(--tint-hover), active:bg-<accent>/(--tint-active) (solids: --tint-solid-*; gradients: hover:brightness-(--lift-hover)) — tokens run larger in dark for perceptual parity; never hand-pick hover alphas.
-- Icons: fixed-px glyphs (10/11/13), decoupled from --spacing so they don't scale with density.
+- Icons: fixed-px glyphs (10/11/13), fixed at every density (density scales only whitespace) — crisp integer-px, no fractional softness.
 - Borders: thin border-border hairlines.
 - Fonts: Berkeley Mono Variable (mono, bundled woff2 + @font-face, licensed — consumers bring their own); Inter (sans, self-hosted v4.1 variable woff2, SIL OFL — ships with the system).
 - Dark mode: .dark class on html, localStorage key sequence-ui-theme, modes light/dark/system.

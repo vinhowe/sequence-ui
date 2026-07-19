@@ -78,7 +78,7 @@
 
 	let activeSection = $state('foundations');
 	// Specimen density switcher — scopes --density over the gallery content only.
-	const densityMap: Record<string, number> = { compact: 1, cozy: 1.15, comfortable: 1.3 };
+	const densityMap: Record<string, number> = { compact: 1, cozy: 1.5, comfortable: 2 };
 	let specimenDensity = $state('compact');
 	$effect(() => {
 		const root = document.querySelector('main');

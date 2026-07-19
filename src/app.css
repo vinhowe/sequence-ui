@@ -21,14 +21,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-	/* DENSITY — the compactness knob. 1 = instrument-panel (the default, tight).
-	   It scales the base grid unit `--spacing`, so every gap, padding (`--pad-box`),
-	   and control height (`--spacing-control`) breathes from this one number, while
-	   type, icons, and borders stay fixed — same clarity-forward styling at any
-	   density. Override on `:root` for the whole app, or on any element to scope a
-	   subtree. Roughly: 1 = compact (22px controls) · 1.25 = cozy · 1.5–1.6 =
-	   comfortable (~33–35px controls, near typical web). Type is a separate knob
-	   (`--text-base`). */
+	/* DENSITY — the compactness knob, and it's an AIR knob, not a zoom. 1 = instrument
+	   (the default, tight). It scales ONLY the whitespace: the stack-* gaps and pad-box
+	   (see the utilities far below). Controls, control heights, control-internal padding,
+	   type, icons, and borders all stay FIXED — so a denser or airier surface is the same
+	   crisp instrument at a different rhythm, never a magnified copy (that's cmd-+). Override
+	   on `:root` for the whole app, or on any element to scope a subtree. Roughly: 1 =
+	   compact · 1.5 = cozy · 2 = comfortable (roomy, Linear-esque). */
 	--density: 1;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.27 0 0);
@@ -149,9 +148,10 @@
 	--lift-hover: 1.1;
 }
 
-/* Type scale in a NON-inline @theme block (same reason as spacing: keeps the sizes as
-   var() references so the density-scaled overrides in `*` below take effect). Line
-   heights are unitless ratios, so they follow the scaled font-size automatically. */
+/* Type scale. FIXED — type does NOT scale with --density. Density is an "air" knob: it
+   changes the whitespace between and around controls, never the controls or their text.
+   Scaling type would just be a uniform zoom (cmd-+), which is not the goal — the point is
+   the same crisp instrument type with more room to breathe. Line heights are unitless. */
 @theme {
 	--text-2xs: 0.625rem;
 	--text-2xs--line-height: calc(1 / 0.625);
@@ -185,46 +185,22 @@
 }
 
 /* Spacing scale. @theme provides base values and GENERATES the utilities (gap-*, p-*,
-   and h-control / w-control from --spacing-control). It must NOT reference var(--density)
-   here: @theme resolves nested vars at BUILD time, which would freeze density to 1. The
-   density-scaled, runtime-live versions are re-declared in :root below (plain/unlayered,
-   so var(--density) survives and wins the cascade over @theme's layered output). */
+   and h-control / w-control from --spacing-control). These are all FIXED — the grid unit,
+   control heights, and control-internal padding never scale with --density. Density is an
+   "air" knob that only touches the container-owned whitespace utilities (stack-* and
+   pad-box, defined far below), so controls stay crisp and instrument-tight at any density. */
 @theme {
 	--spacing: 0.25rem;
-	--spacing-control: calc(var(--spacing) * 5.5); /* generates h-control (22px at density 1) */
-	--spacing-control-sm: calc(var(--spacing) * 4.5); /* generates h-control-sm (18px) */
+	--spacing-control: calc(var(--spacing) * 5.5); /* h-control = 22px, fixed (controls don't scale) */
+	--spacing-control-sm: calc(var(--spacing) * 4.5); /* h-control-sm = 18px, fixed */
+	--pad-box: var(--spacing); /* base box inset (1U); the pad-box utility scales THIS by --density */
 }
 
-/* Runtime density. The spacing tokens are re-derived on EVERY element (`*`) so that
-   var(--density) resolves in each element's own inherited context — a derived custom
-   property declared only on :root would bake --density at :root and inherit the frozen
-   result, so a subtree override wouldn't take. This makes --density work at ANY level:
-   globally on :root, or scoped to a subtree (a `.density-*` class or `style="--density:N"`).
-   Overriding --density rescales --spacing and everything derived — gaps, pad-box, control
-   heights. Type, icons, and borders are NOT spacing-derived, so they stay fixed. */
-* {
-	--spacing: calc(0.25rem * var(--density, 1));
-	--pad-box: calc(var(--spacing) * 1);
-	--spacing-control: calc(var(--spacing) * 5.5);
-	--spacing-control-sm: calc(var(--spacing) * 4.5);
-	/* Type scales with density too — a fixed-size text in a spacing-sized control would
-	   otherwise over-pad (the padding:text ratio would drift). Scaling both keeps it constant. */
-	--text-2xs: calc(0.625rem * var(--density, 1));
-	--text-xs: calc(0.6875rem * var(--density, 1));
-	--text-sm: calc(0.75rem * var(--density, 1));
-	--text-base: calc(0.78125rem * var(--density, 1));
-	--text-lg: calc(0.875rem * var(--density, 1));
-	--text-xl: calc(0.9375rem * var(--density, 1));
-	--text-2xl: calc(1.0625rem * var(--density, 1));
-	--text-3xl: calc(1.25rem * var(--density, 1));
-	--text-4xl: calc(1.5rem * var(--density, 1));
-	--text-5xl: calc(1.875rem * var(--density, 1));
-	--text-6xl: calc(2.25rem * var(--density, 1));
-	--text-7xl: calc(3rem * var(--density, 1));
-	--text-8xl: calc(3.75rem * var(--density, 1));
-	--text-9xl: calc(4.5rem * var(--density, 1));
-	--text-controls-numeric: calc(0.78125rem * var(--density, 1));
-}
+/* Density is applied entirely in the stack-* and pad-box utilities (far below): each
+   references var(--density) directly, and because those utilities are applied straight
+   onto elements, var(--density) resolves in each element's own inherited context — so a
+   subtree override (.density-* class or style="--density:N") just works, at any level, with
+   no `*`-selector re-derivation needed. Nothing spacing-, type-, or icon-related scales. */
 
 @theme inline {
 	--color-background: var(--background);
@@ -416,40 +392,52 @@ body {
    Instrument-dense, matching Sequence Toy's control panel: panel bodies use one
    tight 3.2px step (its `space-y-1`), and panels butt together border-to-border.
    All gaps are multiples of the 0.25rem base grid. Retune here, everywhere updates. */
+/* These four carry the WHITESPACE, so they (and pad-box) are the ONLY things --density
+   touches. Each gap is `base * var(--density)`, and since the utility lands on an element,
+   var(--density) resolves in that element's context — density scopes to any subtree for free.
+   stack-tight is the exception: it stays FIXED, because it groups the parts of ONE control
+   (label→field). Keeping it fixed while field→field grows means the proximity hierarchy gets
+   STRONGER as things breathe (a label always hugs its field), not washed out. */
 @utility stack-tight {
-	@apply flex flex-col gap-1; /* 4px — parts of one control (label→field) */
+	@apply flex flex-col gap-1; /* 4px, FIXED — parts of one control (label→field) */
 }
-/* Deliberately WIDER than stack-tight: a label must sit closer to its own field
-   (4px) than the previous control sits above it (6px), or the stack reads as one
-   crammed undifferentiated column (proximity grouping). 1.5U — half-steps are
-   part of the system (h-control is 5.5U). */
+/* Deliberately WIDER than stack-tight: a label must sit closer to its own field than the
+   previous control sits above it, or the stack reads as one crammed undifferentiated column
+   (proximity grouping). 6px base (1.5U at density 1); grows with --density. */
 @utility stack-field {
-	@apply flex flex-col gap-1.5; /* 6px — controls inside a panel body */
+	@apply flex flex-col;
+	gap: calc(0.375rem * var(--density, 1)); /* 6px base — controls inside a panel body */
 }
 @utility stack-group {
-	@apply flex flex-col gap-1; /* 4px — panels within a section (prefer contiguous border-b) */
+	@apply flex flex-col;
+	gap: calc(0.25rem * var(--density, 1)); /* 4px base — panels within a section (prefer contiguous border-b) */
 }
 @utility stack-section {
-	@apply flex flex-col gap-4; /* 12.8px — page sections; a real break, a healthy gap above each heading */
+	@apply flex flex-col;
+	gap: calc(1rem * var(--density, 1)); /* 16px base — page sections; a real break above each heading */
 }
 
 /* The one content-box inset. Every text-in-a-box uses this instead of a hand-picked
-   p-* value, so box padding is consistent and bumping --pad-box reflows all of them. */
+   p-* value, so box padding is consistent and bumping --pad-box reflows all of them.
+   Scales with --density (it's whitespace: a roomier panel body), so it lands here with
+   the stacks rather than as a fixed control dimension. */
 @utility pad-box {
-	padding: var(--pad-box);
+	padding: calc(var(--pad-box) * var(--density, 1));
 }
 
-/* Density presets — set the `--density` knob on a subtree. Ergonomic wrappers around
-   `--density`; use `style="--density: N"` for an arbitrary value. Scales gaps,
-   padding, and control heights together (type/icons/borders stay fixed). */
+/* Density presets — set the `--density` "air" knob on a subtree. Ergonomic wrappers
+   around `--density`; use `style="--density: N"` for an arbitrary value. Density scales
+   ONLY the whitespace (stack gaps + pad-box); controls, type, icons, and borders stay
+   fixed, so a denser/airier surface is the same crisp instrument at a different rhythm —
+   NOT a zoom. Air can stretch further than a size knob, so the steps are generous. */
 @utility density-compact {
-	--density: 1;
+	--density: 1; /* instrument default — 6px field gaps, 16px sections, 4px box inset */
 }
 @utility density-cozy {
-	--density: 1.15;
+	--density: 1.5; /* 9px field gaps, 24px sections, 6px box inset */
 }
 @utility density-comfortable {
-	--density: 1.3;
+	--density: 2; /* 12px field gaps, 32px sections, 8px box inset */
 }
 
 /* Prose — a block of running text. Unlike a control it carries visual mass, so it

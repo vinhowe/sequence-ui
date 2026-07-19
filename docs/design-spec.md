@@ -2,7 +2,7 @@
 
 Sequence UI is a Svelte 5 runes, Tailwind v4 CSS-first, TypeScript design system. Its visual language is dense instrument-panel UI: compact, flat, sharp, and precise. It was extracted from the Sequence Toy app and adds first-class light/dark theming.
 
-The north star is **high-density professional desktop software** — DAWs, node editors, pro color/photo tools — **not a terminal**. Compact but easy to use: sans carries the interface (headings, labels, navigation, prose); mono is an instrumentation accent reserved for values, code, and terse tags. Density derives from a small set of scalable units (`--spacing`, `--text-base`, `--pad-box`) so the proportions survive scaling (e.g. the coarse-pointer bump). Compactness is a single **`--density`** knob — the same clarity-forward styling runs from tight instrument panel to breathy comfortable (see below).
+The north star is **high-density professional desktop software** — DAWs, node editors, pro color/photo tools — **not a terminal**. Compact but easy to use: sans carries the interface (headings, labels, navigation, prose); mono is an instrumentation accent reserved for values, code, and terse tags. The system is built on a small set of named units (`--spacing`, `--text-base`, `--pad-box`) so proportions stay consistent. Compactness is a single **`--density`** knob that scales only the *whitespace* (gaps + box padding) — the controls and type stay fixed, so the same clarity-forward styling runs from tight instrument panel to breathy comfortable without ever feeling zoomed (see below).
 
 ## Fonts
 
@@ -146,25 +146,31 @@ The dark chart values preserve each series hue for identity across themes.
 
 ## Density And Type Scale
 
-**Density knob — `--density`.** Compactness is one CSS variable (default `1`). It scales the
-grid unit `--spacing`, and everything derived from it — gaps, box padding (`--pad-box`), and
-control heights (`--spacing-control`) — **and the type scale, too**, so text stays a constant
-fraction of the controls it sits in (scaling space but fixing type over-pads controls: the
-padding-to-text ratio drifts and text looks lost — measured 1.85x effective padding for a 1.5x
-knob). Only borders (1px hairlines) and icon glyphs stay fixed. Sweet spots: `1` = compact (22px
-controls, instrument) / `1.15` = cozy / `1.3` = comfortable (~29px controls, ~16px text). Works globally
-(`:root { --density: 1.25 }`) or scoped to a subtree (`.density-compact` / `.density-cozy` /
+**Density knob — `--density`.** Compactness is one CSS variable (default `1`), and it is an
+**air** knob, not a zoom. It scales *only the whitespace* — the between-element gaps (`stack-field`
+/ `stack-group` / `stack-section`) and box padding (`pad-box`). It deliberately does **not** touch
+the grid unit `--spacing`, control heights (`--spacing-control`), control-internal padding, the
+type scale, icons, or borders — those are all fixed. So a denser or airier surface is the *same
+crisp instrument controls and 12.5px type* at a different rhythm, never a magnified copy (that's
+what `cmd +` is for, and it's not the goal). This is the resolution of an earlier wrong turn:
+scaling *everything* (incl. type) is just zoom — same feel, bigger — while scaling space but
+freezing type over-pads controls (the padding-to-text ratio drifts, text looks lost; measured
+1.85x effective padding for a 1.5x knob). Scaling *only* the air sidesteps both. Sweet spots: `1`
+= compact (instrument) / `1.5` = cozy / `2` = comfortable (roomy, Linear-esque). Works globally
+(`:root { --density: 1.5 }`) or scoped to a subtree (`.density-compact` / `.density-cozy` /
 `.density-comfortable`, or `style="--density: N"`).
 
-Implementation note (a real Tailwind v4 gotcha): the density-scaled tokens are re-declared on
-`*`, not just `:root`. A derived custom property (`--spacing: calc(0.25rem * var(--density))`)
-declared only on `:root` resolves `var(--density)` *at* `:root` and inherits the frozen result,
-so a subtree override wouldn't take. Re-deriving on every element makes `var(--density)` resolve
-in each element's own inherited context, so the knob works at any level. And `--spacing` /
-`--spacing-control` live in a **non-inline** `@theme` block (to generate the `gap-*` / `h-control`
-utilities as `var()` references) with the runtime values re-declared unlayered — `@theme inline`
-would bake the value statically and freeze density. Because of all this: always express spacing
-as `--spacing` multiples and control heights as `h-control` — raw px won't respond to density.
+One deliberate asymmetry: `stack-tight` (the label→field gap) stays **fixed** while `stack-field`
+(field→field) scales. So as controls spread apart, each label hugs its own field *more* tightly by
+comparison — the proximity grouping sharpens as the surface breathes, instead of washing out.
+
+Implementation note: because density touches only the `stack-*` and `pad-box` utilities, and those
+utilities are applied straight onto elements, the `var(--density)` inside each one resolves in that
+element's own inherited context — so scoping density to a subtree "just works" with no `*`-selector
+re-derivation needed (an earlier all-of-`--spacing` approach did need that, and it's gone). Controls
+still use `--spacing` multiples and `h-control` — that keeps them consistent, and since `--spacing`
+is fixed, it also keeps them fixed. Only reach for a `stack-*` or `pad-box` when you want something
+that breathes with density; use fixed control dimensions for the controls themselves.
 
 Base document type is 12.5px:
 

@@ -90,30 +90,29 @@ Import `src/app.css` once in the app shell, then wrap the application in `ThemeP
 ## Density
 
 The base style is tuned for instrument-panel density, but compactness is a single knob —
-override the `--density` CSS variable (default `1`) and the whole layout breathes:
+override the `--density` CSS variable (default `1`) and the layout breathes:
 
 ```css
 :root {
-	--density: 1.25; /* everything a touch airier */
+	--density: 1.5; /* airier — same controls, more room around them */
 }
 ```
 
-It scales the grid unit (`--spacing`) and everything derived from it — gaps, box padding, and
-control heights — **and type scales with it too**, so text stays proportional inside controls
-(a fixed text in a growing control would otherwise get lost — the padding-to-text ratio would
-drift). Only borders (1px hairlines) and icon glyphs stay fixed. Rough sweet spots: `1` =
-compact (22px controls, instrument) · `1.15` = cozy · `1.3` = comfortable (~29px controls,
-~16px text, near typical web).
+`--density` is an **air** knob, not a zoom. It scales only the *whitespace* — the gaps between
+controls, the breaks between sections, and box padding — while the controls, type, icons, and
+borders stay pixel-identical. So a "comfortable" Sequence UI is the same crisp 22px controls
+and 12.5px type with generous breathing room, not a magnified copy (that would just be `cmd +`).
+Rough sweet spots: `1` = compact (instrument) · `1.5` = cozy · `2` = comfortable (roomy,
+Linear-esque). One nicety: label→field spacing is deliberately *fixed*, so as fields spread
+apart the label-hugs-its-field grouping gets clearer, not washed out.
 
 It works at any level, not just globally — scope it to a subtree with the preset classes
 or an inline value:
 
 ```svelte
 <div class="density-comfortable"> … airy form … </div>
-<aside style="--density: 0.9"> … extra-tight toolbar … </aside>
+<aside style="--density: 0.85"> … extra-tight toolbar … </aside>
 ```
-
-Type scales with density by design (so controls stay proportional); it's the same clarity-forward styling at a different scale, not a different look.
 
 ## Development
 

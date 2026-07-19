@@ -2,9 +2,8 @@
 	let { checked }: { checked: boolean } = $props();
 </script>
 
-<!-- Sized in spacing units (3.25U = 13px at --density:1), not fixed px, so the box
-     scales with density like the controls it sits beside — unlike decorative/nav
-     icons, which stay fixed px. -->
+<!-- 3.25U = 13px. --spacing is a fixed grid unit (density scales whitespace, not controls),
+     so this glyph is a fixed 13px like every other control dimension. -->
 <span
 	class="size-3.25 flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
 	class:bg-foreground={checked}
