@@ -22,7 +22,8 @@ Dev commands:
 
 Design constants:
 - Base type: 12.5px.
-- Tailwind spacing: --spacing: 0.25rem.
+- Tailwind spacing: --spacing: 0.25rem (density-scaled).
+- Density: --density knob (default 1) scales --spacing + all derived (gaps, pad-box, control heights); type/icons/borders fixed. Global on :root or scoped (.density-compact/-cozy/-comfortable, or style="--density:N"). ~1 instrument (22px controls), 1.5 comfortable (~33px). Always use --spacing multiples + h-control, never raw px.
 - Radius: --radius: 0rem.
 - Corners: sharp.
 - Surfaces: flat, no shadows.

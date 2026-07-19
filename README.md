@@ -87,6 +87,32 @@ Import `src/app.css` once in the app shell, then wrap the application in `ThemeP
 </div>
 ```
 
+## Density
+
+The base style is tuned for instrument-panel density, but compactness is a single knob —
+override the `--density` CSS variable (default `1`) and the whole layout breathes:
+
+```css
+:root {
+	--density: 1.25; /* everything a touch airier */
+}
+```
+
+It scales the grid unit (`--spacing`) and everything derived from it — gaps, box padding,
+and control heights — while **type, icons, and borders stay fixed**, so the clarity-forward
+styling is identical at any density. Rough sweet spots: `1` = compact (22px controls,
+instrument) · `1.25` = cozy · `1.5`–`1.6` = comfortable (~33–35px controls, near typical web).
+
+It works at any level, not just globally — scope it to a subtree with the preset classes
+or an inline value:
+
+```svelte
+<div class="density-comfortable"> … airy form … </div>
+<aside style="--density: 0.9"> … extra-tight toolbar … </aside>
+```
+
+Type is a separate knob (`--text-base`), so airy spacing and compact data text compose freely.
+
 ## Development
 
 ```sh

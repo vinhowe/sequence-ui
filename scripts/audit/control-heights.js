@@ -17,8 +17,16 @@
  *   - data-viz surfaces (progress/capacity tracks, TimeBrush) and slider thumbs
  */
 function auditControlHeights() {
-	const CONTROL_H = 22;
-	const CONTROL_H_SM = 18;
+	// Density-aware: read the actual control heights from the tokens rather than
+	// hardcoding 22/18, so the invariant ("all controls == h-control") holds at any
+	// --density. Probe an element to resolve the computed px value.
+	const probe = document.createElement('div');
+	probe.style.cssText = 'position:absolute;visibility:hidden;height:var(--spacing-control)';
+	document.body.appendChild(probe);
+	const CONTROL_H = Math.round(probe.getBoundingClientRect().height) || 22;
+	probe.style.height = 'var(--spacing-control-sm)';
+	const CONTROL_H_SM = Math.round(probe.getBoundingClientRect().height) || 18;
+	probe.remove();
 	const OK = new Set([CONTROL_H, CONTROL_H_SM]);
 
 	const isExempt = (el) => {

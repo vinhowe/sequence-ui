@@ -3,9 +3,9 @@
 </script>
 
 <span
-  class="relative h-[13px] w-[13px] shrink-0 rounded-full peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
+  class="relative size-3.25 shrink-0 rounded-full peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
 >
-  <svg viewBox="0 0 16 16" class="block h-[13px] w-[13px]" aria-hidden="true">
+  <svg viewBox="0 0 16 16" class="block size-3.25" aria-hidden="true">
     <!-- Outer ring -->
     <circle
       cx="8"

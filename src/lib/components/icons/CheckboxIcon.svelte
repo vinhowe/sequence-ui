@@ -2,13 +2,16 @@
 	let { checked }: { checked: boolean } = $props();
 </script>
 
+<!-- Sized in spacing units (3.25U = 13px at --density:1), not fixed px, so the box
+     scales with density like the controls it sits beside — unlike decorative/nav
+     icons, which stay fixed px. -->
 <span
-	class="h-[13px] w-[13px] flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
+	class="size-3.25 flex shrink-0 items-center justify-center peer-focus-visible:ring-1 peer-focus-visible:ring-ring"
 	class:bg-foreground={checked}
 	class:bg-border-strong={!checked}
 >
 	<svg
-		class={`h-[11px] w-[11px] ${checked ? 'opacity-100' : 'opacity-0'}`}
+		class={`size-2.75 ${checked ? 'opacity-100' : 'opacity-0'}`}
 		aria-hidden={!checked}
 		viewBox="0 0 16 16"
 		fill="currentColor"
