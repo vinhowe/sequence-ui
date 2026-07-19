@@ -72,7 +72,7 @@
 {:else}
 	<div class={twMerge(`border-b border-border overflow-hidden bg-background`, wrapperClass)}>
 		<div
-			class="px-1 py-0.5 flex justify-between items-center select-none bg-gradient-to-r from-muted to-panel border-border"
+			class="pad-box-x py-0.5 flex justify-between items-center select-none bg-gradient-to-r from-muted to-panel border-border"
 			class:border-b={isOpen}
 			onclick={handleClick}
 			role="button"

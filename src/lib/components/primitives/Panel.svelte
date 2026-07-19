@@ -22,7 +22,7 @@
 		id,
 		citations,
 		class: rootClass = '',
-		headerClass = 'bg-panel border-b border-border px-1 py-0.5 flex justify-between items-center text-panel-foreground gap-2',
+		headerClass = 'bg-panel border-b border-border pad-box-x py-0.5 flex justify-between items-center text-panel-foreground gap-2',
 		contentClass = 'pad-box stack-field',
 		header,
 		action,

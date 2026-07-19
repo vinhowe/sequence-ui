@@ -424,6 +424,16 @@ body {
 @utility pad-box {
 	padding: calc(var(--pad-box) * var(--density, 1));
 }
+/* Single-axis variants of the box inset — same density-scaled value, one axis. Use these
+   when a row needs the box's HORIZONTAL inset (so it left-aligns with the body content) but
+   its own vertical rhythm: e.g. a panel/section TITLE bar takes pad-box-x + a fixed compact
+   py, so the title shares the content's left edge at every density without the bar growing tall. */
+@utility pad-box-x {
+	padding-inline: calc(var(--pad-box) * var(--density, 1));
+}
+@utility pad-box-y {
+	padding-block: calc(var(--pad-box) * var(--density, 1));
+}
 
 /* Density presets — set the `--density` "air" knob on a subtree. Ergonomic wrappers
    around `--density`; use `style="--density: N"` for an arbitrary value. Density scales
