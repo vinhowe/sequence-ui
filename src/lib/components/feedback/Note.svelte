@@ -35,7 +35,7 @@
 
 <div
 	class={twMerge(
-		'stack-tight p-1 text-foreground items-start border',
+		'stack-tight pad-box text-foreground items-start border',
 		borderAndBackgroundClasses
 	)}
 >

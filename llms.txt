@@ -52,12 +52,15 @@ Type roles:
 - type-value
 - type-code
 
-Stack utilities:
-- stack-tight (4px): label/field and parts of one control.
-- stack-field (6px): sibling controls in a panel body. Proximity invariant: tight < field — inner binding strictly tighter than sibling separation; bordered siblings (panels, rail rows) need no whitespace signal, so group stays 4px.
-- stack-group (4px): related groups or bordered panels.
-- stack-section (16px): h2-led page sections only.
-- pad-box: the one content-box inset (padding: var(--pad-box)).
+Spacing vocabulary — every spacing is a NAMED ROLE, never a raw gap-2/px-1.5/p-1. A role encodes air (scales with --density) vs fixed. scripts/audit/design-lint.js (pnpm lint:design) bans raw spacing in components so it can't drift; intrinsic control geometry (slider track, field cells, tuned icon gaps) is recorded in that lint's allowlist with a reason. Roles (defined once in app.css):
+- gap-tight / stack-tight (4px, FIXED): parts of ONE control (label↔field, icon↔label).
+- gap-field / stack-field (6px, AIR): sibling controls in a body. Proximity invariant: tight < field — inner binding strictly tighter than sibling separation; bordered siblings (panels, rail rows) need no whitespace signal, so group stays 4px.
+- gap-group / stack-group (4px, AIR): sibling panels (flex or grid; prefer contiguous border-b).
+- gap-section / stack-section (16px, AIR): h2-led page sections only.
+- pad-box (+ -x/-y) (4px, AIR): the one content-box inset.
+- pad-control-x (6px) / pad-control-x-sm (4px) (FIXED): a control's own inner H-padding.
+- pad-chrome-y (2px, FIXED): app-bar / title-bar row vertical padding.
+gap-* tiers work on any flex OR grid, any axis; stack-* = flex-col + a tier.
 - prose: running-text blocks (panel/section descriptions). @apply's type-body + owns its rhythm (1U margin-block, zeroed at stack edges) so prose sits 8px off adjacent controls. The one sanctioned child margin; explicit marker so control text on type-body is unaffected.
 
 Component exports:

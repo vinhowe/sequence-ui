@@ -8,6 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"registry:build": "node scripts/build-registry.mjs",
+		"lint:design": "node scripts/audit/design-lint.js",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
 	},

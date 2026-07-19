@@ -13,7 +13,7 @@
 </script>
 
 <div
-	class="stack-tight p-1 bg-card/70 border border-border-strong/60 text-foreground"
+	class="stack-tight pad-box bg-card/70 border border-border-strong/60 text-foreground"
 >
 	<span class="text-foreground type-label"
 		><KatexBlock text={label} /></span

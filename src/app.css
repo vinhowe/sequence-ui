@@ -387,52 +387,77 @@ body {
 	line-height: 1.55;
 }
 
-/* Spacing policy — spacing is owned by CONTAINERS, not components.
-   Components ship margin-free; a parent stacks its children with one of these.
-   Instrument-dense, matching Sequence Toy's control panel: panel bodies use one
-   tight 3.2px step (its `space-y-1`), and panels butt together border-to-border.
-   All gaps are multiples of the 0.25rem base grid. Retune here, everywhere updates. */
-/* These four carry the WHITESPACE, so they (and pad-box) are the ONLY things --density
-   touches. Each gap is `base * var(--density)`, and since the utility lands on an element,
-   var(--density) resolves in that element's context — density scopes to any subtree for free.
-   stack-tight is the exception: it stays FIXED, because it groups the parts of ONE control
-   (label→field). Keeping it fixed while field→field grows means the proximity hierarchy gets
-   STRONGER as things breathe (a label always hugs its field), not washed out. */
-@utility stack-tight {
-	@apply flex flex-col gap-1; /* 4px, FIXED — parts of one control (label→field) */
+/* ============================================================================
+   SPACING VOCABULARY — the consistency engine.
+   Every spacing in the system is a NAMED ROLE, never a raw gap-2 / px-1.5. A role
+   encodes the one thing a bare number can't: does it scale with --density (AIR —
+   whitespace BETWEEN and AROUND components) or stay put (FIXED — a component's own
+   dimensions). scripts/audit/design-lint.js bans raw spacing in components so this
+   can't drift — a raw value is then either a role someone forgot or a fixed decision
+   nobody recorded, and the lint catches both. Retune a role here, everything updates.
+
+   Spacing is owned by CONTAINERS, not components: components ship margin-free (no
+   external mt/mb); a parent positions its children with a stack/gap role. ============ */
+
+/* GAP TIERS — reusable on any flex OR grid container, any axis. A gap is always between
+   siblings; the TIER says how related they are, which fixes both the size and the air/fixed
+   behaviour. The stack-* utilities below are just flex-col + a tier. */
+@utility gap-tight {
+	gap: 0.25rem; /* 4px FIXED — parts of ONE control (label↔field, icon↔label). Fixed so the
+	                 binding stays tight as siblings spread: proximity SHARPENS with density. */
 }
-/* Deliberately WIDER than stack-tight: a label must sit closer to its own field than the
-   previous control sits above it, or the stack reads as one crammed undifferentiated column
-   (proximity grouping). 6px base (1.5U at density 1); grows with --density. */
-@utility stack-field {
-	@apply flex flex-col;
-	gap: calc(0.375rem * var(--density, 1)); /* 6px base — controls inside a panel body */
+@utility gap-field {
+	gap: calc(0.375rem * var(--density, 1)); /* 6px AIR — sibling controls in a body */
 }
-@utility stack-group {
-	@apply flex flex-col;
-	gap: calc(0.25rem * var(--density, 1)); /* 4px base — panels within a section (prefer contiguous border-b) */
+@utility gap-group {
+	gap: calc(0.25rem * var(--density, 1)); /* 4px AIR — sibling panels (stack or grid; prefer contiguous) */
 }
-@utility stack-section {
-	@apply flex flex-col;
-	gap: calc(1rem * var(--density, 1)); /* 16px base — page sections; a real break above each heading */
+@utility gap-section {
+	gap: calc(1rem * var(--density, 1)); /* 16px AIR — sibling sections; the real break above a heading */
 }
 
-/* The one content-box inset. Every text-in-a-box uses this instead of a hand-picked
-   p-* value, so box padding is consistent and bumping --pad-box reflows all of them.
-   Scales with --density (it's whitespace: a roomier panel body), so it lands here with
-   the stacks rather than as a fixed control dimension. */
+/* STACKS — vertical convenience: flex-col + a gap tier. Since var(--density) resolves in
+   each element's own context, density scopes to any subtree for free. */
+@utility stack-tight {
+	@apply flex flex-col gap-tight;
+}
+@utility stack-field {
+	@apply flex flex-col gap-field;
+}
+@utility stack-group {
+	@apply flex flex-col gap-group;
+}
+@utility stack-section {
+	@apply flex flex-col gap-section;
+}
+
+/* BOX INSET (AIR) — the one content-box padding. Every text-in-a-box uses this, not a
+   hand-picked p-*, so insets are consistent and bumping --pad-box reflows all of them; it
+   scales with --density (a roomier box is whitespace). -x/-y are single-axis: a title bar
+   takes pad-box-x (so the title shares the body's left edge at every density) + a fixed
+   pad-chrome-y (a compact bar that does NOT grow tall). */
 @utility pad-box {
 	padding: calc(var(--pad-box) * var(--density, 1));
 }
-/* Single-axis variants of the box inset — same density-scaled value, one axis. Use these
-   when a row needs the box's HORIZONTAL inset (so it left-aligns with the body content) but
-   its own vertical rhythm: e.g. a panel/section TITLE bar takes pad-box-x + a fixed compact
-   py, so the title shares the content's left edge at every density without the bar growing tall. */
 @utility pad-box-x {
 	padding-inline: calc(var(--pad-box) * var(--density, 1));
 }
 @utility pad-box-y {
 	padding-block: calc(var(--pad-box) * var(--density, 1));
+}
+
+/* CONTROL & CHROME PADDING (FIXED) — a control's own inner padding and a chrome bar's row
+   height are part of the component's identity, like its border; they do NOT scale (a control
+   stays the same crisp size at any density — that's what makes density "air, not zoom").
+   Named so they read as DELIBERATELY fixed, not a forgotten air role. On the 0.25rem grid. */
+@utility pad-control-x {
+	padding-inline: calc(var(--spacing) * 1.5); /* 6px — standard input/button inner H-padding */
+}
+@utility pad-control-x-sm {
+	padding-inline: var(--spacing); /* 4px — small control */
+}
+@utility pad-chrome-y {
+	padding-block: calc(var(--spacing) * 0.5); /* 2px — app-bar / title-bar row */
 }
 
 /* Density presets — set the `--density` "air" knob on a subtree. Ergonomic wrappers

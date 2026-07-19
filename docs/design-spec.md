@@ -216,16 +216,21 @@ Tailwind spacing is globally tightened:
 
 On coarse pointers, `html` font-size becomes `18px`, which scales the rem-based grid (and everything else) up ~12% for touch targets.
 
-Spacing is owned by containers. Components should not ship external margins. The stack utilities are:
+Spacing is owned by containers. Components should not ship external margins.
 
-Two levels: a tight 4px within/between related controls, and a real 16px break above each section heading. Every gap resolves to one of them — no ad-hoc margins on panels/headings.
+**Every spacing is a named ROLE, never a raw `gap-2` / `px-1.5` / `p-1`** — this is the consistency engine's first rule. A role encodes what a bare number can't: whether it's AIR (scales with `--density`) or FIXED (a component's own dimensions). `scripts/audit/design-lint.js` (`pnpm lint:design`) bans raw spacing utilities in components so the vocabulary can't drift — a raw value is then either a role someone forgot or a fixed decision nobody recorded, and the lint catches both. A control's own intrinsic geometry (a slider's track, a segmented field's cells, a button's tuned icon inset) stays fixed and is recorded in the lint's allowlist with a reason, rather than forced into a role. The closed vocabulary (defined once in `app.css`):
 
-| Utility | Tailwind gap | Rem | Use |
+| role | Tailwind base | Use | air? |
 | --- | --- | --- | --- |
-| `stack-tight` | `gap-1` | 0.25rem (4px) | parts of one control, label to field |
-| `stack-field` | `gap-1.5` | 0.375rem (6px) | sibling controls inside a panel body |
-| `stack-group` | `gap-1` | 0.25rem (4px) | heading + panels within a section |
-| `stack-section` | `gap-4` | 1rem (16px) | page sections (a real break above each heading) |
+| `gap-tight` / `stack-tight` | `gap-1` (4px) | parts of one control, label→field | fixed |
+| `gap-field` / `stack-field` | `gap-1.5` (6px) | sibling controls in a panel body | **air** |
+| `gap-group` / `stack-group` | `gap-1` (4px) | heading + panels within a section | **air** |
+| `gap-section` / `stack-section` | `gap-4` (16px) | page sections (a real break) | **air** |
+| `pad-box` (+`-x`/`-y`) | `p-1` (4px) | a container's content inset | **air** |
+| `pad-control-x` / `-sm` | `px-1.5` / `px-1` | a control's own inner padding | fixed |
+| `pad-chrome-y` | `py-0.5` (2px) | a title-bar / app-bar row | fixed |
+
+The `gap-*` tiers work on any flex OR grid, any axis; `stack-*` are just `flex-col` + a tier. Two levels dominate: a tight 4px within/between related controls, and a real 16px break above each section heading.
 
 **Proximity invariant.** Whitespace encodes grouping, so inner binding must be
 strictly tighter than sibling separation: label→field (4px) < control→control

@@ -109,19 +109,34 @@ Headings are understated. They are sans, medium, tight, and followed by generous
 
 Spacing belongs to containers, not leaf components. Components ship margin-free: no external `mt-*`, `mb-*`, or hardcoded outside spacing. Parents arrange children with the stack utilities.
 
+**Every spacing is a named ROLE — never a raw `gap-2` / `px-1.5` / `p-1`.** A role encodes what a bare number can't: whether it scales with `--density` (AIR — whitespace between/around components) or stays put (FIXED — a component's own dimensions). `scripts/audit/design-lint.js` (`pnpm lint:design`) bans raw spacing utilities in components, so this can't drift. The closed vocabulary (defined once in `src/app.css`):
+
+| role | what | air? |
+| --- | --- | --- |
+| `gap-tight` / `stack-tight` | parts of ONE control (label↔field) | fixed |
+| `gap-field` / `stack-field` | sibling controls in a body | **air** |
+| `gap-group` / `stack-group` | sibling panels (flex or grid) | **air** |
+| `gap-section` / `stack-section` | sibling sections | **air** |
+| `pad-box` (+`-x`/`-y`) | a container's content inset | **air** |
+| `pad-control-x` / `-sm` | a control's own inner padding | fixed |
+| `pad-chrome-y` | a title-bar / app-bar row | fixed |
+
+The `gap-*` tiers work on any flex OR grid, any axis; `stack-*` are just `flex-col` + a tier. A control's own internal geometry (a slider's track, a segmented field's cells, a button's tuned icon inset) is intrinsic and stays fixed — it's recorded in the lint's allowlist with a reason, not forced into a role.
+
 Instrument-dense, matching Sequence Toy's Control Panel: one tight 4px step inside panels, and panels that butt together (border-separated), not floated apart.
 
-- `stack-tight`: `gap-1`, 0.25rem (4px), label to field or parts of one control.
-- `stack-field`: `gap-1.5`, 0.375rem (6px), controls inside a panel body.
-- `stack-group`: `gap-1`, 0.25rem (4px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap).
-- `stack-section`: `gap-4`, 1rem (16px), page sections — a real break, a healthy gap above each heading.
+- `stack-tight` / `gap-tight`: 0.25rem (4px), label to field or parts of one control (fixed).
+- `stack-field` / `gap-field`: 0.375rem (6px), controls inside a panel body (air).
+- `stack-group` / `gap-group`: 0.25rem (4px), panels within a section — or prefer contiguous, border-`b`-separated panels (0 gap) (air).
+- `stack-section` / `gap-section`: 1rem (16px), page sections — a real break, a healthy gap above each heading (air).
 
 **The proximity invariant (the rule behind the numbers): whitespace encodes grouping, so inner binding must be strictly tighter than sibling separation.** A label must sit closer to its own field (`stack-tight`, 4px) than the previous control sits above it (`stack-field`, 6px) — equal gaps (4/4) fuse the whole panel into one undifferentiated column. This only governs **unbordered** siblings, where whitespace is the sole grouping signal; bordered containers (panels in a `stack-group`, rail rows) are separated by their hairlines, so their gap is a seam, not a grouping signal, and stays at 4px (or 0, contiguous). 6px is the minimal sanctioned step above 4px — half-units (1.5U) are part of the system where a full unit overshoots (`h-control` = 5.5U, icon gaps 1.25U).
 
-- **Binding** (parts of one thing) — **4px, `gap-1`**: label→field, buttons or radios in a cluster row, panel grids. Horizontal clusters use `gap-1` too — never wider than panels.
-- **Sibling separation** (unbordered controls in a body) — **6px, `gap-1.5` / `stack-field`** — the one place 1.5U appears in spacing.
-- **Between** distinct groups in a row — **8px, `gap-2`** (e.g. two separate control clusters side by side).
-- **Between page sections** — **16px, `gap-4` / `stack-section`**: a real break. This is the space above each heading; it matches the page column's top padding so the first heading reads the same as the rest.
+- **Binding** (parts of one thing) — **4px, `gap-tight`** (fixed): label→field, icon→label, buttons/radios in a cluster row. Fixed so it stays tight as siblings spread.
+- **Sibling separation** (unbordered controls in a body) — **6px, `gap-field` / `stack-field`** (air) — the one place 1.5U appears in spacing.
+- **Sibling panels** (flex or grid) — **4px, `gap-group` / `stack-group`** (air), or contiguous (0).
+- **Between page sections** — **16px, `gap-section` / `stack-section`** (air): a real break above each heading; matches the page column's top padding so the first heading reads the same as the rest.
+- **Between two distinct clusters in a chrome row** — 8px is intrinsic (no air role); it lives in the lint allowlist, not the vocabulary.
 
 **Decision procedure — does your page have sections at all?** A "section" means an **`h2`-led page region** (the pattern the specimen/gallery page uses to document many components at once). Most product pages don't have those. **The canonical settings/inspector idiom is the RAIL** (see `/examples/settings`): ONE continuous bordered surface where every group is a `CollapsibleSection` header row — shared hairlines, zero gaps, Lightroom/Blender properties-rail style. Use the **`Rail`** component (`<Rail><CollapsibleSection …/>…</Rail>`) — it owns the outer border and suppresses the last row's `border-b`. Titles live in the header rows; the page has no `h2`s and no `stack-section`. A 4px-gapped stack of titled `Panel`s is an acceptable lighter alternative for a page with 1–2 groups. **Never** pair an `h2` with a single `Panel` repeating the same word ("General" twice), and never use `stack-section` between plain panels — 16px gaps between panels is the classic "agent prior" that makes the page read as SaaS instead of an instrument.
 

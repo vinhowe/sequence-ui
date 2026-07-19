@@ -45,7 +45,7 @@
 {#if nested}
 	<div class={twMerge('stack-tight', wrapperClass)}>
 		<div
-			class="flex select-none items-center gap-1 py-0.5 text-muted-foreground hover:text-foreground"
+			class="flex select-none items-center gap-1 pad-chrome-y text-muted-foreground hover:text-foreground"
 			onclick={handleClick}
 			role="button"
 			tabindex="0"
@@ -72,7 +72,7 @@
 {:else}
 	<div class={twMerge(`border-b border-border overflow-hidden bg-background`, wrapperClass)}>
 		<div
-			class="pad-box-x py-0.5 flex justify-between items-center select-none bg-gradient-to-r from-muted to-panel border-border"
+			class="pad-box-x pad-chrome-y flex justify-between items-center select-none bg-gradient-to-r from-muted to-panel border-border"
 			class:border-b={isOpen}
 			onclick={handleClick}
 			role="button"
