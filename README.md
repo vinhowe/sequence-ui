@@ -98,10 +98,12 @@ override the `--density` CSS variable (default `1`) and the whole layout breathe
 }
 ```
 
-It scales the grid unit (`--spacing`) and everything derived from it — gaps, box padding,
-and control heights — while **type, icons, and borders stay fixed**, so the clarity-forward
-styling is identical at any density. Rough sweet spots: `1` = compact (22px controls,
-instrument) · `1.25` = cozy · `1.5`–`1.6` = comfortable (~33–35px controls, near typical web).
+It scales the grid unit (`--spacing`) and everything derived from it — gaps, box padding, and
+control heights — **and type scales with it too**, so text stays proportional inside controls
+(a fixed text in a growing control would otherwise get lost — the padding-to-text ratio would
+drift). Only borders (1px hairlines) and icon glyphs stay fixed. Rough sweet spots: `1` =
+compact (22px controls, instrument) · `1.15` = cozy · `1.3` = comfortable (~29px controls,
+~16px text, near typical web).
 
 It works at any level, not just globally — scope it to a subtree with the preset classes
 or an inline value:
@@ -111,7 +113,7 @@ or an inline value:
 <aside style="--density: 0.9"> … extra-tight toolbar … </aside>
 ```
 
-Type is a separate knob (`--text-base`), so airy spacing and compact data text compose freely.
+Type scales with density by design (so controls stay proportional); it's the same clarity-forward styling at a different scale, not a different look.
 
 ## Development
 

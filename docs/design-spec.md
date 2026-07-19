@@ -148,9 +148,11 @@ The dark chart values preserve each series hue for identity across themes.
 
 **Density knob — `--density`.** Compactness is one CSS variable (default `1`). It scales the
 grid unit `--spacing`, and everything derived from it — gaps, box padding (`--pad-box`), and
-control heights (`--spacing-control`) — while **type, icons, and borders stay fixed**, so the
-styling is identical at any density. Sweet spots: `1` = compact (22px controls, instrument) /
-`1.25` = cozy / `1.5`–`1.6` = comfortable (~33–35px, near typical web). Works globally
+control heights (`--spacing-control`) — **and the type scale, too**, so text stays a constant
+fraction of the controls it sits in (scaling space but fixing type over-pads controls: the
+padding-to-text ratio drifts and text looks lost — measured 1.85x effective padding for a 1.5x
+knob). Only borders (1px hairlines) and icon glyphs stay fixed. Sweet spots: `1` = compact (22px
+controls, instrument) / `1.15` = cozy / `1.3` = comfortable (~29px controls, ~16px text). Works globally
 (`:root { --density: 1.25 }`) or scoped to a subtree (`.density-compact` / `.density-cozy` /
 `.density-comfortable`, or `style="--density: N"`).
 
