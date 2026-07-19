@@ -77,6 +77,9 @@
 	] as const;
 
 	let activeSection = $state('foundations');
+	// Specimen density switcher — scopes --density over the gallery content only.
+	const densityMap: Record<string, number> = { compact: 1, cozy: 1.25, comfortable: 1.5 };
+	let specimenDensity = $state('compact');
 	$effect(() => {
 		const root = document.querySelector('main');
 		const els = navItems
@@ -363,11 +366,34 @@
 			</aside>
 
 			<main class="min-h-0 overflow-y-auto overscroll-contain scroll-smooth bg-background">
+				<!-- Density switcher — OUTSIDE the scoped content below, so the control itself
+				     doesn't rescale as you use it. Sticky under the app bar. -->
+				<div
+					class="sticky top-0 z-10 flex items-center gap-2 border-b border-border bg-background px-2 py-1 sm:px-4"
+				>
+					<span class="type-label text-muted-foreground">Density</span>
+					<SegmentedControl
+						size="sm"
+						ariaLabel="Density"
+						bind:value={specimenDensity}
+						options={[
+							{ value: 'compact', label: 'Compact' },
+							{ value: 'cozy', label: 'Cozy' },
+							{ value: 'comfortable', label: 'Comfortable' }
+						]}
+					/>
+					<span class="type-fine text-subtle-foreground"
+						>scales the specimen below · bar &amp; nav stay fixed</span
+					>
+				</div>
 				<!-- Spacing is container-owned, two levels only: sections are spaced by
 				     `stack-section` (16px); everything inside a section — heading to
 				     panels, panel to panel, both axes — is `stack-group` / `gap-1`
 				     (4px). No panel or heading sets its own external margin. -->
-				<div class="mx-auto max-w-7xl stack-section p-2 sm:p-4">
+				<div
+					class="mx-auto max-w-7xl stack-section p-2 sm:p-4"
+					style="--density: {densityMap[specimenDensity]}"
+				>
 					<section id="foundations" class="scroll-mt-14 stack-group">
 						<h2 class="border-b border-border pb-2 type-heading">Foundations</h2>
 
